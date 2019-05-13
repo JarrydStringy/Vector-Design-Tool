@@ -1,0 +1,13 @@
+To get JavaFX to work:
+	Download: https://gluonhq.com/products/javafx/
+	Instructions: 
+		https://stackoverflow.com/questions/52467561/intellij-cant-recognize-javafx-11-with-openjdk-11?noredirect=1&lq=1&fbclid=IwAR2X930i6UqGTEvAifotDWmurF2uCgdwSUOhP03wfMzzIMELs-p-rS5Aj3Y
+		https://www.youtube.com/watch?v=qn2tbftFjno&t=37s
+
+Drawing shape
+	https://www.tutorialspoint.com/javafx/javafx_2d_shapes.htm?fbclid=IwAR2NeBM_BUsyXa7Amcx132JK6pfjlsyE-jhmuXzcyrSm67szq6Cpn-pvrjs
+Paint
+	https://stackoverflow.com/questions/32981758/easier-way-to-make-a-paint-application-in-java
+	http://math.hws.edu/eck/cs124/javanotes6/source/SimplePaint.java
+	https://www.youtube.com/watch?v=0u5aotARyU8
+
