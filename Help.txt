@@ -11,3 +11,9 @@ Paint
 	http://math.hws.edu/eck/cs124/javanotes6/source/SimplePaint.java
 	https://www.youtube.com/watch?v=0u5aotARyU8
 
+Undo/Redo
+	https://stackoverflow.com/questions/23608166/undo-method-for-a-paint-program
+	Though it may not be efficient to store all intermediate images. Generally the idea is to generate some commands each time you alter
+	the painting area. Say you have draw() and erase(). You will then store these commands as they are invoked. Then, when undo is needed,
+	take the last command and "reverse" it. Once you've done undo, the implementation of redo should become apparent.
+
