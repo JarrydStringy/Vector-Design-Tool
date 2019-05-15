@@ -7,30 +7,33 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.canvas.Canvas?>
 
-<!--prefHeight/Width    Application Height/Width
-    <top>               Menu, toolbar
-    Menu                File-> Save, Exit
-    Toolbar             Brush size, colour picker, eraser
-    <centre             canvas
+<!-- Comments:
+prefHeight/Width    Application Height/Width
+
+<top>               Menu, toolbar
+Menu                File-> Save, Exit
+Toolbar             Brush size, colour picker, eraser
+<centre>            canvas
 -->
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Test.Controller"
+            fx:controller="VectorDesignTool.Controller"
             prefHeight="600.0" prefWidth="600.0">
 
     <top>
         <VBox>
             <MenuBar>
                 <Menu text="File">
-                    <MenuItem text="Save" onAction="#onSave"/>
                     <MenuItem text="Exit" onAction="#onExit"/>
+                    <MenuItem text="Save" onAction="#onSave"/>
                 </Menu>
             </MenuBar>
+
             <ToolBar>
                 <HBox alignment="CENTER" spacing="5">
                     <TextField fx:id="brushsize" text="18"/>
                     <ColorPicker fx:id="colorPicker"/>
-                    <CheckBox fx:id="eraser"/>
+                    <CheckBox fx:id="eraser" text="Eraser"/>
                 </HBox>
             </ToolBar>
         </VBox>

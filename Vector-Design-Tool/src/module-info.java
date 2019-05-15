@@ -3,5 +3,6 @@ module Vector.Design.Tool {
     requires javafx.controls;
     requires javafx.swing;
 
-    opens sample;
+    //Package Name
+    opens VectorDesignTool;
 }

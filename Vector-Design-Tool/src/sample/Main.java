@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 //Extra imports
@@ -16,6 +18,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
 public class Main extends Application {
+    Button button;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -24,49 +27,44 @@ public class Main extends Application {
         //primaryStage.setScene(new Scene(root, 300, 275));
         //primaryStage.show();
 
-        //All code in this section taken from tutorial
+        //Some code in this section taken from tutorial
         //https://www.tutorialspoint.com/javafx/javafx_2d_shapes.htm?fbclid=IwAR2NeBM_BUsyXa7Amcx132JK6pfjlsyE-jhmuXzcyrSm67szq6Cpn-pvrjs
-        //================================================
-        //Creating a Path
-        Path path = new Path();
+
+        button = new Button();
+        button.setText("Click me");
+
+        StackPane layout = new StackPane();
+        layout.getChildren().add(button);
 
         //Moving to the starting point
         MoveTo moveTo = new MoveTo(108, 71);
-
         //Creating 1st line
         LineTo line1 = new LineTo(321, 161);
-
         //Creating 2nd line
         LineTo line2 = new LineTo(126,232);
-
         //Creating 3rd line
         LineTo line3 = new LineTo(232,52);
-
         //Creating 4th line
         LineTo line4 = new LineTo(269, 250);
-
         //Creating 4th line
         LineTo line5 = new LineTo(108, 71);
 
+        //Creating a Path
+        Path path = new Path();
         //Adding all the elements to the path
         path.getElements().add(moveTo);
         path.getElements().addAll(line1, line2, line3, line4, line5);
 
         //Creating a Group object
         Group root = new Group(path);
-
         //Creating a scene object
         Scene scene = new Scene(root, 600, 300);
-
         //Setting title to the Stage
-        stage.setTitle("Drawing an arc through a path");
-
+        stage.setTitle("Sample Program");
         //Adding scene to the stage
         stage.setScene(scene);
-
         //Displaying the contents of the stage
         stage.show();
-        //=================================================
     }
 
     public static void main(String[] args) {
