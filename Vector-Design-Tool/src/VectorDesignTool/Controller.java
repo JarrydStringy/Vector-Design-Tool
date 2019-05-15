@@ -14,21 +14,18 @@ import javax.imageio.ImageIO;
 import java.io.File;
 
 public class Controller {
-
+    //References to UI objects
     @FXML
     private Canvas canvas;
-
     @FXML
     private ColorPicker colorPicker;
-
     @FXML
     private TextField brushSize;
-
     @FXML
     private CheckBox eraser;
 
     //To draw, attach listener to canvas for all methods
-    public void initialize(){//Not currently working************************************
+    public void initialize(){
         //Sets grahics context for drawing
         GraphicsContext g = canvas.getGraphicsContext2D();
 
