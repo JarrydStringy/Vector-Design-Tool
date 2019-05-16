@@ -12,8 +12,9 @@ prefHeight/Width    Application Height/Width
 
 <top>               Menu, toolbar
 Menu                File-> Save, Exit
+                    Tool-> plot, line, rectangle, ellipse, polygon
 Toolbar             Brush size, colour picker, eraser
-<centre>            canvas
+<centre>            Canvas
 -->
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -27,11 +28,18 @@ Toolbar             Brush size, colour picker, eraser
                     <MenuItem text="Exit" onAction="#onExit"/>
                     <MenuItem text="Save" onAction="#onSave"/>
                 </Menu>
+                <Menu text="Tool">
+                    <MenuItem text="Plot"/>
+                    <MenuItem text="Line"/>
+                    <MenuItem text="Rectangle"/>
+                    <MenuItem text="Ellipse"/>
+                    <MenuItem text="Polygon"/>
+                </Menu>
             </MenuBar>
 
             <ToolBar>
-                <HBox alignment="CENTER" spacing="5">
-                    <TextField fx:id="brushSize" text="18"/>
+                <HBox alignment="CENTER" spacing="10">
+                    <TextField fx:id="brushSize" text="20"/>
                     <ColorPicker fx:id="colorPicker"/>
                     <CheckBox fx:id="eraser" text="Eraser"/>
                 </HBox>

@@ -18,9 +18,9 @@ public class Controller {
     @FXML
     private Canvas canvas;
     @FXML
-    private ColorPicker colorPicker;
-    @FXML
     private TextField brushSize;
+    @FXML
+    private ColorPicker colorPicker;
     @FXML
     private CheckBox eraser;
 

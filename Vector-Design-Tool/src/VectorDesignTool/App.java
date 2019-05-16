@@ -2,8 +2,13 @@ package VectorDesignTool;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Orientation;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ToolBar;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -25,7 +30,31 @@ public class App extends Application {
 //        stage.setScene(sceneStar);
 //        //Displaying the contents of the stage
 //        stage.show();
-        //=============================================
+        //============================================= Testing vertical toolbar buttons
+//
+//        //Create Buttons
+//        RadioButton rdoPlot = new RadioButton("Plot");
+//        RadioButton rdoLine = new RadioButton("Line");
+//        RadioButton rdoRectangle = new RadioButton("Rectangle");
+//        RadioButton rdoEllipse = new RadioButton("Ellipse");
+//        RadioButton rdoPolygon = new RadioButton("Polygon");
+//
+//        //Put buttons in vertical toolbar
+//        ToggleGroup groupTool = new ToggleGroup();
+//        groupTool.getToggles().addAll(
+//                rdoPlot,
+//                rdoLine,
+//                rdoRectangle,
+//                rdoEllipse,
+//                rdoPolygon);
+//        ToolBar toolBarTools = new ToolBar();
+//        toolBarTools.setOrientation(Orientation.VERTICAL);
+//        BorderPane pane = new BorderPane();
+//        pane.setLeft(toolBarTools);
+//        Scene scene = new Scene(pane, 600, 400);
+//        stage.setScene(scene);
+//        stage.show();
+        //=====================================================
 
         //Creating a scene object from the UI file
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI.fxml"))));
