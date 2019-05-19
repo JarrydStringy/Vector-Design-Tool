@@ -20,8 +20,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        //=========================== Comment out this section of code and uncomment below for original
-        //Test
+//        Comment out sections of code and uncomment below for original
+        //===========================
+
+//        //Test
 //        drawStar();
 //
 //        //Setting title to the Stage
@@ -30,8 +32,9 @@ public class App extends Application {
 //        stage.setScene(sceneStar);
 //        //Displaying the contents of the stage
 //        stage.show();
+
         //============================================= Testing vertical toolbar buttons
-//
+
 //        //Create Buttons
 //        RadioButton rdoPlot = new RadioButton("Plot");
 //        RadioButton rdoLine = new RadioButton("Line");
@@ -40,8 +43,8 @@ public class App extends Application {
 //        RadioButton rdoPolygon = new RadioButton("Polygon");
 //
 //        //Put buttons in vertical toolbar
-//        ToggleGroup groupTool = new ToggleGroup();
-//        groupTool.getToggles().addAll(
+//        ToggleGroup groupDifficulty = new ToggleGroup();
+//        groupDifficulty.getToggles().addAll(
 //                rdoPlot,
 //                rdoLine,
 //                rdoRectangle,
@@ -49,11 +52,21 @@ public class App extends Application {
 //                rdoPolygon);
 //        ToolBar toolBarTools = new ToolBar();
 //        toolBarTools.setOrientation(Orientation.VERTICAL);
+//        toolBarTools.getItems().addAll(
+//                new Separator(),
+//                rdoPlot,
+//                rdoLine,
+//                rdoRectangle,
+//                rdoEllipse,
+//                rdoPolygon,
+//                new Separator());
 //        BorderPane pane = new BorderPane();
 //        pane.setLeft(toolBarTools);
 //        Scene scene = new Scene(pane, 600, 400);
 //        stage.setScene(scene);
+//        stage.setTitle("ToolBar Sample");
 //        stage.show();
+        
         //=====================================================
 
         //Creating a scene object from the UI file
