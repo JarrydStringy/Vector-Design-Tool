@@ -14,6 +14,9 @@ prefHeight/Width    Application Height/Width
 Menu                File-> Save, Exit
                     Tool-> plot, line, rectangle, ellipse, polygon
 Toolbar             Brush size, colour picker, eraser
+
+<left>              Vertical Button Menu: plot, line, rectangle, ellipse, polygon
+
 <centre>            Canvas
 -->
 <BorderPane xmlns="http://javafx.com/javafx"
