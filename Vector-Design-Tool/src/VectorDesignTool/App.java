@@ -23,8 +23,8 @@ public class App extends Application {
 
 //        Comment out sections of code and uncomment below for original
         //===========================
-//
-//        //Test
+
+        //Test
 //        drawStar();
 //
 //        //Setting title to the Stage
@@ -36,42 +36,40 @@ public class App extends Application {
 
         //============================================= Testing vertical toolbar buttons
 
-//        //Name RadioButtons
-//        RadioButton rdoPlot = new RadioButton("Plot");
-//        RadioButton rdoLine = new RadioButton("Line");
-//        RadioButton rdoRectangle = new RadioButton("Rectangle");
-//        RadioButton rdoEllipse = new RadioButton("Ellipse");
-//        RadioButton rdoPolygon = new RadioButton("Polygon");
-//
-//        //Group Buttons
-//        ToggleGroup groupDifficulty = new ToggleGroup();
-//        groupDifficulty.getToggles().addAll(
-//                rdoPlot,
-//                rdoLine,
-//                rdoRectangle,
-//                rdoEllipse,
-//                rdoPolygon);
-//        ToolBar toolBarTools = new ToolBar();
-//        toolBarTools.setOrientation(Orientation.VERTICAL);
-//        toolBarTools.getItems().addAll(
-//                new Separator(),
-//                rdoPlot,
-//                rdoLine,
-//                rdoRectangle,
-//                rdoEllipse,
-//                rdoPolygon,
-//                new Separator());
-//        BorderPane pane = new BorderPane();
-//        pane.setLeft(toolBarTools);
-//        Scene scene = new Scene(pane, 600, 400);
-//        stage.setScene(scene);
-//        stage.setTitle("ToolBar Sample");
-//        stage.show();
+        //Name RadioButtons
+        RadioButton rdoPlot = new RadioButton("Plot");
+        RadioButton rdoLine = new RadioButton("Line");
+        RadioButton rdoRectangle = new RadioButton("Rectangle");
+        RadioButton rdoEllipse = new RadioButton("Ellipse");
+        RadioButton rdoPolygon = new RadioButton("Polygon");
+
+        //Group Buttons
+        ToggleGroup groupDifficulty = new ToggleGroup();
+        groupDifficulty.getToggles().addAll(
+                rdoPlot,
+                rdoLine,
+                rdoRectangle,
+                rdoEllipse,
+                rdoPolygon);
+        ToolBar toolBarTools = new ToolBar();
+        toolBarTools.setOrientation(Orientation.VERTICAL);
+        toolBarTools.getItems().addAll(
+                new Separator(),
+                rdoPlot,
+                rdoLine,
+                rdoRectangle,
+                rdoEllipse,
+                rdoPolygon,
+                new Separator());
+        BorderPane pane = new BorderPane();
+        pane.setLeft(toolBarTools);
+        Scene guiScene = new Scene(pane, 600, 400);
 
         //=====================================================
 
         //Creating a scene object from the UI file
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI.fxml"))));
+//        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI.fxml"))));
+        stage.setScene(guiScene);
         //Program name
         stage.setTitle("Vector Design Tool");
         //Displays the contents of the stage
