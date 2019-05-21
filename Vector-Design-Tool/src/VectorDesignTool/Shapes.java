@@ -1,4 +1,8 @@
 package VectorDesignTool;
 
-public class Shapes {
+public interface Shapes {
+    public void line();
+    public void eclipse();
+    public void rectanlge();
+    public void polygon();
 }
