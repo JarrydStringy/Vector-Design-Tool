@@ -6,6 +6,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Separator;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
@@ -22,7 +23,7 @@ public class App extends Application {
 
 //        Comment out sections of code and uncomment below for original
         //===========================
-
+//
 //        //Test
 //        drawStar();
 //
@@ -76,6 +77,13 @@ public class App extends Application {
         //Displays the contents of the stage
         stage.show();
     }
+
+
+
+
+
+
+
 
     //Draw Star
     public void drawStar(){

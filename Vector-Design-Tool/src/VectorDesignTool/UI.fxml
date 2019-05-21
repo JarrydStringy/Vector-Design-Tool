@@ -15,7 +15,7 @@ Menu                File-> Save, Exit
                     Tool-> plot, line, rectangle, ellipse, polygon
 Toolbar             Brush size, colour picker, eraser
 
-<left>              Vertical Button Menu: plot, line, rectangle, ellipse, polygon
+<right>              Vertical Button Menu: plot, line, rectangle, ellipse, polygon
 
 <centre>            Canvas
 -->
@@ -50,7 +50,7 @@ Toolbar             Brush size, colour picker, eraser
         </VBox>
     </top>
 
-    <left>
+    <right>
         <HBox spacing="10">
             <children>
                 <ToolBar orientation="VERTICAL">
@@ -84,7 +84,7 @@ Toolbar             Brush size, colour picker, eraser
                 </ToolBar>
             </children>
         </HBox>
-    </left>
+    </right>
 
     <center>
         <Canvas fx:id="canvas" width="600" height="600"/>
