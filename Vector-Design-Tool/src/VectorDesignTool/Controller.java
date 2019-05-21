@@ -26,7 +26,7 @@ public class Controller {
 
     //To draw, attach listener to canvas for all methods
     public void initialize(){
-        //Sets grahics context for drawing
+        //Sets graphics context for drawing
         GraphicsContext g = canvas.getGraphicsContext2D();
 
         //Listener for when mouse is clicked and moved
