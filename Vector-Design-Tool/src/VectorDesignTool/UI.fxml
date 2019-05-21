@@ -30,6 +30,7 @@ Toolbar             Brush size, colour picker, eraser
                 <Menu text="File">
                     <MenuItem text="Exit" onAction="#onExit"/>
                     <MenuItem text="Save" onAction="#onSave"/>
+                    <MenuItem text="Open" onAction="#openFile"/>
                 </Menu>
                 <Menu text="Tool">
                     <MenuItem text="Plot"/>
