@@ -47,6 +47,42 @@ Toolbar             Brush size, colour picker, eraser
         </VBox>
     </top>
 
+    <left>
+        <HBox spacing="10">
+            <children>
+                <ToolBar orientation="VERTICAL">
+                    <items>
+                        <Group>
+                            <children>
+                                <Button text="Plot" />
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Line" />
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Rectangle" />
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Ellipse" />
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Polygon" />
+                            </children>
+                        </Group>
+                    </items>
+                </ToolBar>
+            </children>
+        </HBox>
+    </left>
+
     <center>
         <Canvas fx:id="canvas" width="600" height="600"/>
     </center>

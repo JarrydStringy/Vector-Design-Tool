@@ -35,14 +35,14 @@ public class App extends Application {
 
         //============================================= Testing vertical toolbar buttons
 
-//        //Create Buttons
+//        //Name RadioButtons
 //        RadioButton rdoPlot = new RadioButton("Plot");
 //        RadioButton rdoLine = new RadioButton("Line");
 //        RadioButton rdoRectangle = new RadioButton("Rectangle");
 //        RadioButton rdoEllipse = new RadioButton("Ellipse");
 //        RadioButton rdoPolygon = new RadioButton("Polygon");
 //
-//        //Put buttons in vertical toolbar
+//        //Group Buttons
 //        ToggleGroup groupDifficulty = new ToggleGroup();
 //        groupDifficulty.getToggles().addAll(
 //                rdoPlot,
@@ -66,7 +66,7 @@ public class App extends Application {
 //        stage.setScene(scene);
 //        stage.setTitle("ToolBar Sample");
 //        stage.show();
-        
+
         //=====================================================
 
         //Creating a scene object from the UI file
