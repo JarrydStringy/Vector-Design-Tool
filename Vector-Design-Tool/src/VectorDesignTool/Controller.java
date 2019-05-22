@@ -9,8 +9,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.io.File;
 
 public class Controller {
@@ -26,7 +28,7 @@ public class Controller {
 
     //To draw, attach listener to canvas for all methods
     public void initialize(){
-        //Sets grahics context for drawing
+        //Sets graphics context for drawing
         GraphicsContext g = canvas.getGraphicsContext2D();
 
         //Listener for when mouse is clicked and moved
@@ -66,5 +68,15 @@ public class Controller {
     public  void onExit(){
         //Shutdown JavaFX application
         Platform.exit();
+    }
+
+    public void openFile(){
+        /*final JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(this);
+        if(returnVal==JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            String filename = file.getAbsolutePath();
+        } else if(returnVal==JFileChooser.CANCEL_OPTION) {
+        }*/
     }
 }
