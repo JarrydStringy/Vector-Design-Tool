@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
-
     /**
      * Launches and sets up JavaFX application
      * @param args - commandline arguments as an array of String objects

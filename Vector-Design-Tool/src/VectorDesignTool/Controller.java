@@ -8,6 +8,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -96,14 +98,14 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave(){
-        //Take snapshot of canvas
+        // Take snapshot of canvas
         try{
-            //Record what is in canvas
+            // Record what is in canvas
             Image snapshot = canvas.snapshot(null, null);
-            //Save to .png file
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File("VectorDesign.png"));
+            // Save to .png file
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "VEC", new File("VectorDesign.VEC"));
         } catch (Exception e){
-            //Display if any errors occur
+            // Display if any errors occur
             System.out.println("Failed to save image: " + e);
         }
     }
@@ -121,13 +123,15 @@ public class Controller {
      * Plot the coordinates and redraw image in application ready to edit
      */
     public void openFile(){
-        /*final JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showOpenDialog(this);
-        if(returnVal==JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-            String filename = file.getAbsolutePath();
-        } else if(returnVal==JFileChooser.CANCEL_OPTION) {
-        }*/
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("TEXT files (*.VEC)", "*.VEC");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        fileChooser.showOpenDialog(null);
     }
 
     /**
