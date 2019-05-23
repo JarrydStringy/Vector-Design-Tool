@@ -5,6 +5,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
@@ -16,7 +17,7 @@ import javax.swing.*;
 import java.io.File;
 
 public class Controller {
-    //References to UI objects
+    // References to UI objects
     @FXML
     private Canvas canvas;
     @FXML
@@ -26,32 +27,46 @@ public class Controller {
     @FXML
     private CheckBox eraser;
 
-    //To draw, attach listener to canvas for all methods
+    /**
+     * Initialize the application and attach listener to canvas for all methods to draw
+     */
     public void initialize(){
-        //Sets graphics context for drawing
+        // Sets graphics context for drawing
         GraphicsContext g = canvas.getGraphicsContext2D();
 
-        //Listener for when mouse is clicked and moved
+        // Set initial value of colour picker
+        colorPicker.setValue(Color.BLACK);
+
+        // Listener for when mouse is clicked and moved
         canvas.setOnMouseDragged(e -> {
-            //Size of drag assuming input valid
+            // Size of drag assuming input valid
             double size = Double.parseDouble(brushSize.getText());
-            //Get x and y for mouse event
+            // Get x and y for mouse event
             double x = e.getX() - size / 2;
             double y = e.getY() - size / 2;
 
-            //If eraser is selected
+            // If eraser is selected
             if (eraser.isSelected()){
-                //Clear rectangle
+                // Clear rectangle
                 g.clearRect(x, y, size, size);
             } else {
-                //Draw using selected colour
+                // Draw using selected colour
                 g.setFill(colorPicker.getValue());
                 g.fillRect(x, y, size, size);
             }
         });
     }
 
-    //Actions in UI are methods in controller
+    /**
+     * Clears the canvas
+     */
+    public void clearCanvas(){
+        canvas.getGraphicsContext2D().clearRect(0,0,600,600);
+    }
+
+    /**
+     * Saves a snapshot of the canvas as a '.png' file
+     */
     public void onSave(){
         //Take snapshot of canvas
         try{
@@ -65,11 +80,18 @@ public class Controller {
         }
     }
 
+    /**
+     * Exits program and shuts down the JavaFX application
+     */
     public  void onExit(){
         //Shutdown JavaFX application
         Platform.exit();
     }
 
+    /**
+     * Open a text file which contains coordinates of drawing
+     * Plot the coordinates and redraw image in application ready to edit
+     */
     public void openFile(){
         /*final JFileChooser fc = new JFileChooser();
         int returnVal = fc.showOpenDialog(this);
@@ -78,5 +100,15 @@ public class Controller {
             String filename = file.getAbsolutePath();
         } else if(returnVal==JFileChooser.CANCEL_OPTION) {
         }*/
+    }
+
+    /**
+     * Draw a rectangle
+     */
+    public void createRectangle(){
+        /*int[] coords = {0,0};
+        Rectangle rectangle = new Rectangle(5, 4, "brown", coords);
+        System.out.println(colorPicker.getValue());*/
+        brushSize.setText(" ");
     }
 }

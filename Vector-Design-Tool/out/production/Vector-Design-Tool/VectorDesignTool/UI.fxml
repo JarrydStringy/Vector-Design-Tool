@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.canvas.Canvas?>
 
-<!-- Comments:
+<!-- Comments for below code:
 prefHeight/Width    Application Height/Width
 
 <top>               Menu, toolbar
@@ -15,7 +15,7 @@ Menu                File-> Save, Exit
                     Tool-> plot, line, rectangle, ellipse, polygon
 Toolbar             Brush size, colour picker, eraser
 
-<right>              Vertical Button Menu: plot, line, rectangle, ellipse, polygon
+<right>             Vertical Button Menu: plot, line, rectangle, ellipse, polygon
 
 <centre>            Canvas
 -->
@@ -43,9 +43,10 @@ Toolbar             Brush size, colour picker, eraser
 
             <ToolBar>
                 <HBox alignment="CENTER" spacing="10">
-                    <TextField fx:id="brushSize" text="20"/>
+                    <TextField fx:id="brushSize" text="10"/>
                     <ColorPicker fx:id="colorPicker"/>
                     <CheckBox fx:id="eraser" text="Eraser"/>
+                    <Button fx:id="clear" text="Clear" onAction="#clearCanvas"/>
                 </HBox>
             </ToolBar>
         </VBox>
@@ -68,7 +69,7 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Rectangle" />
+                                <Button text="Rectangle" onAction="#createRectangle"/>
                             </children>
                         </Group>
                         <Group>
