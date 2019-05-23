@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ReadFile {
     private Scanner x;
     private String selectedFile;
-    private String[] fileLines;
+    private String[][] fileLines;
 
     /**
      * Opens file selection window with '.txt' file filter
@@ -48,11 +48,18 @@ public class ReadFile {
         while(x.hasNextLine()){
             line += x.nextLine() + "\n";
         }
-        // store each line in array
-        fileLines = line.split("\n");
+        // Store each line in array
+        String[] a = line.split("\n");
+        // Store each command in an array per line
+        fileLines = new String[a.length][];
+        for(int i = 0; i < a.length; i++){
+            fileLines[i] = a[i].split(" ");
+        }
         // Print each line to console
-        for(String a:fileLines){
-            System.out.println(a);
+        for(String[] t:fileLines){
+            for(String b:t){
+                System.out.println(b);
+            }
         }
         // Close scanner
         x.close();
@@ -62,5 +69,5 @@ public class ReadFile {
      * Gets the read file lines stored in an array
      * @return returns read file lines array
      */
-    public String[] getFileLines(){ return fileLines; }
+    public String[][] getFileLines(){ return fileLines; }
 }

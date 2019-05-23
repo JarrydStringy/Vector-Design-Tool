@@ -25,7 +25,7 @@ public class Controller {
     private CheckBox eraser;
 
     // Selected file lines
-    private String[] fileLines;
+    private String[][] fileLineCommands;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -126,7 +126,7 @@ public class Controller {
         // Open file and read lines
         ReadFile r = new ReadFile();
         r.scanFile();
-        fileLines = r.getFileLines();
+        fileLineCommands = r.getFileLines();
     }
 
     /**
