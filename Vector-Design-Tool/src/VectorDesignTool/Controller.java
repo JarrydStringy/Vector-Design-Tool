@@ -133,9 +133,6 @@ public class Controller {
      * Draw a rectangle
      */
     public void createRectangle(){
-        /*int[] coords = {0,0};
-        Rectangle rectangle = new Rectangle(5, 4, "brown", coords);
-        System.out.println(colorPicker.getValue());*/
-        brushSize.setText(" ");
+
     }
 }
