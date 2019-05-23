@@ -32,12 +32,10 @@ Toolbar             Brush size, colour picker, eraser
                     <MenuItem text="Save" onAction="#onSave"/>
                     <MenuItem text="Open" onAction="#openFile"/>
                 </Menu>
-                <Menu text="Tool">
-                    <MenuItem text="Plot"/>
-                    <MenuItem text="Line"/>
-                    <MenuItem text="Rectangle"/>
-                    <MenuItem text="Ellipse"/>
-                    <MenuItem text="Polygon"/>
+                <Menu text="Edit">
+                    <MenuItem text="Undo"/>
+                    <MenuItem text="Redo"/>
+                    <MenuItem fx:id="clear" text="Clear" onAction="#clearCanvas"/>
                 </Menu>
             </MenuBar>
 
@@ -46,7 +44,6 @@ Toolbar             Brush size, colour picker, eraser
                     <TextField fx:id="brushSize" text="10"/>
                     <ColorPicker fx:id="colorPicker"/>
                     <CheckBox fx:id="eraser" text="Eraser"/>
-                    <Button fx:id="clear" text="Clear" onAction="#clearCanvas"/>
                 </HBox>
             </ToolBar>
         </VBox>

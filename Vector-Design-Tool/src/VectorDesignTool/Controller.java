@@ -5,16 +5,13 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.io.File;
+import java.util.Optional;
 
 public class Controller {
     // References to UI objects
@@ -76,10 +73,23 @@ public class Controller {
     }
 
     /**
-     * Clears the canvas
+     * Clears the canvas if user selects yes in confirmation dialogue
      */
     public void clearCanvas(){
-        canvas.getGraphicsContext2D().clearRect(0,0,600,600);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Clear Canvas");
+        alert.setHeaderText("Are you sure you want to clear the canvas?");
+        alert.setContentText("");
+
+        ButtonType buttonYes = new ButtonType("Yes");
+        ButtonType buttonCancel = new ButtonType("Cancel");
+
+        alert.getButtonTypes().setAll(buttonYes, buttonCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonYes){
+            canvas.getGraphicsContext2D().clearRect(0,0,600,600);
+        }
     }
 
     /**
