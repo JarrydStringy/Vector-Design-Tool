@@ -33,26 +33,44 @@ public class Controller {
     public void initialize(){
         // Sets graphics context for drawing
         GraphicsContext g = canvas.getGraphicsContext2D();
-
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
+        // draw
+        draw(g);
+    }
 
-        // Listener for when mouse is clicked and moved
+    /**
+     * Listener for when mouse is clicked or dragged
+     * @param g - contains the GraphicsContext of the canvas for drawing
+     */
+    public void draw(GraphicsContext g){
+        // Listener for when mouse is clicked
+        canvas.setOnMousePressed(e ->{
+            // if eraser is not selected
+            if(eraser.isSelected() == false){
+                // Begin drawing
+                g.beginPath();
+                // draw
+                g.lineTo(e.getX(), e.getY());
+                g.stroke();
+            }
+        });
+        // check if mouse is clicked then dragged
         canvas.setOnMouseDragged(e -> {
             // Size of drag assuming input valid
             double size = Double.parseDouble(brushSize.getText());
-            // Get x and y for mouse event
-            double x = e.getX() - size / 2;
-            double y = e.getY() - size / 2;
 
             // If eraser is selected
             if (eraser.isSelected()){
                 // Clear rectangle
-                g.clearRect(x, y, size, size);
+                g.clearRect(e.getX(), e.getY(), size, size);
             } else {
-                // Draw using selected colour
-                g.setFill(colorPicker.getValue());
-                g.fillRect(x, y, size, size);
+                // Draw using selected colour and brush size
+                g.setStroke(colorPicker.getValue());
+                g.setLineWidth(size);
+                // draw continuously
+                g.lineTo(e.getX(), e.getY());
+                g.stroke();
             }
         });
     }
