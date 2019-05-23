@@ -8,8 +8,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -25,6 +23,9 @@ public class Controller {
     private ColorPicker colorPicker;
     @FXML
     private CheckBox eraser;
+
+    // Selected file lines
+    private String[] fileLines;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -98,7 +99,6 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave(){
-        // Take snapshot of canvas
         try{
             // Record what is in canvas
             Image snapshot = canvas.snapshot(null, null);
@@ -123,15 +123,10 @@ public class Controller {
      * Plot the coordinates and redraw image in application ready to edit
      */
     public void openFile(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-
-        // Set extension filter
-        FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("TEXT files (*.VEC)", "*.VEC");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        fileChooser.showOpenDialog(null);
+        // Open file and read lines
+        ReadFile r = new ReadFile();
+        r.scanFile();
+        fileLines = r.getFileLines();
     }
 
     /**
