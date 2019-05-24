@@ -41,6 +41,8 @@ public class Controller {
         g = canvas.getGraphicsContext2D();
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
+        // Check brush input
+        checkBrushInput();
         // draw
         draw(g);
     }
