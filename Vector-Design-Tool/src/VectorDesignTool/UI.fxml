@@ -41,7 +41,7 @@ Toolbar             Brush size, colour picker, eraser
 
             <ToolBar>
                 <HBox alignment="CENTER" spacing="10">
-                    <TextField fx:id="brushSize" text="10"/>
+                    <TextField fx:id="brushSize" text="10" onAction="#checkBrushInput"/>
                     <ColorPicker fx:id="colorPicker"/>
                     <CheckBox fx:id="eraser" text="Eraser"/>
                 </HBox>
@@ -56,12 +56,12 @@ Toolbar             Brush size, colour picker, eraser
                     <items>
                         <Group>
                             <children>
-                                <Button text="Plot" />
+                                <Button text="Plot" onAction="#createPlot"/>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Line" />
+                                <Button text="Line" onAction="#createLine"/>
                             </children>
                         </Group>
                         <Group>
@@ -71,12 +71,12 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Ellipse" />
+                                <Button text="Ellipse" onAction="#createEllipse"/>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Polygon" />
+                                <Button text="Polygon" onAction="#createPolygon"/>
                             </children>
                         </Group>
                     </items>

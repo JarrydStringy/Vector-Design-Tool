@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
+import java.awt.event.*;
 import java.io.File;
 import java.util.Optional;
 
@@ -18,21 +19,26 @@ public class Controller {
     @FXML
     private Canvas canvas;
     @FXML
-    private TextField brushSize;
-    @FXML
     private ColorPicker colorPicker;
     @FXML
+    private TextField brushSize;
+    @FXML
     private CheckBox eraser;
-
     // Selected file lines
     private String[][] fileLineCommands;
+    // Stores Mouse coordinates
+    private double[][] coords = {{0,0},{0,0}};
+    // Current shape selection
+    private String shapeSelected = "LINE";
+    // Sets graphics context for drawing
+    GraphicsContext g;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
      */
     public void initialize(){
         // Sets graphics context for drawing
-        GraphicsContext g = canvas.getGraphicsContext2D();
+        g = canvas.getGraphicsContext2D();
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
         // draw
@@ -44,34 +50,30 @@ public class Controller {
      * @param g - contains the GraphicsContext of the canvas for drawing
      */
     public void draw(GraphicsContext g){
-        // Listener for when mouse is clicked
+        // Listener for when mouse is pressed
         canvas.setOnMousePressed(e ->{
-            // if eraser is not selected
-            if(eraser.isSelected() == false){
-                // Begin drawing
-                g.beginPath();
-                // draw
-                g.lineTo(e.getX(), e.getY());
-                g.stroke();
-            }
+            coords[0][0] = coords[1][0] = e.getX();
+            coords[0][1] = coords[1][1] = e.getY();
+            g.setStroke(colorPicker.getValue());
+            checkBrushInput();
+            DrawShape shape = new DrawShape(shapeSelected, g, coords);
+            shape.drawShape();
         });
-        // check if mouse is clicked then dragged
-        canvas.setOnMouseDragged(e -> {
-            // Size of drag assuming input valid
-            double size = Double.parseDouble(brushSize.getText());
 
-            // If eraser is selected
-            if (eraser.isSelected()){
-                // Clear rectangle
-                g.clearRect(e.getX(), e.getY(), size, size);
-            } else {
-                // Draw using selected colour and brush size
-                g.setStroke(colorPicker.getValue());
-                g.setLineWidth(size);
-                // draw continuously
-                g.lineTo(e.getX(), e.getY());
-                g.stroke();
-            }
+        // Listener for when mouse is released
+        canvas.setOnMouseReleased(e ->{
+            coords[1][0] = e.getX();
+            coords[1][1] = e.getY();
+            DrawShape shape = new DrawShape(shapeSelected, g, coords);
+            shape.drawShape();
+        });
+
+        // Listener for when mouse is dragged
+        canvas.setOnMouseDragged(e -> {
+            coords[1][0] = e.getX();
+            coords[1][1] = e.getY();
+            DrawShape shape = new DrawShape(shapeSelected, g, coords);
+            shape.drawShape();
         });
     }
 
@@ -129,10 +131,40 @@ public class Controller {
         fileLineCommands = r.getFileLines();
     }
 
+    public void checkBrushInput(){
+        try{
+            assert Double.parseDouble(brushSize.getText()) > 0;
+            assert brushSize.getText().matches("[0-9]*");
+            g.setLineWidth(Double.parseDouble(brushSize.getText()));
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please enter a positive integer.");
+        }
+    }
+
+    /**
+     * Draw a plot
+     */
+    public void createPlot(){ shapeSelected = "PLOT"; }
+
+    /**
+     * Draw a line
+     */
+    public void createLine(){ shapeSelected = "LINE"; }
+
     /**
      * Draw a rectangle
      */
-    public void createRectangle(){
+    public void createRectangle(){ shapeSelected = "RECTANGLE"; }
 
-    }
+    /**
+     * Draw a ellipse
+     */
+    public void createEllipse(){ shapeSelected = "ELLIPSE"; }
+
+    /**
+     * Draw a polygon
+     */
+    public void createPolygon(){ shapeSelected = "POLYGON"; }
 }
