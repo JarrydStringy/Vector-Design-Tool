@@ -21,6 +21,9 @@ public class DrawShape {
         Shapes shape = new Shapes(coords, g);
 
         switch (selectedShape){
+            case "LINE":
+                shape.drawLine();
+                break;
             case "RECTANGLE":
                 shape.drawRectangle();
                 break;
@@ -31,7 +34,7 @@ public class DrawShape {
                 shape.drawPolygon();
                 break;
                 default:
-                    shape.drawLine();
+                    shape.drawPlot();
         }
 
     }

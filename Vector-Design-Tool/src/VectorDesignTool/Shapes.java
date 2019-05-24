@@ -16,6 +16,8 @@ public class Shapes {
         this.g = g;
     }
 
+    public void drawPlot(){ g.strokeLine(coords[0][0], coords[0][1], coords[0][0], coords[0][1]); }
+
     public void drawRectangle(){ g.strokeRect(coords[0][0], coords[0][1], coords[1][0], coords[1][1]); }
 
     public void drawLine(){

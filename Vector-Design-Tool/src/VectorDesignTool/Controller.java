@@ -29,7 +29,7 @@ public class Controller {
     // Stores Mouse coordinates
     private double[][] coords = {{0,0},{0,0}};
     // Current shape selection
-    private String shapeSelected = "LINE";
+    private String shapeSelected = "PLOT";
     // Sets graphics context for drawing
     GraphicsContext g;
 
@@ -55,7 +55,6 @@ public class Controller {
             coords[0][0] = coords[1][0] = e.getX();
             coords[0][1] = coords[1][1] = e.getY();
             g.setStroke(colorPicker.getValue());
-            checkBrushInput();
             DrawShape shape = new DrawShape(shapeSelected, g, coords);
             shape.drawShape();
         });
@@ -83,8 +82,8 @@ public class Controller {
     public void clearCanvas(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Clear Canvas");
-        alert.setHeaderText("Are you sure you want to clear the canvas?");
-        alert.setContentText("");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to clear the canvas?");
 
         ButtonType buttonYes = new ButtonType("Yes");
         ButtonType buttonCancel = new ButtonType("Cancel");
@@ -132,14 +131,21 @@ public class Controller {
     }
 
     public void checkBrushInput(){
-        try{
-            assert Double.parseDouble(brushSize.getText()) > 0;
-            assert brushSize.getText().matches("[0-9]*");
-            g.setLineWidth(Double.parseDouble(brushSize.getText()));
-        } catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Input");
-            alert.setHeaderText("Please enter a positive integer.");
+        try {
+            if(brushSize.getText().matches("[0-9]*") == false || Double.parseDouble(brushSize.getText()) <= 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Input");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter a positive integer.");
+                alert.showAndWait();
+                brushSize.setText("10");
+                g.setLineWidth(10);
+            } else {
+                g.setLineWidth(Double.parseDouble(brushSize.getText()));
+            }
+        }catch (Exception e){
+            // Display if any errors occur
+            System.out.println("Invalid brushSize input: " + e);
         }
     }
 

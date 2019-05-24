@@ -41,7 +41,7 @@ Toolbar             Brush size, colour picker, eraser
 
             <ToolBar>
                 <HBox alignment="CENTER" spacing="10">
-                    <TextField fx:id="brushSize" text="10" onAction="#checkBrushInput"/>
+                    <TextField fx:id="brushSize" text="10" onKeyTyped="#checkBrushInput"/>
                     <ColorPicker fx:id="colorPicker"/>
                     <CheckBox fx:id="eraser" text="Eraser"/>
                 </HBox>
