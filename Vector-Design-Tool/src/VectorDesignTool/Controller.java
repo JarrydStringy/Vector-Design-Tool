@@ -121,10 +121,14 @@ public class Controller {
      * Plot the coordinates and redraw image in application ready to edit
      */
     public void openFile(){
-        // Open file and read lines
-        ReadFile r = new ReadFile(g, Double.parseDouble(brushSize.getText()));
-        r.scanFile();
-        r.displayFile();
+        try {
+            // Open file and read lines
+            ReadFile r = new ReadFile(g, Double.parseDouble(brushSize.getText()));
+            r.scanFile();
+            r.displayFile();
+        } catch(Exception e ){
+            // pass
+        }
     }
 
     public void checkBrushInput(){

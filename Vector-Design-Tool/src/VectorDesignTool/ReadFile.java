@@ -25,7 +25,7 @@ public class ReadFile {
 
         // Set extension filter
         FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
+                new FileChooser.ExtensionFilter("VEC files (*.vec)", "*.vec");
         fileChooser.getExtensionFilters().add(extFilter);
 
         try {
@@ -63,7 +63,7 @@ public class ReadFile {
         // Print each line to console
         for(String[] t:fileLines){
             for(String b:t){
-                System.out.println(b);
+                //System.out.println(b);
             }
         }
         // Close scanner
@@ -78,19 +78,27 @@ public class ReadFile {
 
         // Go through each line then each command
         for(String[] t:fileLines){
-            for(int i = 0; i < t.length; i++){
-                if(t[i] != "PLOT"){
+            for(String b:t){
+                if (b.contains("PLOT")){
                     try {
-                        double[][] coords = {{Double.parseDouble(t[i + 1]) * 600, Double.parseDouble(t[i + 2]) * 600},
-                                {Double.parseDouble(t[i + 3]) * 600, Double.parseDouble(t[i + 4]) * 600}};
-                        DrawShape shape = new DrawShape(t[i], g, coords ,brushSize);
+                        double[][] coords = {{Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600},
+                                {Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600}};
+                        DrawShape shape = new DrawShape(b, g, coords ,brushSize);
                         shape.drawShape();
                     } catch(Exception e){
                         System.out.println(e);
                     }
-                    i = t.length;
+                } else{
+                    try {
+                        double[][] coords = {{Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600},
+                                {Double.parseDouble(t[3]) * 600, Double.parseDouble(t[4]) * 600}};
+                        DrawShape shape = new DrawShape(b, g, coords ,brushSize);
+                        shape.drawShape();
+                    } catch(Exception e){
+                        System.out.println(e);
+                    }
                 }
-                i = t.length;
+                break;
             }
         }
     }
