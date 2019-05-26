@@ -11,15 +11,13 @@ public class ReadFile {
     private String selectedFile;
     private String[][] fileLines;
     private GraphicsContext g;
-    private double brushSize;
 
     /**
      * Opens file selection window with '.txt' file filter
      * and gets selected file from user selection
      */
-    public ReadFile(GraphicsContext g, double brushSize){
+    public ReadFile(GraphicsContext g) {
         this.g = g;
-        this.brushSize = brushSize;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
 
@@ -71,8 +69,7 @@ public class ReadFile {
     }
 
     /**
-     * Gets the read file lines stored in an array
-     * @return returns read file lines array
+     * Displays the drawing on the canvas using the read coordinates from the file
      */
     public void displayFile(){
 
@@ -83,7 +80,7 @@ public class ReadFile {
                     try {
                         double[][] coords = {{Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600},
                                 {Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600}};
-                        Shapes shape = new Shapes(b, g, coords ,brushSize);
+                        Shape shape = new Shape(b, g, coords);
                         shape.drawShape();
                     } catch(Exception e){
                         System.out.println(e);
@@ -92,7 +89,7 @@ public class ReadFile {
                     try {
                         double[][] coords = {{Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600},
                                 {Double.parseDouble(t[3]) * 600, Double.parseDouble(t[4]) * 600}};
-                        Shapes shape = new Shapes(b, g, coords ,brushSize);
+                        Shape shape = new Shape(b, g, coords);
                         shape.drawShape();
                     } catch(Exception e){
                         System.out.println(e);

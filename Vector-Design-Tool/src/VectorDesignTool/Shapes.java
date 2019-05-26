@@ -7,26 +7,29 @@ import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
-public class Shapes extends DrawShape {
+public abstract class Shapes extends DrawShape {
     private double[][] coords;
     private GraphicsContext g;
+    private String seletedShape;
 
     /**
      * When the rectangle button is pressed, the object is created.
      * @param coords - {(x,y)(x,y)} coordinates of start and finish of rectangle
      * @param g - canvas graphics context
      */
-    public Shapes(String selectedShape, GraphicsContext g, double[][] coords, double brushSize){
+    public Shapes(String selectedShape, GraphicsContext g, double[][] coords){
         super(selectedShape);
+        this.seletedShape = selectedShape;
         this.coords = coords;
         this.g = g;
     }
 
-    // ------------------------------------------------------------ Drawing Shape Code
     /**
      * Draws a single point (plot)
      * */
-    public void drawPlot(){ g.strokeLine(coords[0][0], coords[0][1], coords[0][0], coords[0][1]); }
+    public void drawPlot(){
+        g.strokeLine(coords[0][0], coords[0][1], coords[0][0], coords[0][1]);
+    }
 
     /**
      * Draws a rectangle with an initial point x,y then a width and height
@@ -49,7 +52,5 @@ public class Shapes extends DrawShape {
     /**
      * Draws a polygon
      * */
-    public void drawPolygon(){
-        // IMPLEMENT
-    }
+    public abstract void drawPolygon();
 }

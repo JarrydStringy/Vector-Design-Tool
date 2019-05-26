@@ -71,7 +71,7 @@ public class Controller {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
-            Shapes shape = new Shapes(shapeSelected, g, coords, Double.parseDouble(brushSize.getText()));
+            Shape shape = new Shape(shapeSelected, g, coords);
             shape.drawShape();
         });
 
@@ -80,7 +80,7 @@ public class Controller {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
-            Shapes shape = new Shapes(shapeSelected, g2, coords, Double.parseDouble(brushSize.getText()));
+            Shape shape = new Shape(shapeSelected, g2, coords);
             shape.drawShape();
         });
     }
@@ -123,7 +123,7 @@ public class Controller {
     /**
      * Exits program and shuts down the JavaFX application
      */
-    public  void onExit(){
+    public void onExit(){
         //Shutdown JavaFX application
         Platform.exit();
     }
@@ -135,7 +135,7 @@ public class Controller {
     public void openFile(){
         try {
             // Open file and read lines
-            ReadFile r = new ReadFile(g, Double.parseDouble(brushSize.getText()));
+            ReadFile r = new ReadFile(g);
             r.scanFile();
             r.displayFile();
         } catch(Exception e ){
@@ -145,7 +145,7 @@ public class Controller {
 
     public void checkBrushInput(){
         try {
-            if(brushSize.getText().matches("[0-9]*") == false || Double.parseDouble(brushSize.getText()) <= 0){
+            if(brushSize.getText().matches("[0-9]*") == false || Integer.parseInt(brushSize.getText()) <= 0){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Invalid Input");
                 alert.setHeaderText(null);
@@ -155,8 +155,8 @@ public class Controller {
                 g.setLineWidth(10);
                 g2.setLineWidth(10);
             } else {
-                g.setLineWidth(Double.parseDouble(brushSize.getText()));
-                g2.setLineWidth(Double.parseDouble(brushSize.getText()));
+                g.setLineWidth(Integer.parseInt(brushSize.getText()));
+                g2.setLineWidth(Integer.parseInt(brushSize.getText()));
             }
         }catch (Exception e){
             // Display if any errors occur
