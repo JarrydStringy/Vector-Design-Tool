@@ -10,7 +10,6 @@ import static java.lang.Math.abs;
 public class Shapes extends DrawShape {
     private double[][] coords;
     private GraphicsContext g;
-    private double brushSize;
 
     /**
      * When the rectangle button is pressed, the object is created.
@@ -18,10 +17,9 @@ public class Shapes extends DrawShape {
      * @param g - canvas graphics context
      */
     public Shapes(String selectedShape, GraphicsContext g, double[][] coords, double brushSize){
-        super(selectedShape, g, coords, brushSize);
+        super(selectedShape);
         this.coords = coords;
         this.g = g;
-        this.brushSize = brushSize;
     }
 
     // ------------------------------------------------------------ Drawing Shape Code

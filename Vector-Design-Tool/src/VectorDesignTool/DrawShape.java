@@ -6,19 +6,13 @@ import java.util.ArrayList;
 
 public abstract class DrawShape {
     private String selectedShape;
-    private GraphicsContext g;
-    private double[][] coords;
-    private double brushSize;
 
     /**
      * When the rectangle button is pressed, the object is created.
      * @param selectedShape - current shape selected on interface
      */
-    public DrawShape(String selectedShape, GraphicsContext g, double[][] coords, double brushSize){
+    public DrawShape(String selectedShape){
         this.selectedShape = selectedShape;
-        this.g = g;
-        this.coords = coords;
-        this.brushSize = brushSize;
     }
 
     public void drawShape(){
