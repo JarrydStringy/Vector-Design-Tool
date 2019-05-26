@@ -1,5 +1,6 @@
 package VectorDesignTool;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -9,12 +10,16 @@ public class ReadFile {
     private Scanner x;
     private String selectedFile;
     private String[][] fileLines;
+    private GraphicsContext g;
+    private double brushSize;
 
     /**
      * Opens file selection window with '.txt' file filter
      * and gets selected file from user selection
      */
-    public ReadFile(){
+    public ReadFile(GraphicsContext g, double brushSize){
+        this.g = g;
+        this.brushSize = brushSize;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
 
@@ -69,5 +74,24 @@ public class ReadFile {
      * Gets the read file lines stored in an array
      * @return returns read file lines array
      */
-    public String[][] getFileLines(){ return fileLines; }
+    public void displayFile(){
+
+        // Go through each line then each command
+        for(String[] t:fileLines){
+            for(int i = 0; i < t.length; i++){
+                if(t[i] != "PLOT"){
+                    try {
+                        double[][] coords = {{Double.parseDouble(t[i + 1]) * 600, Double.parseDouble(t[i + 2]) * 600},
+                                {Double.parseDouble(t[i + 3]) * 600, Double.parseDouble(t[i + 4]) * 600}};
+                        DrawShape shape = new DrawShape(t[i], g, coords ,brushSize);
+                        shape.drawShape();
+                    } catch(Exception e){
+                        System.out.println(e);
+                    }
+                    i = t.length;
+                }
+                i = t.length;
+            }
+        }
+    }
 }

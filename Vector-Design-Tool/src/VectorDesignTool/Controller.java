@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
-import java.awt.event.*;
 import java.io.File;
 import java.util.Optional;
 
@@ -24,8 +23,6 @@ public class Controller {
     private TextField brushSize;
     @FXML
     private CheckBox eraser;
-    // Selected file lines
-    private String[][] fileLineCommands;
     // Stores Mouse coordinates
     private double[][] coords = {{0,0},{0,0}};
     // Current shape selection
@@ -57,15 +54,13 @@ public class Controller {
             coords[0][0] = coords[1][0] = e.getX();
             coords[0][1] = coords[1][1] = e.getY();
             g.setStroke(colorPicker.getValue());
-            DrawShape shape = new DrawShape(shapeSelected, g, coords);
-            shape.drawShape();
         });
 
         // Listener for when mouse is released
         canvas.setOnMouseReleased(e ->{
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
-            DrawShape shape = new DrawShape(shapeSelected, g, coords);
+            DrawShape shape = new DrawShape(shapeSelected, g, coords, Double.parseDouble(brushSize.getText()));
             shape.drawShape();
         });
 
@@ -73,8 +68,8 @@ public class Controller {
         canvas.setOnMouseDragged(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
-            DrawShape shape = new DrawShape(shapeSelected, g, coords);
-            shape.drawShape();
+           // DrawShape shape = new DrawShape(shapeSelected, g, coords, Double.parseDouble(brushSize.getText()));
+            //shape.drawShape();
         });
     }
 
@@ -127,9 +122,9 @@ public class Controller {
      */
     public void openFile(){
         // Open file and read lines
-        ReadFile r = new ReadFile();
+        ReadFile r = new ReadFile(g, Double.parseDouble(brushSize.getText()));
         r.scanFile();
-        fileLineCommands = r.getFileLines();
+        r.displayFile();
     }
 
     public void checkBrushInput(){
