@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 
-public class DrawShape {
+public abstract class DrawShape {
     private String selectedShape;
     private GraphicsContext g;
     private double[][] coords;
@@ -22,47 +22,29 @@ public class DrawShape {
     }
 
     public void drawShape(){
-        Shapes shape = new Shapes(coords, g, brushSize);
-
         switch (selectedShape){
             case "LINE":
-                shape.drawLine();
+                drawLine();
                 break;
             case "RECTANGLE":
-                shape.drawRectangle();
+                drawRectangle();
                 break;
             case "ELLIPSE":
-                shape.drawEllipse();
+                drawEllipse();
                 break;
             case "POLYGON":
-                shape.drawPolygon();
+                drawPolygon();
                 break;
                 default:
-                    shape.drawPlot();
+                    drawPlot();
         }
 
     }
 
-    public void removeShape(){
-        Shapes shape = new Shapes(coords, g, brushSize);
-
-        switch (selectedShape){
-            case "LINE":
-                shape.removeLine();
-                break;
-           /* case "RECTANGLE":
-                shape.drawRectangle();
-                break;
-            case "ELLIPSE":
-                shape.drawEllipse();
-                break;
-            case "POLYGON":
-                shape.drawPolygon();
-                break;*/
-            default:
-                shape.removeLine();
-        }
-    }
-
+    public abstract void drawPlot();
+    public abstract void drawLine();
+    public abstract void drawRectangle();
+    public abstract void drawEllipse();
+    public abstract void drawPolygon();
 
 }

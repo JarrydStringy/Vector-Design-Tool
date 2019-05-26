@@ -71,7 +71,7 @@ public class Controller {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
-            DrawShape shape = new DrawShape(shapeSelected, g, coords, Double.parseDouble(brushSize.getText()));
+            Shapes shape = new Shapes(shapeSelected, g, coords, Double.parseDouble(brushSize.getText()));
             shape.drawShape();
         });
 
@@ -80,7 +80,7 @@ public class Controller {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
-            DrawShape shape = new DrawShape(shapeSelected, g2, coords, Double.parseDouble(brushSize.getText()));
+            Shapes shape = new Shapes(shapeSelected, g2, coords, Double.parseDouble(brushSize.getText()));
             shape.drawShape();
         });
     }

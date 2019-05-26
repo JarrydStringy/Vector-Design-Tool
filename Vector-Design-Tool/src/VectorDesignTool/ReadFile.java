@@ -83,7 +83,7 @@ public class ReadFile {
                     try {
                         double[][] coords = {{Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600},
                                 {Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600}};
-                        DrawShape shape = new DrawShape(b, g, coords ,brushSize);
+                        Shapes shape = new Shapes(b, g, coords ,brushSize);
                         shape.drawShape();
                     } catch(Exception e){
                         System.out.println(e);
@@ -92,7 +92,7 @@ public class ReadFile {
                     try {
                         double[][] coords = {{Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600},
                                 {Double.parseDouble(t[3]) * 600, Double.parseDouble(t[4]) * 600}};
-                        DrawShape shape = new DrawShape(b, g, coords ,brushSize);
+                        Shapes shape = new Shapes(b, g, coords ,brushSize);
                         shape.drawShape();
                     } catch(Exception e){
                         System.out.println(e);
