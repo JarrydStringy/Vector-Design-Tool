@@ -257,6 +257,7 @@ public class Controller {
             System.out.println("Failed to save image: " + e);
         }
     }
+
     /**
      * Exits program and shuts down the JavaFX application
      */

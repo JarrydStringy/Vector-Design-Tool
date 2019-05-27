@@ -33,29 +33,12 @@ public class DrawPolygon{
      * Draws a polygon
      * */
     public void drawPolygon(){
-        double[] x = new double[xCoords.size()];
-        double[] y = new double[yCoords.size()];
-
-        for(int i = 0; i < xCoords.size(); i++){
-            x[i] = xCoords.get(i);
-            y[i] = yCoords.get(i);
+        try{
+            g.strokePolygon(xArr, yArr, edges);
+        } catch (Exception e){
+            System.out.println("Error drawing polygon: " + e);
         }
-        setCoord(x, y);
-        g.strokePolygon(x, y, edges);
-    }
 
-    public void setCoord(double[] arrayX, double[] arrayY) {
-        this.xArr = arrayX;
-        this.yArr = arrayY;
-    }
-
-    public double[] getxArr()
-    {
-        return this.xArr;
-    }
-    public double[] getyArr()
-    {
-        return this.yArr;
     }
 
     /**
@@ -69,6 +52,12 @@ public class DrawPolygon{
             yCoords.add(coords[1]);
             edgeCount += 1;
             if(edgeCount == edges){
+                xArr = new double[xCoords.size()];
+                yArr = new double[yCoords.size()];
+                for(int i = 0; i < xCoords.size(); i++){
+                    xArr[i] = xCoords.get(i);
+                    yArr[i] = yCoords.get(i);
+                }
                 drawPolygon();
             }
         }
@@ -103,5 +92,28 @@ public class DrawPolygon{
             }
         } while(!correctInput);
         return 4;
+    }
+
+    /**
+     * This sets the polygon array coordinates to a given array of x and y coordinates
+     * @param arrayX - double array of x coordinates
+     * @param arrayY - double array of y coordinates
+     * */
+    public void setCoord(double[] arrayX, double[] arrayY) {
+        this.xArr = arrayX;
+        this.yArr = arrayY;
+    }
+
+    public void setEdges(int edges){
+        this.edges = edges;
+    }
+
+    public double[] getxArr()
+    {
+        return this.xArr;
+    }
+    public double[] getyArr()
+    {
+        return this.yArr;
     }
 }
