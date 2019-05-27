@@ -2,6 +2,8 @@ package VectorDesignTool;
 
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,6 +14,7 @@ import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.Optional;
 
 public class Controller {
@@ -34,6 +37,9 @@ public class Controller {
     // Sets graphics context for drawing
     GraphicsContext g;
     GraphicsContext g2;
+    StringBuilder savefile = SaveFile.saveFile;
+    DecimalFormat df = SaveFile.df;
+    String result;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -54,14 +60,50 @@ public class Controller {
         draw();
     }
 
+    public String RGBtoHex()
+    {
+        String hex1 = Integer.toHexString(colorPicker.getValue().hashCode());
+        String hex2;
+
+        switch (hex1.length()) {
+            case 2:
+                hex2 = "000000";
+                break;
+            case 3:
+                hex2 = String.format("00000%s", hex1.substring(0,1));
+                break;
+            case 4:
+                hex2 = String.format("0000%s", hex1.substring(0,2));
+                break;
+            case 5:
+                hex2 = String.format("000%s", hex1.substring(0,3));
+                break;
+            case 6:
+                hex2 = String.format("00%s", hex1.substring(0,4));
+                break;
+            case 7:
+                hex2 = String.format("0%s", hex1.substring(0,5));
+                break;
+            default:
+                hex2 = hex1.substring(0, 6);
+        }
+        return hex2.toUpperCase();
+    }
     /**
      * Listener for when mouse is clicked or dragged
      */
     public void draw(){
+        // Set Pen Colour, Will add a reference for Fill once fill is done
+        colorPicker.setOnAction(click -> {
+            String hex = "#" + RGBtoHex();
+            savefile.append("\nPEN " + hex);
+        });
+
         // Listener for when mouse is pressed
         canvas.setOnMousePressed(e ->{
             coords[0][0] = coords[1][0] = e.getX();
             coords[0][1] = coords[1][1] = e.getY();
+            result = df.format(coords[0][0]/600) + " " + df.format(coords[0][1]/600);
             g.setStroke(colorPicker.getValue());
             g2.setStroke(colorPicker.getValue());
         });
@@ -72,6 +114,17 @@ public class Controller {
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
             Shape shape = new Shape(shapeSelected, g, coords);
+            if(shapeSelected != "PLOT")
+            {
+                result = "\n" + shapeSelected + " " + result;
+                savefile.append(result);
+                SaveFile.saveFile.append(" " + df.format(coords[1][0]/600) + " " + df.format(coords[1][1]/600));
+            }
+            else
+            {
+                result = "\n" + shapeSelected + " " + result;
+                savefile.append(result);
+            }
             shape.drawShape();
         });
 
@@ -105,10 +158,23 @@ public class Controller {
         }
     }
 
+
+    public void onSave()
+    {
+        try {
+            SaveFile savefile = new SaveFile(g);
+            // Open file and read lines
+        } catch(Exception e ){
+            // pass
+        }
+    }
+
+
     /**
      * Saves a snapshot of the canvas as a '.png' file
      */
-    public void onSave(){
+    public void onExport()
+    {
         try{
             // Record what is in canvas
             Image snapshot = canvas.snapshot(null, null);
@@ -119,7 +185,6 @@ public class Controller {
             System.out.println("Failed to save image: " + e);
         }
     }
-
     /**
      * Exits program and shuts down the JavaFX application
      */
