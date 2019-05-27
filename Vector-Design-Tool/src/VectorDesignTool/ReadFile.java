@@ -78,56 +78,7 @@ public class ReadFile {
      * Displays the drawing on the canvas using the read coordinates from the file
      */
     public void displayFile(){
-        // Go through each line then each command
-        for(String[] t:fileLines){
-            for(String b:t){
-                if (b.contains("PLOT")){
-                    try {
-                        double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
-                                {Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()}};
-                        Shapes shape = new Shapes(b, g, coords);
-                        shape.drawShape();
-                    } catch(Exception e){
-                        System.out.println("Error in PLOT read: " + e);
-                    }
-                }else if(b.contains("POLYGON")){
-                    try {
-                        int edges = 0;
-                        String xs = "";
-                        String ys = "";
-                        for (int i = 1; i < t.length-2; i++) {
-                            edges++;
-                            xs += t[i] + " ";
-                            ys += t[i+1] + " ";
-                        }
-                        String[] xss = xs.split(" ");
-                        String[] yss = ys.split(" ");
-                        double[] x = new double[xss.length];
-                        double[] y = new double[yss.length];
-                        for(int i = 0; i < xss.length; i++){
-                            x[i] = Double.parseDouble(xss[i]) * canvas.getWidth();
-                            y[i] = Double.parseDouble(yss[i]) * canvas.getHeight();
-                        }
-                        DrawPolygon drawPolygon = new DrawPolygon(g);
-                        drawPolygon.setCoord(x,y);
-                        drawPolygon.setEdges(edges);
-                        drawPolygon.drawPolygon();
-                        System.out.println(canvas.getWidth());
-                    } catch(Exception e){
-                        System.out.println("Error in POLYGON read: " + e);
-                    }
-                } else{
-                    try {
-                        double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
-                                {Double.parseDouble(t[3]) * canvas.getWidth(), Double.parseDouble(t[4]) * canvas.getHeight()}};
-                        Shapes shape = new Shapes(b, g, coords);
-                        shape.drawShape();
-                    } catch(Exception e){
-                        System.out.println(e);
-                    }
-                }
-                break;
-            }
-        }
+        DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
+        displayFile.displayFile();
     }
 }
