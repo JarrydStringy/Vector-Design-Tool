@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/SaveFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/SaveFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/UI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vector-Design-Tool/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vector-Design-Tool/module-info.class" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -89,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Shape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+            <state relative-caret-position="498">
+              <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -571,8 +563,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Shape.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+        <state relative-caret-position="498">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
         </state>
       </provider>
     </entry>
