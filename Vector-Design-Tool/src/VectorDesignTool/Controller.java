@@ -100,6 +100,7 @@ public class Controller {
         }
         return hex2.toUpperCase();
     }
+
     /**
      * Listener for when mouse is clicked or dragged
      */
@@ -131,9 +132,17 @@ public class Controller {
 
         // Listener for when mouse is pressed
         canvas.setOnMousePressed(e -> {
-            coords[0][0] = coords[1][0] = e.getX();
-            coords[0][1] = coords[1][1] = e.getY();
-            result = df.format(coords[0][0]/canvas.getWidth()) + " " + df.format(coords[0][1]/canvas.getHeight());
+            if(pen.isSelected() || fill.isSelected()){
+                coords[0][0] = coords[1][0] = e.getX();
+                coords[0][1] = coords[1][1] = e.getY();
+                result = df.format(coords[0][0]/canvas.getWidth()) + " " + df.format(coords[0][1]/canvas.getHeight());
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Want to draw...?");
+                alert.setHeaderText(null);
+                alert.setContentText("Please select Pen or Fill tool to draw");
+                alert.showAndWait();
+            }
         });
 
         // Listener for when mouse is released
@@ -209,7 +218,9 @@ public class Controller {
         }
     }
 
-
+    /**
+     * Saves a snapshot of the canvas as a '.png' file
+     */
     public void onSave()
     {
         try {
@@ -219,7 +230,6 @@ public class Controller {
             // pass
         }
     }
-
 
     /**
      * Saves a snapshot of the canvas as a '.png' file
@@ -259,17 +269,20 @@ public class Controller {
         }
     }
 
+    /**
+     * Checks that the user input for brush size is a valid positive integer between 1 and 200.
+     */
     public void checkBrushInput(){
         try {
-            if(brushSize.getText().matches("[0-9]*") == false || Integer.parseInt(brushSize.getText()) <= 0){
+            if(brushSize.getText().matches("[0-9]*") == false || Integer.parseInt(brushSize.getText()) < 1 || Integer.parseInt(brushSize.getText()) > 200){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Invalid Input");
                 alert.setHeaderText(null);
-                alert.setContentText("Please enter a positive integer.");
+                alert.setContentText("Please enter a positive integer between 1 and 200.");
                 alert.showAndWait();
-                brushSize.setText("10");
-                g.setLineWidth(10);
-                g2.setLineWidth(10);
+                brushSize.setText("5");
+                g.setLineWidth(5);
+                g2.setLineWidth(5);
             } else {
                 g.setLineWidth(Integer.parseInt(brushSize.getText()));
                 g2.setLineWidth(Integer.parseInt(brushSize.getText()));
@@ -305,7 +318,7 @@ public class Controller {
      */
     public void createPolygon(){
         shapeSelected = "POLYGON";
-        polygon = new DrawPolygon(shapeSelected, g, coords);
+        polygon = new DrawPolygon(g);
         edges = polygon.getUserInput();
     }
 }

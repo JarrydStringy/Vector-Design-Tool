@@ -15,8 +15,11 @@ public class ReadFile {
     private Canvas canvas;
 
     /**
-     * Opens file selection window with '.txt' file filter
-     * and gets selected file from user selection
+     * Opens file selection window with '.vec' file filter and gets selected file from user selection.
+     * Reads the selected file by scanning it, then stores each line in an array. This array is then
+     * used to draw the shapes and output the commands in the file onto the canvas.
+     * @param g - the GraphicsContext of the canvas being drawn on
+     * @param canvas - the canvas being drawn on
      */
     public ReadFile(GraphicsContext g, Canvas canvas) {
         this.g = g;
@@ -88,6 +91,9 @@ public class ReadFile {
                     } catch(Exception e){
                         System.out.println(e);
                     }
+                }else if(b.contains("POLYGON")){
+
+
                 } else{
                     try {
                         double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},

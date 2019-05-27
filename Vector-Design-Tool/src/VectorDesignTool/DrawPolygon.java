@@ -10,15 +10,19 @@ import java.util.Optional;
 
 public class DrawPolygon{
     private GraphicsContext g;
-    private double[][] coords;
     private int edges = 4;
     private int edgeCount = 0;
     private List<Double> xCoords;
     private List<Double> yCoords;
 
-    public DrawPolygon(String selectedShape, GraphicsContext g, double[][] coords){
+    /**
+     * Draws a polygon based on given plot coordinates from user.
+     * User must predefine number of edges in the polygon when prompted.
+     * Edges must be greater than 2 and up to 100.
+     * @param g - the GraphicsContext of the canvas being drawn on
+     * */
+    public DrawPolygon(GraphicsContext g){
         this.g = g;
-        this.coords = coords;
         xCoords = new ArrayList<>();
         yCoords = new ArrayList<>();
     }
@@ -86,7 +90,6 @@ public class DrawPolygon{
                         alert.setHeaderText(null);
                         alert.setContentText("You have set the number of edges to " + edges +
                                 ". \nPlace " + edges + " points on the canvas in the order which the edges will be drawn.");
-
                         alert.showAndWait();
                         return edges;
                     }
