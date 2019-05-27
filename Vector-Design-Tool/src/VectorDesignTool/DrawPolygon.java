@@ -12,9 +12,11 @@ public class DrawPolygon{
     private GraphicsContext g;
     private double[][] coords;
     private int edges = 4;
-    private int edgeCount = 0;
-    private List<Double> xCoords;
-    private List<Double> yCoords;
+    public static int edgeCount = 0;
+    public static List<Double> xCoords;
+    public double[] xArr;
+    public double[] yArr;
+    public static List<Double> yCoords;
 
     public DrawPolygon(String selectedShape, GraphicsContext g, double[][] coords){
         this.g = g;
@@ -34,9 +36,23 @@ public class DrawPolygon{
             x[i] = xCoords.get(i);
             y[i] = yCoords.get(i);
         }
+        setCoord(x, y);
         g.strokePolygon(x, y, edges);
     }
+    public void setCoord(double[] arrayX, double[] arrayY)
+    {
+        this.xArr = arrayX;
+        this.yArr = arrayY;
+    }
 
+    public double[] getxArr()
+    {
+        return this.xArr;
+    }
+    public double[] getyArr()
+    {
+        return this.yArr;
+    }
     /**
      * Draws a plot to show the user where the vertices for their polygon will be placed
      * @param coords - gets the current coordinate of the mouse click

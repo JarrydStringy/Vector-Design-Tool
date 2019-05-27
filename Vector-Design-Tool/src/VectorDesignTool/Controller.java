@@ -13,10 +13,10 @@ import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Optional;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.subtractExact;
 
 public class Controller {
     // References to UI objects
@@ -38,6 +38,7 @@ public class Controller {
     private double[][] coords = {{0,0},{0,0}};
     // Store polygon edges
     private int edges;
+    private int edgeCount = 0;
     private DrawPolygon polygon;
     // Current shape selection
     private String shapeSelected = "PLOT";
@@ -45,6 +46,10 @@ public class Controller {
     GraphicsContext g;
     GraphicsContext g2;
     StringBuilder savefile = SaveFile.saveFile;
+    List<Double> xCoords = DrawPolygon.xCoords;
+    List<Double> yCoords = DrawPolygon.yCoords;
+    double[] x;
+    double[] y;
     DecimalFormat df = SaveFile.df;
     String result;
 
@@ -155,6 +160,25 @@ public class Controller {
 
             if(shapeSelected == "POLYGON"){
                 polygon.drawPlot(coords[1]);
+                edgeCount++;
+                if(edgeCount >= edges && edges != 0)
+                {
+                    x = new double[DrawPolygon.xCoords.size()];
+                    y = new double[DrawPolygon.yCoords.size()];
+                    for (int i = 0; i < DrawPolygon.xCoords.size(); i++)
+                    {
+                        x[i] = DrawPolygon.xCoords.get(i);
+                    }
+                    for (int j = 0; j < DrawPolygon.xCoords.size(); j++)
+                    {
+                        y[j] = DrawPolygon.yCoords.get(j);
+                    }
+                    if(fill.isSelected())
+                    {
+                        g.fillPolygon(x, y,edges);
+                    }
+                }
+
             } else {
                 shape.drawShape();
             }
@@ -170,10 +194,6 @@ public class Controller {
                 {
                     g.fillOval(coords[0][0], coords[0][1],abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
                 }
-                //else if(shapeSelected == "POLYGON")
-//                {
-//                    g.fillPolygon
-//                }
             }
         });
 
