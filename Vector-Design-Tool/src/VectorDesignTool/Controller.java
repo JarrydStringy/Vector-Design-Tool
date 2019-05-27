@@ -1,8 +1,6 @@
 package VectorDesignTool;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -40,7 +38,7 @@ public class Controller {
     private double[][] coords = {{0,0},{0,0}};
     // Store polygon edges
     private int edges;
-    private Shape polygon;
+    private DrawPolygon polygon;
     // Current shape selection
     private String shapeSelected = "PLOT";
     // Sets graphics context for drawing
@@ -143,7 +141,7 @@ public class Controller {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
-            Shape shape = new Shape(shapeSelected, g, coords);
+            Shapes shape = new Shapes(shapeSelected, g, coords);
 
             if(shapeSelected != "PLOT") {
                 result = "\n" + shapeSelected + " " + result;
@@ -185,7 +183,7 @@ public class Controller {
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
             if(shapeSelected != "POLYGON"){
-                Shape shape = new Shape(shapeSelected, g2, coords);
+                Shapes shape = new Shapes(shapeSelected, g2, coords);
                 shape.drawShape();
             }
         });
@@ -307,7 +305,7 @@ public class Controller {
      */
     public void createPolygon(){
         shapeSelected = "POLYGON";
-        polygon = new Shape(shapeSelected, g, coords);
+        polygon = new DrawPolygon(shapeSelected, g, coords);
         edges = polygon.getUserInput();
     }
 }

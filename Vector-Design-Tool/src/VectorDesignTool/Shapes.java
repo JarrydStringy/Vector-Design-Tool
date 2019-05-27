@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.text.DecimalFormat;
 import static java.lang.Math.abs;
 
-public abstract class Shapes extends DrawShape {
+public class Shapes extends DrawShape {
     private double[][] coords;
     private GraphicsContext g;
     private String seletedShape;
@@ -44,5 +44,7 @@ public abstract class Shapes extends DrawShape {
     /**
      * Draws a polygon
      * */
-    public abstract void drawPolygon();
+    public void drawPolygon(){
+
+    };
 }

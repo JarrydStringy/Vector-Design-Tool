@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Shape extends Shapes {
+public class DrawPolygon{
     private GraphicsContext g;
     private double[][] coords;
     private int edges = 4;
@@ -16,8 +16,7 @@ public class Shape extends Shapes {
     private List<Double> xCoords;
     private List<Double> yCoords;
 
-    public Shape(String selectedShape, GraphicsContext g, double[][] coords){
-        super(selectedShape,g, coords);
+    public DrawPolygon(String selectedShape, GraphicsContext g, double[][] coords){
         this.g = g;
         this.coords = coords;
         xCoords = new ArrayList<>();
@@ -35,7 +34,6 @@ public class Shape extends Shapes {
             x[i] = xCoords.get(i);
             y[i] = yCoords.get(i);
         }
-
         g.strokePolygon(x, y, edges);
     }
 
