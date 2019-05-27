@@ -1,9 +1,9 @@
 package VectorDesignTool;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,6 +17,8 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Optional;
 
+import static java.lang.Math.abs;
+
 public class Controller {
     // References to UI objects
     @FXML
@@ -29,7 +31,10 @@ public class Controller {
     @FXML
     private TextField brushSize;
     @FXML
-    private CheckBox eraser;
+    private CheckBox pen;
+    @FXML
+    private CheckBox fill;
+
     // Stores Mouse coordinates
     private double[][] coords = {{0,0},{0,0}};
     // Current shape selection
@@ -93,8 +98,27 @@ public class Controller {
      * Listener for when mouse is clicked or dragged
      */
     public void draw(){
-        // Set Pen Colour, Will add a reference for Fill once fill is done
+
+        // Set Pen and Fill Colour
+        fill.setOnAction(click -> pen.setSelected(!fill.isSelected()));
+
+        pen.setOnAction(click -> {
+            fill.setSelected(!pen.isSelected());
+            g.setStroke(colorPicker.getValue());
+            g2.setStroke(colorPicker.getValue());
+
+        });
+
         colorPicker.setOnAction(click -> {
+            if(fill.isSelected())
+            {
+                g.setFill(colorPicker.getValue());
+            }
+            if(pen.isSelected())
+            {
+                g.setStroke(colorPicker.getValue());
+                g2.setStroke(colorPicker.getValue());
+            }
             String hex = "#" + RGBtoHex();
             savefile.append("\nPEN " + hex);
         });
@@ -104,8 +128,6 @@ public class Controller {
             coords[0][0] = coords[1][0] = e.getX();
             coords[0][1] = coords[1][1] = e.getY();
             result = df.format(coords[0][0]/600) + " " + df.format(coords[0][1]/600);
-            g.setStroke(colorPicker.getValue());
-            g2.setStroke(colorPicker.getValue());
         });
 
         // Listener for when mouse is released
@@ -114,6 +136,7 @@ public class Controller {
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
             Shape shape = new Shape(shapeSelected, g, coords);
+
             if(shapeSelected != "PLOT")
             {
                 result = "\n" + shapeSelected + " " + result;
@@ -125,7 +148,26 @@ public class Controller {
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
             }
+
             shape.drawShape();
+
+            //Fill Shapes
+            if(fill.isSelected())
+            {
+                if(shapeSelected == "RECTANGLE")
+                {
+
+                    g.fillRect(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
+                }
+                else if(shapeSelected == "ELLIPSE")
+                {
+                    g.fillOval(coords[0][0], coords[0][1],abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
+                }
+                //else if(shapeSelected == "POLYGON")
+//                {
+//                    g.fillPolygon
+//                }
+            }
         });
 
         // Listener for when mouse is dragged

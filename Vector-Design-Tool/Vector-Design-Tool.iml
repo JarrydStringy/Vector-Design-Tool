@@ -8,8 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/src/sample" />
     </content>
     <orderEntry type="inheritedJdk" />
+    <orderEntry type="library" exported="" name="javafx11" level="application" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="javafx11" level="application" />
-    <orderEntry type="library" name="javafx-swt" level="application" />
   </component>
 </module>

@@ -13,7 +13,6 @@ public class SaveFile{
 
     public static StringBuilder saveFile = new StringBuilder("");
     public static DecimalFormat df = new DecimalFormat("0.000000");
-    private String selectedFile;
     private GraphicsContext g;
 
     public SaveFile(GraphicsContext g){

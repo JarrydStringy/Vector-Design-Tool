@@ -6,7 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Vector-Design-Tool/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="javafx11" level="application" />
+    <orderEntry type="library" exported="" name="javafx11" level="application" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
