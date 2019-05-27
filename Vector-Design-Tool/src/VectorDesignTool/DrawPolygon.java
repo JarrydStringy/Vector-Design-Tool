@@ -104,16 +104,8 @@ public class DrawPolygon{
         this.yArr = arrayY;
     }
 
-    public void setEdges(int edges){
-        this.edges = edges;
-    }
+    public void setEdges(int edges){ this.edges = edges; }
 
-    public double[] getxArr()
-    {
-        return this.xArr;
-    }
-    public double[] getyArr()
-    {
-        return this.yArr;
-    }
+    public double[] getxArr() { return this.xArr; }
+    public double[] getyArr() { return this.yArr; }
 }
