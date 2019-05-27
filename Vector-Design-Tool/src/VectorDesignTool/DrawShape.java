@@ -17,6 +17,9 @@ public abstract class DrawShape {
 
     public void drawShape(){
         switch (selectedShape){
+            case "PLOT":
+                drawPlot();
+                break;
             case "LINE":
                 drawLine();
                 break;
@@ -30,7 +33,7 @@ public abstract class DrawShape {
                 drawPolygon();
                 break;
                 default:
-                    drawPlot();
+                    break;
         }
 
     }

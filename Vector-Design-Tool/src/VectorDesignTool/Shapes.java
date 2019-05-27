@@ -39,8 +39,7 @@ public abstract class Shapes extends DrawShape {
      * */
     public void drawLine(){g.strokeLine(coords[0][0], coords[0][1], coords[1][0], coords[1][1]);}
 
-    public void drawEllipse(){
-        g.strokeOval(coords[0][0], coords[0][1],abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));}
+    public void drawEllipse(){ g.strokeOval(coords[0][0], coords[0][1],abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));}
 
     /**
      * Draws a polygon

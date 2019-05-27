@@ -1,5 +1,6 @@
 package VectorDesignTool;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.FileChooser;
 
@@ -11,13 +12,15 @@ public class ReadFile {
     private String selectedFile;
     private String[][] fileLines;
     private GraphicsContext g;
+    private Canvas canvas;
 
     /**
      * Opens file selection window with '.txt' file filter
      * and gets selected file from user selection
      */
-    public ReadFile(GraphicsContext g) {
+    public ReadFile(GraphicsContext g, Canvas canvas) {
         this.g = g;
+        this.canvas = canvas;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
 
@@ -78,8 +81,8 @@ public class ReadFile {
             for(String b:t){
                 if (b.contains("PLOT")){
                     try {
-                        double[][] coords = {{Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600},
-                                {Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600}};
+                        double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
+                                {Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()}};
                         Shape shape = new Shape(b, g, coords);
                         shape.drawShape();
                     } catch(Exception e){
@@ -87,8 +90,8 @@ public class ReadFile {
                     }
                 } else{
                     try {
-                        double[][] coords = {{Double.parseDouble(t[1]) * 600, Double.parseDouble(t[2]) * 600},
-                                {Double.parseDouble(t[3]) * 600, Double.parseDouble(t[4]) * 600}};
+                        double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
+                                {Double.parseDouble(t[3]) * canvas.getWidth(), Double.parseDouble(t[4]) * canvas.getHeight()}};
                         Shape shape = new Shape(b, g, coords);
                         shape.drawShape();
                     } catch(Exception e){

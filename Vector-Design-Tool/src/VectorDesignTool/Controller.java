@@ -18,6 +18,7 @@ import java.text.DecimalFormat;
 import java.util.Optional;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.subtractExact;
 
 public class Controller {
     // References to UI objects
@@ -37,6 +38,9 @@ public class Controller {
 
     // Stores Mouse coordinates
     private double[][] coords = {{0,0},{0,0}};
+    // Store polygon edges
+    private int edges;
+    private Shape polygon;
     // Current shape selection
     private String shapeSelected = "PLOT";
     // Sets graphics context for drawing
@@ -52,15 +56,19 @@ public class Controller {
     public void initialize(){
         // Sets graphics context for drawing
         g = canvas.getGraphicsContext2D();
+
         // Sets graphics context for drawing on layer 2
         canvas2 = new Canvas(canvas.getWidth(), canvas.getHeight());
         g2 = canvas2.getGraphicsContext2D();
         canvasPane.getChildren().add(canvas2);
         canvas2.toBack();
+
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
+
         // Check brush input
         checkBrushInput();
+
         // draw
         draw();
     }
@@ -124,36 +132,37 @@ public class Controller {
         });
 
         // Listener for when mouse is pressed
-        canvas.setOnMousePressed(e ->{
+        canvas.setOnMousePressed(e -> {
             coords[0][0] = coords[1][0] = e.getX();
             coords[0][1] = coords[1][1] = e.getY();
-            result = df.format(coords[0][0]/600) + " " + df.format(coords[0][1]/600);
+            result = df.format(coords[0][0]/canvas.getWidth()) + " " + df.format(coords[0][1]/canvas.getHeight());
         });
 
         // Listener for when mouse is released
-        canvas.setOnMouseReleased(e ->{
+        canvas.setOnMouseReleased(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
             Shape shape = new Shape(shapeSelected, g, coords);
 
-            if(shapeSelected != "PLOT")
-            {
+            if(shapeSelected != "PLOT") {
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
-                SaveFile.saveFile.append(" " + df.format(coords[1][0]/600) + " " + df.format(coords[1][1]/600));
+                SaveFile.saveFile.append(" " + df.format(coords[1][0]/canvas.getWidth()) + " " + df.format(coords[1][1]/canvas.getHeight()));
             }
-            else
-            {
+            else {
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
             }
 
-            shape.drawShape();
+            if(shapeSelected == "POLYGON"){
+                polygon.drawPlot(coords[1]);
+            } else {
+                shape.drawShape();
+            }
 
             //Fill Shapes
-            if(fill.isSelected())
-            {
+            if(fill.isSelected()) {
                 if(shapeSelected == "RECTANGLE")
                 {
 
@@ -175,8 +184,10 @@ public class Controller {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
             g2.clearRect(0,0,600,600);
-            Shape shape = new Shape(shapeSelected, g2, coords);
-            shape.drawShape();
+            if(shapeSelected != "POLYGON"){
+                Shape shape = new Shape(shapeSelected, g2, coords);
+                shape.drawShape();
+            }
         });
     }
 
@@ -242,7 +253,7 @@ public class Controller {
     public void openFile(){
         try {
             // Open file and read lines
-            ReadFile r = new ReadFile(g);
+            ReadFile r = new ReadFile(g, canvas);
             r.scanFile();
             r.displayFile();
         } catch(Exception e ){
@@ -294,5 +305,9 @@ public class Controller {
     /**
      * Draw a polygon
      */
-    public void createPolygon(){ shapeSelected = "POLYGON"; }
+    public void createPolygon(){
+        shapeSelected = "POLYGON";
+        polygon = new Shape(shapeSelected, g, coords);
+        edges = polygon.getUserInput();
+    }
 }
