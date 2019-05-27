@@ -8,7 +8,7 @@ public abstract class DrawShape {
     private String selectedShape;
 
     /**
-     * When the rectangle button is pressed, the object is created.
+     * Calls the functions to draw the shape based on the selectedShape value
      * @param selectedShape - current shape selected on interface
      */
     public DrawShape(String selectedShape){

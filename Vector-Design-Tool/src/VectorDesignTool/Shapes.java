@@ -12,8 +12,9 @@ public class Shapes extends DrawShape {
     private double[][] coords;
     private GraphicsContext g;
     private String seletedShape;
+
     /**
-     * When the rectangle button is pressed, the object is created.
+     * Draws shapes (Plot, Rectangle, Line, Ellipse or Polygon) based on selectedShape input.
      * @param coords - {(x,y)(x,y)} coordinates of start and finish of rectangle
      * @param g - canvas graphics context
      */
