@@ -43,8 +43,8 @@ public class DrawPolygon{
         setCoord(x, y);
         g.strokePolygon(x, y, edges);
     }
-    public void setCoord(double[] arrayX, double[] arrayY)
-    {
+
+    public void setCoord(double[] arrayX, double[] arrayY) {
         this.xArr = arrayX;
         this.yArr = arrayY;
     }
@@ -57,6 +57,7 @@ public class DrawPolygon{
     {
         return this.yArr;
     }
+
     /**
      * Draws a plot to show the user where the vertices for their polygon will be placed
      * @param coords - gets the current coordinate of the mouse click
@@ -80,43 +81,22 @@ public class DrawPolygon{
      * */
     public int getUserInput(){
         boolean correctInput = false;
+        Alerts alert = new Alerts();
         do {
-            TextInputDialog dialog = new TextInputDialog("4");
-            dialog.setTitle("Polygon Edges");
-            dialog.setHeaderText(null);
-            dialog.setContentText("Please enter the number of edges:");
-
             // Traditional way to get the response value.
-            Optional<String> result = dialog.showAndWait();
-
+            Optional<String> result = alert.polygonPromptEdgeInput();
             // Check if user input is valid
             if (result.isPresent()) {
                 try {
                     if (result.get().matches("[0-9]*") == false || Integer.parseInt(result.get()) < 3 || Integer.parseInt(result.get()) > 100) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Invalid Input");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Please enter a positive integer between 3 and 100.");
-                        alert.showAndWait();
+                        alert.polygonEdgeError();
                     } else {
                         edges = Integer.parseInt(result.get());
-
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Draw Polygon");
-                        alert.setHeaderText(null);
-                        alert.setContentText("You have set the number of edges to " + edges +
-                                ". \nPlace " + edges + " points on the canvas in the order which the edges will be drawn.");
-                        alert.showAndWait();
+                        alert.polygonDrawInfo(edges);
                         return edges;
                     }
                 } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Invalid Input");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Please enter a positive integer between 3 and 100.");
-                    alert.showAndWait();
-                    // Display if any errors occur
-                    System.out.println("Failed to open file: " + e);
+                    alert.polygonEdgeError();
                 }
             } else {
                 correctInput = true;

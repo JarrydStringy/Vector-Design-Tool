@@ -34,6 +34,8 @@ public class Controller {
     @FXML
     private CheckBox fill;
 
+    // Instantiate Alerts class
+    private Alerts alert;
     // Stores Mouse coordinates
     private double[][] coords = {{0,0},{0,0}};
     // Store polygon edges
@@ -68,6 +70,9 @@ public class Controller {
 
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
+
+        // Instantiate Alerts class
+        alert = new Alerts();
 
         // Check brush input
         checkBrushInput();
@@ -142,11 +147,7 @@ public class Controller {
                 coords[0][1] = coords[1][1] = e.getY();
                 result = df.format(coords[0][0]/canvas.getWidth()) + " " + df.format(coords[0][1]/canvas.getHeight());
             } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Want to draw...?");
-                alert.setHeaderText(null);
-                alert.setContentText("Please select Pen or Fill tool to draw");
-                alert.showAndWait();
+                alert.selectDraw();
             }
         });
 
@@ -222,18 +223,8 @@ public class Controller {
      * Clears the canvas if user selects yes in confirmation dialogue
      */
     public void clearCanvas(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm Clear Canvas");
-        alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to clear the canvas?");
-
-        ButtonType buttonYes = new ButtonType("Yes");
-        ButtonType buttonCancel = new ButtonType("Cancel");
-
-        alert.getButtonTypes().setAll(buttonYes, buttonCancel);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonYes){
+        Optional<ButtonType> result = alert.clearCanvasCheck();
+        if (result.get().getText() == "Yes"){
             g.clearRect(0,0,600,600);
         }
     }
@@ -295,11 +286,7 @@ public class Controller {
     public void checkBrushInput(){
         try {
             if(brushSize.getText().matches("[0-9]*") == false || Integer.parseInt(brushSize.getText()) < 1 || Integer.parseInt(brushSize.getText()) > 200){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Invalid Input");
-                alert.setHeaderText(null);
-                alert.setContentText("Please enter a positive integer between 1 and 200.");
-                alert.showAndWait();
+                alert.brushSizeError();
                 brushSize.setText("5");
                 g.setLineWidth(5);
                 g2.setLineWidth(5);
