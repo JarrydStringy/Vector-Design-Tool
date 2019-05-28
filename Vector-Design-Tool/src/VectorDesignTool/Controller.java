@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -127,6 +128,16 @@ public class Controller {
         }
         return hex2.toUpperCase();
     }
+
+    /**
+     * Testing method for the position of the mouse when clicked
+     */
+    public void MousePosition(MouseEvent mouseEvent)
+    {
+        System.out.println("X: " + canvasPane.getHeight() + " Y:" + canvasPane.getWidth() );
+        System.out.println("Current mouse position: " + mouseEvent.getX() + ":" + mouseEvent.getY());
+    }
+
 
     /**
      * Listener for when mouse is clicked or dragged
