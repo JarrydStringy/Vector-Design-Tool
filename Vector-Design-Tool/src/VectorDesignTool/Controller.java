@@ -33,7 +33,7 @@ public class Controller {
     List<Double> yCoords = DrawPolygon.yCoords;
     DecimalFormat df = SaveFile.df;
     String result = "";
-    
+
     @FXML
     private Canvas canvas;
     private Canvas canvas2;

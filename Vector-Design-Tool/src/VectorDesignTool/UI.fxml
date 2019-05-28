@@ -58,8 +58,10 @@ Toolbar             Brush size, colour picker, eraser
                     <CheckBox fx:id="grid" text="Grid" onAction="#onGrid">
                         <tooltip><Tooltip text="Check to use Fill tool" /></tooltip>
                     </CheckBox>
-                    <TextField fx:id="gridSize" text="15" onKeyTyped="#checkGridInput">
-                        <tooltip><Tooltip text="Enter Brush thickness, must be integer between 1 and 200." /></tooltip>
+                    <TextField fx:id="gridSize" text="15" onKeyTyped="#checkGridInput" maxWidth="50">
+                        <tooltip>
+                            <Tooltip text="Enter Brush thickness, must be integer between 1 and 200." />
+                        </tooltip>
                     </TextField>
                 </HBox>
             </ToolBar>
@@ -115,8 +117,10 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <ColorPicker fx:id="colorPicker">
-                                    <tooltip><Tooltip text="Choose drawing colour" /></tooltip>
+                                <ColorPicker fx:id="colorPicker" >
+                                    <tooltip>
+                                        <Tooltip text="Choose drawing colour" />
+                                    </tooltip>
                                 </ColorPicker>
                             </children>
                         </Group>
@@ -127,8 +131,10 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput">
-                                    <tooltip><Tooltip text="Enter Brush thickness, must be integer between 1 and 200." /></tooltip>
+                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput" maxWidth="50">
+                                    <tooltip>
+                                        <Tooltip text="Enter Brush thickness, must be integer between 1 and 200." />
+                                    </tooltip>
                                 </TextField>
                             </children>
                         </Group>
