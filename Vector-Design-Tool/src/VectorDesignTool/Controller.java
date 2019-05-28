@@ -146,6 +146,10 @@ public class Controller {
      */
     public void draw(){
 
+        // Set double variables for canvas width and height
+        double a = canvas.getWidth();
+        double b = canvas.getHeight();
+
         // Set Pen and Fill Colour
         fill.setOnAction(click -> pen.setSelected(!fill.isSelected()));
 
