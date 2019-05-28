@@ -59,6 +59,7 @@ public class DrawPolygon{
                     yArr[i] = yCoords.get(i);
                 }
                 drawPolygon();
+                resetPolygon();
             }
         }
     }
@@ -108,4 +109,10 @@ public class DrawPolygon{
 
     public double[] getxArr() { return this.xArr; }
     public double[] getyArr() { return this.yArr; }
+
+    public void resetPolygon(){
+        edgeCount = 0;
+        xCoords.clear();
+        yCoords.clear();
+    }
 }

@@ -44,10 +44,10 @@ Toolbar             Brush size, colour picker, eraser
 
             <ToolBar>
                 <HBox alignment="CENTER" spacing="10">
-                    <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput"/>
-                    <ColorPicker fx:id="colorPicker"/>
-                    <CheckBox fx:id="pen" text="Pen"/>
-                    <CheckBox fx:id="fill" text="Fill"/>
+                    <Button text="Undo"/>
+                    <Button text="Redo"/>
+                    <Separator />
+                    <Button fx:id="clear" text="Clear" onAction="#clearCanvas"/>
                 </HBox>
             </ToolBar>
         </VBox>
@@ -58,6 +58,11 @@ Toolbar             Brush size, colour picker, eraser
             <children>
                 <ToolBar orientation="VERTICAL">
                     <items>
+                        <Group>
+                            <children>
+                                <Label text="Vector Type:"/>
+                            </children>
+                        </Group>
                         <Group>
                             <children>
                                 <Button text="Plot" onAction="#createPlot"/>
@@ -81,6 +86,43 @@ Toolbar             Brush size, colour picker, eraser
                         <Group>
                             <children>
                                 <Button text="Polygon" onAction="#createPolygon"/>
+                            </children>
+                        </Group>
+                        <Separator />
+                        <Group>
+                            <children>
+                                <Label text="Pen Colour:"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <ColorPicker fx:id="colorPicker"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Label text="Brush Size:"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput"/>
+                            </children>
+                        </Group>
+                        <Separator />
+                        <Group>
+                            <children>
+                                <Label text="Drawing Type:"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <CheckBox fx:id="pen" text="Pen"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <CheckBox fx:id="fill" text="Fill"/>
                             </children>
                         </Group>
                     </items>
