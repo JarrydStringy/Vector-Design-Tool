@@ -31,6 +31,8 @@ Toolbar             Brush size, colour picker, eraser
             <MenuBar>
                 <Menu text="File">
                     <MenuItem text="Exit" onAction="#onExit"/>
+                </Menu>
+                <Menu text="Import">
                     <MenuItem text="Open" onAction="#openFile"/>
                 </Menu>
                 <Menu text="Export">
@@ -47,10 +49,14 @@ Toolbar             Brush size, colour picker, eraser
                     <Button text="Redo">
                         <tooltip><Tooltip text="KeyBoard Shortcut: ctrl+y" /></tooltip>
                     </Button>
-                    <Separator />
+                    <Separator orientation="VERTICAL"/>
                     <Button fx:id="clear" text="Clear" onAction="#clearCanvas">
                         <tooltip><Tooltip text="Clear Canvas" /></tooltip>
                     </Button>
+                    <Separator orientation="VERTICAL"/>
+                    <CheckBox fx:id="grid" text="Grid">
+                        <tooltip><Tooltip text="Check to use Fill tool" /></tooltip>
+                    </CheckBox>
                 </HBox>
             </ToolBar>
         </VBox>
