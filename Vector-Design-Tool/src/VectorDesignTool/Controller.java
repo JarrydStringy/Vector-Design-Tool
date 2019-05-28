@@ -23,6 +23,8 @@ public class Controller {
     // References to UI objects
     @FXML
     Pane canvasPane;
+    @FXML
+    Pane firstPane;
     // Sets graphics context for drawing
     GraphicsContext g;
     GraphicsContext g2;
@@ -58,16 +60,16 @@ public class Controller {
     public void initialize() {
 
         // Readjust canvas values
-        canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
+        firstPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
             canvas.setWidth(newValue.doubleValue());
         });
-        canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
+        firstPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
             canvas.setHeight(newValue.doubleValue());
         });
-        canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
+        firstPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
             canvas2.setWidth(newValue.doubleValue());
         });
-        canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
+        firstPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
             canvas2.setHeight(newValue.doubleValue());
         });
 
@@ -79,7 +81,7 @@ public class Controller {
         // Sets graphics context for drawing on layer 2
         canvas2 = new Canvas(canvas.getWidth(), canvas.getHeight());
         g2 = canvas2.getGraphicsContext2D();
-        canvasPane.getChildren().add(canvas2);
+        firstPane.getChildren().add(canvas2);
         canvas2.toBack();
 
         // Set initial value of colour picker
