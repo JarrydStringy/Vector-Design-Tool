@@ -21,7 +21,8 @@ Toolbar             Brush size, colour picker, eraser
 -->
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<BorderPane xmlns="http://javafx.com/javafx"
+<BorderPane fx:id="canvasPane"
+            xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="VectorDesignTool.Controller"
             prefHeight="600.0" prefWidth="600.0">
@@ -59,7 +60,7 @@ Toolbar             Brush size, colour picker, eraser
     <center>
         <AnchorPane >
             <children>
-                <Pane fx:id="canvasPane"
+                <Pane
                       prefWidth="600"
                       prefHeight="600">
                     <children>
@@ -104,10 +105,8 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <ColorPicker fx:id="colorPicker" >
-                                    <tooltip>
-                                        <Tooltip text="Choose drawing colour" />
-                                    </tooltip>
+                                <ColorPicker fx:id="colorPicker">
+                                    <tooltip><Tooltip text="Choose drawing colour" /></tooltip>
                                 </ColorPicker>
                             </children>
                         </Group>

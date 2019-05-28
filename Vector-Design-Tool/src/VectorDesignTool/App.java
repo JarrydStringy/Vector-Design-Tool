@@ -26,7 +26,7 @@ public class App extends Application {
         // Stage/Program name
         stage.setTitle("Vector Design Tool");
         // Creating a scene object from the UI file
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI.fxml"))));
+        stage.setScene(scene);
         // Displays the contents of the stage
         stage.show();
 
