@@ -187,7 +187,7 @@ public class Controller {
         canvas.setOnMouseReleased(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
-            g2.clearRect(0, 0, 600, 600);
+            g2.clearRect(0, 0, canvasWidth, canvasHeight);
             Shapes shape = new Shapes(shapeSelected, g, coords);
             if(shapeSelected == "PLOT") {
                 result = "\nPLOT " + result;
@@ -248,7 +248,7 @@ public class Controller {
         canvas.setOnMouseDragged(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
-            g2.clearRect(0, 0, 600, 600);
+            g2.clearRect(0, 0, canvasWidth, canvasHeight);
             if (shapeSelected != "POLYGON") {
                 Shapes shape = new Shapes(shapeSelected, g2, coords);
                 shape.drawShape();
@@ -261,9 +261,13 @@ public class Controller {
      * Clears the canvas if user selects yes in confirmation dialogue
      */
     public void clearCanvas() {
+        //Initialise variables for screen size
+        double x = canvas.getWidth();
+        double y = canvas.getHeight();
+
         Optional<ButtonType> result = alert.clearCanvasCheck();
         if (result.get().getText() == "Yes") {
-            g.clearRect(0, 0, 600, 600);
+            g.clearRect(0, 0, x, y);
         }
     }
 
