@@ -55,6 +55,7 @@ public class Controller {
     // Current shape selection
     private String shapeSelected = "PLOT";
     private Alerts alert;
+    private boolean isDrawing = false;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -68,9 +69,24 @@ public class Controller {
         canvasPane2.getChildren().add(canvas2);
         canvas2.toBack();
 
+        SaveFile save = new SaveFile(g);
+        ReadFile readFile = new ReadFile(g, canvas);
+
         // Readjust canvas values
         canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
+            if(isDrawing){
+                save.saveCurrentFile("currentFile.vec", savefile.toString());
+                readFile.setSelectedFile("currentFile.vec");
+                readFile.scanFile();
+                isDrawing = false;
+            }
             canvas.setWidth(newValue.doubleValue());
+            try{
+                g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                readFile.displayFile();
+            } catch (Exception e){
+                System.out.println("Error in repainting canvas on resize: " + e);
+            }
         });
         canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
             canvas.setHeight(newValue.doubleValue());
@@ -163,8 +179,10 @@ public class Controller {
             if (pen.isSelected() || fill.isSelected()) {
                 coords[0][0] = coords[1][0] = e.getX();
                 coords[0][1] = coords[1][1] = e.getY();
-                if (shapeSelected != "POLYGON" || shapeSelected == "")
+                if (shapeSelected != "POLYGON" || shapeSelected != ""){
                     result = df.format(coords[0][0] / canvas.getWidth()) + " " + df.format(coords[0][1] / canvas.getHeight());
+                }
+                isDrawing = true;
             } else {
                 alert.selectDraw();
             }
@@ -272,8 +290,11 @@ public class Controller {
      * Clears the canvas if user selects yes in confirmation dialogue
      */
     public void onClearCanvas() {
-        Optional<ButtonType> result = alert.clearCanvasCheck();
-        if (result.get().getText() == "Yes") {
+        Optional<ButtonType> option = alert.clearCanvasCheck();
+        if (option.get().getText() == "Yes") {
+            File file = new File("currentFile.vec");
+            file.delete();
+            isDrawing = false;
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         }
     }
@@ -284,6 +305,7 @@ public class Controller {
     public void onSave() {
         try {
             SaveFile savefile = new SaveFile(g);
+            savefile.saveFile();
         } catch (Exception e) {
             System.out.println("Error in Controller, saving file (261): " + e);
         }
@@ -320,7 +342,7 @@ public class Controller {
         try {
             // Open file and read lines
             ReadFile r = new ReadFile(g, canvas);
-            r.scanFile();
+            r.readfile();
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             r.displayFile();
         } catch (Exception e) {

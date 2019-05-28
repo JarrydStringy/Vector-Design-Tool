@@ -20,6 +20,9 @@ public class SaveFile{
      */
     public SaveFile(GraphicsContext g){
         this.g = g;
+    }
+
+    public void saveFile(){
         saveFile.deleteCharAt(0);
         String savefile = saveFile.toString();
         FileChooser fileChooser = new FileChooser();
@@ -40,6 +43,23 @@ public class SaveFile{
      * @param result - string of contents being written to file
      */
     private void saveToFile(File file, String result) {
+        try {
+            FileWriter vecFile;
+            vecFile = new FileWriter(file);
+            vecFile.write(result);
+            vecFile.close();
+        }
+        catch(Exception e) {
+            System.out.println("Failed to save file: " + e);
+        }
+    }
+
+    /**
+     * Writes the file using FileWriter class.
+     * @param file - file being saved to
+     * @param result - string of contents being written to file
+     */
+    public void saveCurrentFile(String file, String result) {
         try {
             FileWriter vecFile;
             vecFile = new FileWriter(file);

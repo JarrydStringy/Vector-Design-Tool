@@ -50,7 +50,7 @@ public class DisplayFile {
                 } else if(b.contains("PEN-WIDTH")){
                     changePenWidth(t[1]);
                 } else {
-                    displayShape(t,b);
+                    displayShape(t);
                 }
                 break;
             }
@@ -131,12 +131,12 @@ public class DisplayFile {
      * Draws a line, rectangle or ellipse on canvas.
      * @param t - Array of words from current file line
      */
-    public void displayShape(String[] t, String b){
+    public void displayShape(String[] t){
         try {
             double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
                     {Double.parseDouble(t[3]) * canvas.getWidth(), Double.parseDouble(t[4]) * canvas.getHeight()}};
             shape.setCoords(coords);
-            shape.setSelectedShape(b);
+            shape.setSelectedShape(t[0]);
             shape.drawShape();
         } catch (Exception e) {
             System.out.println(e);

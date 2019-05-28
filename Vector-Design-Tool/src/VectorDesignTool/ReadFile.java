@@ -24,6 +24,9 @@ public class ReadFile {
     public ReadFile(GraphicsContext g, Canvas canvas) {
         this.g = g;
         this.canvas = canvas;
+    }
+
+    public void readfile(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
 
@@ -39,6 +42,7 @@ public class ReadFile {
             // Display if any errors occur
             System.out.println("Failed to open file: " + e);
         }
+        scanFile();
     }
 
     /**
@@ -80,5 +84,12 @@ public class ReadFile {
     public void displayFile(){
         DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
         displayFile.displayFile();
+    }
+
+    /**
+     * Sets the selected file to a given file path
+     */
+    public void setSelectedFile(String selectedFile){
+        this.selectedFile = selectedFile;
     }
 }
