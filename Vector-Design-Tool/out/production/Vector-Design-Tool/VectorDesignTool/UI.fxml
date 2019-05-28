@@ -33,10 +33,6 @@ Toolbar             Brush size, colour picker, eraser
                     <MenuItem text="Exit" onAction="#onExit"/>
                     <MenuItem text="Open" onAction="#openFile"/>
                 </Menu>
-                <Menu text="Edit">
-                    <MenuItem text="Undo"/>
-                    <MenuItem text="Redo"/>
-                </Menu>
                 <Menu text="Export">
                     <MenuItem text="Export as PNG" onAction="#onExport"/>
                     <MenuItem text="Export as VEC" onAction="#onSave"/>
@@ -45,10 +41,16 @@ Toolbar             Brush size, colour picker, eraser
 
             <ToolBar>
                 <HBox alignment="CENTER" spacing="10">
-                    <Button text="Undo"/>
-                    <Button text="Redo"/>
+                    <Button text="Undo">
+                        <tooltip><Tooltip text="KeyBoard Shortcut: ctrl+z" /></tooltip>
+                    </Button>
+                    <Button text="Redo">
+                        <tooltip><Tooltip text="KeyBoard Shortcut: ctrl+y" /></tooltip>
+                    </Button>
                     <Separator />
-                    <Button fx:id="clear" text="Clear" onAction="#clearCanvas"/>
+                    <Button fx:id="clear" text="Clear" onAction="#clearCanvas">
+                        <tooltip><Tooltip text="Clear Canvas" /></tooltip>
+                    </Button>
                 </HBox>
             </ToolBar>
         </VBox>
@@ -82,12 +84,16 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <CheckBox fx:id="pen" text="Pen"/>
+                                <CheckBox fx:id="pen" text="Pen">
+                                    <tooltip><Tooltip text="Check to use Pen tool" /></tooltip>
+                                </CheckBox>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <CheckBox fx:id="fill" text="Fill"/>
+                                <CheckBox fx:id="fill" text="Fill">
+                                    <tooltip><Tooltip text="Check to use Fill tool" /></tooltip>
+                                </CheckBox>
                             </children>
                         </Group>
                         <Separator />
@@ -98,7 +104,9 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <ColorPicker fx:id="colorPicker"/>
+                                <ColorPicker fx:id="colorPicker">
+                                    <tooltip><Tooltip text="Choose drawing colour" /></tooltip>
+                                </ColorPicker>
                             </children>
                         </Group>
                         <Group>
@@ -108,7 +116,9 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput"/>
+                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput">
+                                    <tooltip><Tooltip text="Enter Brush thickness, must be integer between 1 and 200." /></tooltip>
+                                </TextField>
                             </children>
                         </Group>
                         <Separator />
@@ -119,27 +129,37 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Plot" onAction="#createPlot"/>
+                                <Button text="Plot" onAction="#createPlot">
+                                    <tooltip><Tooltip text="Click on canvas to create dot" /></tooltip>
+                                </Button>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Line" onAction="#createLine"/>
+                                <Button text="Line" onAction="#createLine">
+                                    <tooltip><Tooltip text="Click on canvas and drag to draw line on canvas" /></tooltip>
+                                </Button>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Rectangle" onAction="#createRectangle"/>
+                                <Button text="Rectangle" onAction="#createRectangle">
+                                    <tooltip><Tooltip text="Click on canvas and drag to draw rectangle" /></tooltip>
+                                </Button>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Ellipse" onAction="#createEllipse"/>
+                                <Button text="Ellipse" onAction="#createEllipse">
+                                    <tooltip><Tooltip text="Click on canvas and drag to draw ellipse" /></tooltip>
+                                </Button>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Polygon" onAction="#createPolygon"/>
+                                <Button text="Polygon" onAction="#createPolygon">
+                                    <tooltip><Tooltip text="Draw a polygon"/></tooltip>
+                                </Button>
                             </children>
                         </Group>
                     </items>
