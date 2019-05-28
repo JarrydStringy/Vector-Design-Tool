@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -36,8 +35,8 @@ public class Controller {
     DecimalFormat df = SaveFile.df;
     String result = "";
     @FXML
-    private Canvas canvas;
-    private Canvas canvas2;
+    Canvas canvas;
+    Canvas canvas2;
     @FXML
     private ColorPicker colorPicker;
     @FXML
@@ -55,7 +54,8 @@ public class Controller {
     // Current shape selection
     private String shapeSelected = "PLOT";
     private Alerts alert;
-    private boolean isDrawing = false;
+    public static boolean isDrawing = false;
+    private ResizeCanvas2 resizeCanvas;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -71,32 +71,8 @@ public class Controller {
 
         SaveFile save = new SaveFile(g);
         ReadFile readFile = new ReadFile(g, canvas);
-
-        // Readjust canvas values
-        canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
-            if(isDrawing){
-                save.saveCurrentFile("currentFile.vec", savefile.toString());
-                readFile.setSelectedFile("currentFile.vec");
-                isDrawing = false;
-            }
-            canvas.setWidth(newValue.doubleValue());
-            try {
-                g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                readFile.scanFile();
-                readFile.displayFile();
-            } catch (Exception e){
-                System.out.println("Error in repainting canvas on resize: " + e);
-            }
-        });
-        canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
-            canvas.setHeight(newValue.doubleValue());
-        });
-        canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
-            canvas2.setWidth(newValue.doubleValue());
-        });
-        canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
-            canvas2.setHeight(newValue.doubleValue());
-        });
+        resizeCanvas = new ResizeCanvas2();
+        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2);
 
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);

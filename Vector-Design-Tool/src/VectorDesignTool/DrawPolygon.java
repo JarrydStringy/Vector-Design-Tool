@@ -42,6 +42,7 @@ public class DrawPolygon{
             y[i] = yCoords.get(i);
         }
         if(isFill){
+            g.strokePolygon(x, y, edges);
             g.fillPolygon(x, y, edges);
         } else{
             g.strokePolygon(x, y, edges);

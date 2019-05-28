@@ -47,6 +47,7 @@ public class Shapes extends DrawShape {
         if(x1 > x2){ x1 = coords[1][0]; x2 = coords[0][0];}
         if(y1 > y2){ y1 = coords[1][1]; y2 = coords[0][1];}
         if(isFill){
+            g.strokeRect(x1, y1, abs(x2 - x1), abs(y2 - y1));
             g.fillRect(x1, y1, abs(x2 - x1), abs(y2 - y1));
         }
         g.strokeRect(x1, y1, abs(x2 - x1), abs(y2 - y1));
@@ -66,6 +67,7 @@ public class Shapes extends DrawShape {
         if(x1 > x2){ x1 = coords[1][0]; x2 = coords[0][0];}
         if(y1 > y2){ y1 = coords[1][1]; y2 = coords[0][1];}
         if(isFill){
+            g.strokeOval(x1, y1, abs(x2 - x1), abs(y2 - y1));
             g.fillOval(x1, y1, abs(x2 - x1), abs(y2 - y1));
         }
         g.strokeOval(x1, y1, abs(x2 - x1), abs(y2 - y1));

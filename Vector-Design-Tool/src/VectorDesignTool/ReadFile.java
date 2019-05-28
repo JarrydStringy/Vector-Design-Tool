@@ -52,10 +52,7 @@ public class ReadFile {
         // Scan file using Scanner class
         try{
             x = new Scanner(new File(selectedFile));
-        } catch(Exception e){
-            // Display if any errors occur
-            System.out.println("Failed to scan file: " + e);
-        }
+        } catch(Exception e){ }
         // Read file line by line
         String line = "";
         while(x.hasNextLine()){
@@ -68,12 +65,7 @@ public class ReadFile {
         for(int i = 0; i < a.length; i++){
             fileLines[i] = a[i].split(" ");
         }
-        // Print each line to console
-        for(String[] t:fileLines){
-            for(String b:t){
-                //System.out.println(b);
-            }
-        }
+
         // Close scanner
         x.close();
     }
