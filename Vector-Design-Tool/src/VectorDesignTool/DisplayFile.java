@@ -49,9 +49,12 @@ public class DisplayFile{
             int edges = t.length/2;
             String xs = "";
             String ys = "";
-            for (int i = 1; i < t.length - 2; i++) {
-                xs += t[i] + " ";
-                ys += t[i + 1] + " ";
+            for (int i = 1; i < t.length; i++) {
+                if(( i % 2 != 0 )){
+                    xs += t[i] + " ";
+                } else {
+                    ys += t[i] + " ";
+                }
             }
             String[] xss = xs.split(" ");
             String[] yss = ys.split(" ");

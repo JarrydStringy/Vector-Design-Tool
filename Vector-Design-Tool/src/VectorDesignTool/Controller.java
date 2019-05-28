@@ -275,6 +275,7 @@ public class Controller {
             // Open file and read lines
             ReadFile r = new ReadFile(g, canvas);
             r.scanFile();
+            g.clearRect(0,0,canvas.getWidth(),canvas.getHeight());
             r.displayFile();
         } catch(Exception e ){
             // pass
