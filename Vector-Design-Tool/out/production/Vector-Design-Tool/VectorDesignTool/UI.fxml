@@ -60,13 +60,13 @@ Toolbar             Brush size, colour picker, eraser
     <center>
         <AnchorPane >
             <children>
-                <Pane
-                      prefWidth="500"
-                      prefHeight="500">
+                <Pane fx:id="canvasPane2"
+                      prefWidth="600"
+                      prefHeight="600">
                     <children>
                         <Canvas fx:id="canvas"
-                                width="500"
-                                height="500"/>
+                                width="600"
+                                height="600"/>
                     </children>
                 </Pane>
             </children>

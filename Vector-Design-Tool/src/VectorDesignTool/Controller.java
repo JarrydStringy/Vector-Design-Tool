@@ -25,6 +25,8 @@ public class Controller {
     // References to UI objects
     @FXML
     Pane canvasPane;
+    @FXML
+    Pane canvasPane2;
     // Sets graphics context for drawing
     GraphicsContext g;
     GraphicsContext g2;
@@ -58,6 +60,13 @@ public class Controller {
      * Initialize the application and attach listener to canvas for all methods to draw
      */
     public void initialize() {
+        // Sets graphics context for drawing
+        g = canvas.getGraphicsContext2D();
+        // Sets graphics context for drawing on layer 2
+        canvas2 = new Canvas(canvas.getWidth(), canvas.getHeight());
+        g2 = canvas2.getGraphicsContext2D();
+        canvasPane2.getChildren().add(canvas2);
+        canvas2.toBack();
 
         // Readjust canvas values
         canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
@@ -72,14 +81,6 @@ public class Controller {
         canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
             canvas2.setHeight(newValue.doubleValue());
         });
-
-        // Sets graphics context for drawing
-        g = canvas.getGraphicsContext2D();
-        // Sets graphics context for drawing on layer 2
-        canvas2 = new Canvas(canvas.getWidth(), canvas.getHeight());
-        g2 = canvas2.getGraphicsContext2D();
-        canvasPane.getChildren().add(canvas2);
-        canvas2.toBack();
 
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
@@ -126,16 +127,7 @@ public class Controller {
         return hex2.toUpperCase();
     }
 
-    /**
-     * Method to test -
-     * Outputs the position of the mouse when clicked
-     * Also outputs the width and height of the canvas
-     */
-    public void MousePosition(MouseEvent mouseEvent)
-    {
-        System.out.println("X: " + canvasPane.getHeight() + " Y:" + canvasPane.getWidth() );
-        System.out.println("Current mouse position: " + mouseEvent.getX() + ":" + mouseEvent.getY());
-    }
+
 
     /**
      * Listener for when mouse is clicked or dragged
