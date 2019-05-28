@@ -33,7 +33,13 @@ public class Shapes extends DrawShape {
     /**
      * Draws a rectangle with an initial point x,y then a width and height
      * */
-    public void drawRectangle(){ g.strokeRect(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));}
+    public void drawRectangle(){
+        double x1 = coords[0][0]; double x2 = coords[1][0];
+        double y1 = coords[0][1]; double y2 = coords[1][1];
+        if(x1 > x2){ x1 = coords[1][0]; x2 = coords[0][0];}
+        if(y1 > y2){ y1 = coords[1][1]; y2 = coords[0][1];}
+        g.strokeRect(x1, y1, abs(x2 - x1), abs(y2 - y1));
+    }
 
     /**
      * Draws a line from x1,y1 to x2,y2
@@ -43,7 +49,13 @@ public class Shapes extends DrawShape {
     /**
      * Draws an ellipse from start point x,y with a width w and height h
      * */
-    public void drawEllipse(){ g.strokeOval(coords[0][0], coords[0][1],abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));}
+    public void drawEllipse(){
+        double x1 = coords[0][0]; double x2 = coords[1][0];
+        double y1 = coords[0][1]; double y2 = coords[1][1];
+        if(x1 > x2){ x1 = coords[1][0]; x2 = coords[0][0];}
+        if(y1 > y2){ y1 = coords[1][1]; y2 = coords[0][1];}
+        g.strokeOval(x1, y1, abs(x2 - x1), abs(y2 - y1));
+    }
 
     /**
      * Draws a polygon (this function is overridden in DrawPolygon class)

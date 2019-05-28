@@ -137,7 +137,7 @@ Toolbar             Brush size, colour picker, eraser
                         <Group>
                             <children>
                                 <Button text="Line" onAction="#createLine">
-                                    <tooltip><Tooltip text="Click on canvas and drag to draw line on canvas" /></tooltip>
+                                    <tooltip><Tooltip text="Click on canvas and drag to draw line" /></tooltip>
                                 </Button>
                             </children>
                         </Group>

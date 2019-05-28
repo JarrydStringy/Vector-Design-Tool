@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8546a840-e515-4db6-bbc9-c023f2766fdf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Alerts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Alerts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Shapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Shapes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/UI.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="8546a840-e515-4db6-bbc9-c023f2766fdf" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/src/Test/" />
     <ignored path="$PROJECT_DIR$/src/sample/" />
@@ -26,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Shapes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="285">
+              <caret line="56" column="57" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -102,7 +92,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559026037562" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559026507694" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -157,7 +147,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17363112" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17363112" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -167,7 +157,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32953104" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32953104" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39923954" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -267,8 +257,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Shapes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="285">
+          <caret line="56" column="57" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
         </state>
       </provider>
     </entry>
