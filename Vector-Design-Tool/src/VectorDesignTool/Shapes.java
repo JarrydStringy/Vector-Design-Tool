@@ -12,6 +12,7 @@ public class Shapes extends DrawShape {
     private double[][] coords;
     private GraphicsContext g;
     private String seletedShape;
+    private boolean isFill = false;
 
     /**
      * Draws shapes (Plot, Rectangle, Line, Ellipse or Polygon) based on selectedShape input.
@@ -23,6 +24,13 @@ public class Shapes extends DrawShape {
         this.seletedShape = selectedShape;
         this.coords = coords;
         this.g = g;
+    }
+
+    /**
+     * Sets isFill boolean to input boolean value
+     * */
+    public void setIsFill(boolean isFill){
+        this.isFill = isFill;
     }
 
     /**
@@ -38,6 +46,9 @@ public class Shapes extends DrawShape {
         double y1 = coords[0][1]; double y2 = coords[1][1];
         if(x1 > x2){ x1 = coords[1][0]; x2 = coords[0][0];}
         if(y1 > y2){ y1 = coords[1][1]; y2 = coords[0][1];}
+        if(isFill){
+            g.fillRect(x1, y1, abs(x2 - x1), abs(y2 - y1));
+        }
         g.strokeRect(x1, y1, abs(x2 - x1), abs(y2 - y1));
     }
 
@@ -54,6 +65,9 @@ public class Shapes extends DrawShape {
         double y1 = coords[0][1]; double y2 = coords[1][1];
         if(x1 > x2){ x1 = coords[1][0]; x2 = coords[0][0];}
         if(y1 > y2){ y1 = coords[1][1]; y2 = coords[0][1];}
+        if(isFill){
+            g.fillOval(x1, y1, abs(x2 - x1), abs(y2 - y1));
+        }
         g.strokeOval(x1, y1, abs(x2 - x1), abs(y2 - y1));
     }
 
