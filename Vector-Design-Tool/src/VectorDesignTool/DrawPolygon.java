@@ -14,6 +14,7 @@ public class DrawPolygon{
     public static List<Double> yCoords;
     private int edgeCount = 0;
     private int edges = 4;
+    public static boolean isFill;
 
     /**
      * Draws a polygon based on given plot coordinates from user.
@@ -27,6 +28,8 @@ public class DrawPolygon{
         yCoords = new ArrayList<>();
     }
 
+    public void setIsFill(boolean isFill){this.isFill = isFill;}
+
     /**
      * Draws a polygon
      * */
@@ -38,7 +41,11 @@ public class DrawPolygon{
             x[i] = xCoords.get(i);
             y[i] = yCoords.get(i);
         }
-        g.strokePolygon(x, y, edges);
+        if(isFill){
+            g.fillPolygon(x, y, edges);
+        } else{
+            g.strokePolygon(x, y, edges);
+        }
     }
     /**
      * Draws a plot to show the user where the vertices for their polygon will be placed

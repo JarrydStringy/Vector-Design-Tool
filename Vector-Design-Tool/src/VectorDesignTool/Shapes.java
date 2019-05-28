@@ -11,7 +11,6 @@ import static java.lang.Math.abs;
 public class Shapes extends DrawShape {
     private double[][] coords;
     private GraphicsContext g;
-    private String seletedShape;
     private boolean isFill = false;
 
     /**
@@ -21,10 +20,11 @@ public class Shapes extends DrawShape {
      */
     public Shapes(String selectedShape, GraphicsContext g, double[][] coords){
         super(selectedShape);
-        this.seletedShape = selectedShape;
         this.coords = coords;
         this.g = g;
     }
+
+    public void setCoords(double[][] coords){ this.coords = coords; }
 
     /**
      * Sets isFill boolean to input boolean value

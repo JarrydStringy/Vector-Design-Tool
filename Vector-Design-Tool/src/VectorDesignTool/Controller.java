@@ -7,6 +7,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -23,8 +25,6 @@ public class Controller {
     // References to UI objects
     @FXML
     Pane canvasPane;
-    @FXML
-    Pane firstPane;
     // Sets graphics context for drawing
     GraphicsContext g;
     GraphicsContext g2;
@@ -33,7 +33,6 @@ public class Controller {
     List<Double> yCoords = DrawPolygon.yCoords;
     DecimalFormat df = SaveFile.df;
     String result = "";
-
     @FXML
     private Canvas canvas;
     private Canvas canvas2;
@@ -42,12 +41,9 @@ public class Controller {
     @FXML
     private TextField brushSize;
     @FXML
-    private TextField gridSize;
-    @FXML
     private CheckBox pen;
     @FXML
     private CheckBox fill;
-
     // Stores Mouse coordinates
     private double[][] coords = {{0, 0}, {0, 0}};
     // Store polygon edges
@@ -64,16 +60,16 @@ public class Controller {
     public void initialize() {
 
         // Readjust canvas values
-        firstPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
+        canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
             canvas.setWidth(newValue.doubleValue());
         });
-        firstPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
+        canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
             canvas.setHeight(newValue.doubleValue());
         });
-        firstPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
+        canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
             canvas2.setWidth(newValue.doubleValue());
         });
-        firstPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
+        canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
             canvas2.setHeight(newValue.doubleValue());
         });
 
@@ -85,7 +81,7 @@ public class Controller {
         // Sets graphics context for drawing on layer 2
         canvas2 = new Canvas(canvas.getWidth(), canvas.getHeight());
         g2 = canvas2.getGraphicsContext2D();
-        firstPane.getChildren().add(canvas2);
+        canvasPane.getChildren().add(canvas2);
         canvas2.toBack();
 
         // Set initial value of colour picker
@@ -193,7 +189,7 @@ public class Controller {
         canvas.setOnMouseReleased(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
-            g2.clearRect(0, 0, canvasWidth, canvasHeight);
+            g2.clearRect(0, 0, 600, 600);
             Shapes shape = new Shapes(shapeSelected, g, coords);
             if(shapeSelected == "PLOT") {
                 result = "\nPLOT " + result;
@@ -254,25 +250,47 @@ public class Controller {
         canvas.setOnMouseDragged(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
-            g2.clearRect(0, 0, canvasWidth, canvasHeight);
+            g2.clearRect(0, 0, 600, 600);
             if (shapeSelected != "POLYGON") {
                 Shapes shape = new Shapes(shapeSelected, g2, coords);
                 shape.drawShape();
             }
         });
+        // ------------------------------------ Listener for Key presses
+        canvas.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->{
+            // Check if keyboard input is ctrl + z
+            if(key.getCode()== KeyCode.Z && key.isControlDown()) {
+                onUndo();
+            } else if(key.getCode()== KeyCode.Y && key.isControlDown()){
+                onRedo();
+            }
+        });
+    }
+
+    /**
+     * Removes most recent drawing and stashes it for later redo.
+     * User can also press "ctrl" + "z" to perform this action
+     */
+    public void onUndo(){
+
+    }
+
+    /**
+     * Gets most recent undo from stash and draws it.
+     * Stores this in undo stash for later undo if needed.
+     * User can also press "ctrl" + "y" to perform this action
+     */
+    public void onRedo(){
+
     }
 
     /**
      * Clears the canvas if user selects yes in confirmation dialogue
      */
-    public void clearCanvas() {
-        //Initialise variables for screen size
-        double x = canvas.getWidth();
-        double y = canvas.getHeight();
-
+    public void onClearCanvas() {
         Optional<ButtonType> result = alert.clearCanvasCheck();
         if (result.get().getText() == "Yes") {
-            g.clearRect(0, 0, x, y);
+            g.clearRect(0, 0, 600, 600);
         }
     }
 
@@ -319,6 +337,7 @@ public class Controller {
             // Open file and read lines
             ReadFile r = new ReadFile(g, canvas);
             r.scanFile();
+            g.clearRect(0, 0, 600, 600);
             r.displayFile();
         } catch (Exception e) {
             // pass
@@ -326,13 +345,11 @@ public class Controller {
     }
 
     /**
-     * Checks that the user input for grid size is a valid positive integer between 1 and 1000.
+     * Checks that the user input for brush size is a valid positive integer between 1 and 200.
      */
     public void checkBrushInput() {
         try {
-            if (brushSize.getText().matches("[0-9]*") == false
-                    || Integer.parseInt(gridSize.getText()) < 1
-                    || Integer.parseInt(brushSize.getText()) > 1000) {
+            if (brushSize.getText().matches("[0-9]*") == false || Integer.parseInt(brushSize.getText()) < 1 || Integer.parseInt(brushSize.getText()) > 200) {
                 alert.brushSizeError();
                 brushSize.setText("5");
                 g.setLineWidth(5);
@@ -343,7 +360,7 @@ public class Controller {
             }
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Invalid gridSize input: " + e);
+            System.out.println("Invalid brushSize input: " + e);
         }
         savefile.append("\nPEN-WIDTH " + brushSize.getText());
     }
@@ -383,32 +400,5 @@ public class Controller {
         shapeSelected = "POLYGON";
         polygon = new DrawPolygon(g);
         edges = polygon.getUserInput();
-    }
-
-    /**
-     *
-     */
-    public void onGrid(){
-        checkGridInput();
-    }
-
-    /**
-     *
-     */
-    public void checkGridInput() {
-        try {
-            if (gridSize.getText().matches("[0-9]*") == false
-                    || Integer.parseInt(gridSize.getText()) < 1
-                    || Integer.parseInt(gridSize.getText()) > 200) {
-                alert.gridSizeError();
-                gridSize.setText("15");
-            } else {
-                //Set grid width
-            }
-        } catch (Exception e) {
-            // Display if any errors occur
-            System.out.println("Invalid brushSize input: " + e);
-        }
-        //Save to file
     }
 }
