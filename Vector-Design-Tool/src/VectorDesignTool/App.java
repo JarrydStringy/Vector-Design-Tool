@@ -3,7 +3,6 @@ package VectorDesignTool;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -27,7 +26,7 @@ public class App extends Application {
         // Stage/Program name
         stage.setTitle("Vector Design Tool");
         // Creating a scene object from the UI file
-        stage.setScene(scene);
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI.fxml"))));
         // Displays the contents of the stage
         stage.show();
 

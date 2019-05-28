@@ -36,11 +36,11 @@ public abstract class DrawShape {
                 drawPolygon();
                 break;
                 default:
+                    System.out.println("break");
                     break;
         }
-
     }
-
+    public void setSelectedShape(String selectedShape){ this.selectedShape = selectedShape; }
     /**
      * Draws a plot; single dot on canvas.
      */

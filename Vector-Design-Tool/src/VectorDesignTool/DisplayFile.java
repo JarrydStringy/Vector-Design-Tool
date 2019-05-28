@@ -2,6 +2,7 @@ package VectorDesignTool;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,8 @@ public class DisplayFile {
     private GraphicsContext g;
     private Canvas canvas;
     private String[][] fileLines;
+    private Shapes shape;
+    private DrawPolygon drawPolygon;
 
     /**
      * Displays the drawing on the canvas using the read coordinates from the file for each shape.
@@ -21,6 +24,8 @@ public class DisplayFile {
         this.g = g;
         this.canvas = canvas;
         this.fileLines = fileLines;
+        this.shape = new Shapes("", g, new double[0][0]);
+        this.drawPolygon = new DrawPolygon(g);
     }
 
     /**
@@ -35,14 +40,49 @@ public class DisplayFile {
                 } else if (b.contains("POLYGON")) {
                     displayPolygon(t);
                 } else if(b.contains("FILL")){
-                    //IMPLEMENT
-                } else if(b.contains("PEN")){
-                    //IMPLEMENT
+                    shape.setIsFill(true);
+                    drawPolygon.setIsFill(true);
+                    changeFillColour(t[1]);
+                } else if(b.contains("PEN") && !b.contains("PEN-WIDTH")){
+                    shape.setIsFill(false);
+                    drawPolygon.setIsFill(false);
+                    changePenColour(t[1]);
+                } else if(b.contains("PEN-WIDTH")){
+                    changePenWidth(t[1]);
                 } else {
                     displayShape(t,b);
                 }
                 break;
             }
+        }
+        shape.setIsFill(false);
+        drawPolygon.setIsFill(false);
+    }
+
+    public void changeFillColour(String t){
+        try{
+            g.setFill(Color.web(t));
+        } catch(Exception e){
+            g.setFill(Color.BLACK);
+            System.out.println("Error in change fill colour in DisplayFile (64): " + e);
+        }
+    }
+
+    public void changePenColour(String t){
+        try{
+            g.setStroke(Color.web(t));
+        } catch(Exception e){
+            g.setStroke(Color.BLACK);
+            System.out.println("Error in change stroke colour in DisplayFile (72): " + e);
+        }
+    }
+
+    public void changePenWidth(String t){
+        try{
+            g.setLineWidth(Integer.parseInt(t));
+        } catch(Exception e){
+            g.setLineWidth(5);
+            System.out.println("Error in change stroke width in DisplayFile (80): " + e);
         }
     }
 
@@ -55,7 +95,8 @@ public class DisplayFile {
         try {
             double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
                     {Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()}};
-            Shapes shape = new Shapes(b, g, coords);
+            shape.setCoords(coords);
+            shape.setSelectedShape(b);
             shape.drawShape();
         } catch (Exception e) {
             System.out.println("Error in PLOT read: " + e);
@@ -78,7 +119,6 @@ public class DisplayFile {
                     yCoords.add(Double.parseDouble(t[i]) * canvas.getHeight());
                 }
             }
-            DrawPolygon drawPolygon = new DrawPolygon(g);
             drawPolygon.setCoord(xCoords, yCoords);
             drawPolygon.setEdges(edges);
             drawPolygon.drawPolygon();
@@ -95,7 +135,8 @@ public class DisplayFile {
         try {
             double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
                     {Double.parseDouble(t[3]) * canvas.getWidth(), Double.parseDouble(t[4]) * canvas.getHeight()}};
-            Shapes shape = new Shapes(b, g, coords);
+            shape.setCoords(coords);
+            shape.setSelectedShape(b);
             shape.drawShape();
         } catch (Exception e) {
             System.out.println(e);
