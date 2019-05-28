@@ -73,11 +73,8 @@ public class Controller {
             canvas2.setHeight(newValue.doubleValue());
         });
 
-
-
         // Sets graphics context for drawing
         g = canvas.getGraphicsContext2D();
-
         // Sets graphics context for drawing on layer 2
         canvas2 = new Canvas(canvas.getWidth(), canvas.getHeight());
         g2 = canvas2.getGraphicsContext2D();
@@ -144,11 +141,6 @@ public class Controller {
      * Listener for when mouse is clicked or dragged
      */
     public void draw() {
-
-        // Set double variables for canvas width and height
-        double canvasWidth = canvas.getWidth();
-        double canvasHeight = canvas.getHeight();
-
         // ------------------------------------ Listener for fill checkbox
         fill.setOnAction(click -> {
             pen.setSelected(false);
@@ -180,7 +172,7 @@ public class Controller {
                 coords[0][0] = coords[1][0] = e.getX();
                 coords[0][1] = coords[1][1] = e.getY();
                 if (shapeSelected != "POLYGON" || shapeSelected == "")
-                    result = df.format(coords[0][0] / canvasWidth) + " " + df.format(coords[0][1] / canvasHeight);
+                    result = df.format(coords[0][0] / canvas.getWidth()) + " " + df.format(coords[0][1] / canvas.getHeight());
             } else {
                 alert.selectDraw();
             }
@@ -189,7 +181,7 @@ public class Controller {
         canvas.setOnMouseReleased(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
-            g2.clearRect(0, 0, 600, 600);
+            g2.clearRect(0, 0, canvas2.getWidth(), canvas2.getHeight());
             Shapes shape = new Shapes(shapeSelected, g, coords);
             if(shapeSelected == "PLOT") {
                 result = "\nPLOT " + result;
@@ -213,7 +205,7 @@ public class Controller {
                 }
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
-                savefile.append(" " + df.format(coords[1][0] / canvasWidth) + " " + df.format(coords[1][1] / canvasHeight));
+                savefile.append(" " + df.format(coords[1][0] / canvas.getWidth()) + " " + df.format(coords[1][1] / canvas.getHeight()));
                 shape.drawShape();
             }
             if (shapeSelected == "POLYGON") {
@@ -231,14 +223,14 @@ public class Controller {
                         savefile.append("\nFILL " + "#" + RGBtoHex());
                         savefile.append("\nPOLYGON");
                         for (int i = 0; i < x.length; i++) {
-                            savefile.append(" " + df.format(x[i] / canvasWidth) + " " + df.format(y[i] / canvasHeight));
+                            savefile.append(" " + df.format(x[i] / canvas.getWidth()) + " " + df.format(y[i] / canvas.getHeight()));
                         }
                     }
                     else {
                         savefile.append("\nPEN " + "#" + RGBtoHex());
                         savefile.append("\nPOLYGON");
                         for (int i = 0; i < x.length; i++) {
-                            savefile.append(" " + df.format(x[i] / canvasWidth) + " " + df.format(y[i] / canvasHeight));
+                            savefile.append(" " + df.format(x[i] / canvas.getWidth()) + " " + df.format(y[i] / canvas.getHeight()));
                         }
                     }
                     edgeCount = 0;
@@ -250,7 +242,7 @@ public class Controller {
         canvas.setOnMouseDragged(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
-            g2.clearRect(0, 0, 600, 600);
+            g2.clearRect(0, 0, canvas2.getWidth(), canvas2.getHeight());
             if (shapeSelected != "POLYGON") {
                 Shapes shape = new Shapes(shapeSelected, g2, coords);
                 shape.drawShape();
@@ -290,7 +282,7 @@ public class Controller {
     public void onClearCanvas() {
         Optional<ButtonType> result = alert.clearCanvasCheck();
         if (result.get().getText() == "Yes") {
-            g.clearRect(0, 0, 600, 600);
+            g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         }
     }
 
@@ -337,7 +329,7 @@ public class Controller {
             // Open file and read lines
             ReadFile r = new ReadFile(g, canvas);
             r.scanFile();
-            g.clearRect(0, 0, 600, 600);
+            g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             r.displayFile();
         } catch (Exception e) {
             // pass
