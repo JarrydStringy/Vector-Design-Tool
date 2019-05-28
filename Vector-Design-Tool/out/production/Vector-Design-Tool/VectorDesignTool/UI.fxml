@@ -60,32 +60,17 @@ Toolbar             Brush size, colour picker, eraser
                     <items>
                         <Group>
                             <children>
-                                <Label text="Vector Type:"/>
+                                <Label text="Drawing Type:"/>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Plot" onAction="#createPlot"/>
+                                <CheckBox fx:id="pen" text="Pen"/>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <Button text="Line" onAction="#createLine"/>
-                            </children>
-                        </Group>
-                        <Group>
-                            <children>
-                                <Button text="Rectangle" onAction="#createRectangle"/>
-                            </children>
-                        </Group>
-                        <Group>
-                            <children>
-                                <Button text="Ellipse" onAction="#createEllipse"/>
-                            </children>
-                        </Group>
-                        <Group>
-                            <children>
-                                <Button text="Polygon" onAction="#createPolygon"/>
+                                <CheckBox fx:id="fill" text="Fill"/>
                             </children>
                         </Group>
                         <Separator />
@@ -112,17 +97,32 @@ Toolbar             Brush size, colour picker, eraser
                         <Separator />
                         <Group>
                             <children>
-                                <Label text="Drawing Type:"/>
+                                <Label text="Vector Type:"/>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <CheckBox fx:id="pen" text="Pen"/>
+                                <Button text="Plot" onAction="#createPlot"/>
                             </children>
                         </Group>
                         <Group>
                             <children>
-                                <CheckBox fx:id="fill" text="Fill"/>
+                                <Button text="Line" onAction="#createLine"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Rectangle" onAction="#createRectangle"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Ellipse" onAction="#createEllipse"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Polygon" onAction="#createPolygon"/>
                             </children>
                         </Group>
                     </items>
