@@ -15,6 +15,9 @@ public abstract class DrawShape {
         this.selectedShape = selectedShape;
     }
 
+    /**
+     * Selects which draw function to call based on selectShape string value
+     */
     public void drawShape(){
         switch (selectedShape){
             case "PLOT":
@@ -38,10 +41,29 @@ public abstract class DrawShape {
 
     }
 
+    /**
+     * Draws a plot; single dot on canvas.
+     */
     public abstract void drawPlot();
+
+    /**
+     * Draws a line on the canvas
+     */
     public abstract void drawLine();
+
+    /**
+     * Draws a rectangle on the canvas
+     */
     public abstract void drawRectangle();
+
+    /**
+     * Draws an ellipse on the canvas
+     */
     public abstract void drawEllipse();
+
+    /**
+     * Draws a polygon on the canvas
+     */
     public abstract void drawPolygon();
 
 }

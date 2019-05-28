@@ -78,6 +78,10 @@ public class Controller {
         draw();
     }
 
+    /**
+     * Gets colour picker RGB value and converts it to HEX format.
+     * @return the HEX value in a String format.
+     */
     public String RGBtoHex() {
         String hex1 = Integer.toHexString(colorPicker.getValue().hashCode());
         String hex2;
@@ -117,29 +121,28 @@ public class Controller {
         System.out.println("Current mouse position: " + mouseEvent.getX() + ":" + mouseEvent.getY());
     }
 
-
     /**
      * Listener for when mouse is clicked or dragged
      */
     public void draw() {
 
         // Set double variables for canvas width and height
-        double a = canvas.getWidth();
-        double b = canvas.getHeight();
+        double canvasWidth = canvas.getWidth();
+        double canvasHeight = canvas.getHeight();
 
-        // Set Pen and Fill Colour
+        // ------------------------------------ Listener for fill checkbox
         fill.setOnAction(click -> {
             pen.setSelected(false);
             fill.setSelected(true);
         });
-
+        // ------------------------------------ Listener for pen checkbox
         pen.setOnAction(click -> {
             pen.setSelected(true);
             fill.setSelected(false);
             g.setStroke(colorPicker.getValue());
             g2.setStroke(colorPicker.getValue());
         });
-
+        // ------------------------------------ Listener for colour picker change
         colorPicker.setOnAction(click -> {
             if (fill.isSelected()) {
                 g.setFill(colorPicker.getValue());
@@ -152,32 +155,28 @@ public class Controller {
                 savefile.append("\nPEN " + "#" + RGBtoHex());
             }
         });
-
-        // Listener for when mouse is pressed
+        // ------------------------------------ Listener for when mouse is pressed
         canvas.setOnMousePressed(e -> {
             if (pen.isSelected() || fill.isSelected()) {
                 coords[0][0] = coords[1][0] = e.getX();
                 coords[0][1] = coords[1][1] = e.getY();
                 if (shapeSelected != "POLYGON" || shapeSelected == "")
-                    result = df.format(coords[0][0] / canvas.getWidth()) + " " + df.format(coords[0][1] / canvas.getHeight());
+                    result = df.format(coords[0][0] / canvasWidth) + " " + df.format(coords[0][1] / canvasHeight);
             } else {
                 alert.selectDraw();
             }
         });
-
-        // Listener for when mouse is released
+        // ------------------------------------ Listener for when mouse is released
         canvas.setOnMouseReleased(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
             g2.clearRect(0, 0, 600, 600);
             Shapes shape = new Shapes(shapeSelected, g, coords);
-
             if(shapeSelected == "PLOT") {
                 result = "\nPLOT " + result;
                 savefile.append(result);
                 shape.drawShape();
             }
-
             if (shapeSelected != "PLOT" && shapeSelected != "POLYGON" && shapeSelected != "") {
                 // Check if Fill is selected
                 if (fill.isSelected()) {
@@ -191,10 +190,9 @@ public class Controller {
                 }
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
-                savefile.append(" " + df.format(coords[1][0] / canvas.getWidth()) + " " + df.format(coords[1][1] / canvas.getHeight()));
+                savefile.append(" " + df.format(coords[1][0] / canvasWidth) + " " + df.format(coords[1][1] / canvasHeight));
                 shape.drawShape();
             }
-
             if (shapeSelected == "POLYGON") {
                 polygon.drawPlot(coords[1]);
                 edgeCount++;
@@ -210,27 +208,22 @@ public class Controller {
                         savefile.append("\nFILL " + "#" + RGBtoHex());
                         savefile.append("\nPOLYGON");
                         for (int i = 0; i < x.length; i++) {
-                            savefile.append(" " + df.format(x[i] / canvas.getWidth()) +
-                                    " " + df.format(y[i] / canvas.getHeight()));
+                            savefile.append(" " + df.format(x[i] / canvasWidth) + " " + df.format(y[i] / canvasHeight));
                         }
                     }
                     else {
                         savefile.append("\nPEN " + "#" + RGBtoHex());
                         savefile.append("\nPOLYGON");
                         for (int i = 0; i < x.length; i++) {
-                            savefile.append(" " + df.format(x[i] / canvas.getWidth()) +
-                                    " " + df.format(y[i] / canvas.getHeight()));
+                            savefile.append(" " + df.format(x[i] / canvasWidth) + " " + df.format(y[i] / canvasHeight));
                         }
                     }
                     edgeCount = 0;
                     polygon.resetPolygon();
                 }
-
             }
         });
-
-
-        // Listener for when mouse is dragged
+        // ------------------------------------ Listener for when mouse is dragged
         canvas.setOnMouseDragged(e -> {
             coords[1][0] = e.getX();
             coords[1][1] = e.getY();
@@ -259,9 +252,8 @@ public class Controller {
     public void onSave() {
         try {
             SaveFile savefile = new SaveFile(g);
-            // Open file and read lines
         } catch (Exception e) {
-            // pass
+            System.out.println("Error in Controller, saving file (261): " + e);
         }
     }
 
@@ -276,7 +268,7 @@ public class Controller {
             ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "VEC", new File("VectorDesign.VEC"));
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Failed to save image: " + e);
+            System.out.println("Error in Controller, export (276): " + e);
         }
     }
 

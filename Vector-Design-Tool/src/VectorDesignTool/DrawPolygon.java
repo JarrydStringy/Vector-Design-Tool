@@ -42,7 +42,7 @@ public class DrawPolygon{
     }
     /**
      * Draws a plot to show the user where the vertices for their polygon will be placed
-     * @param coords - gets the current coordinate of the mouse click
+     * @param coords - Array of double numbers for coordinates where user has clicked canvas
      * */
     public void drawPlot(double[] coords){
         if(edgeCount < edges){
@@ -90,14 +90,24 @@ public class DrawPolygon{
         return 4;
     }
 
+    /**
+     * Resets edgeCount and coordinates for new polygon
+     */
     public void resetPolygon(){
         edgeCount = 0;
         xCoords.clear();
         yCoords.clear();
     }
 
+    /**
+     * Sets edges to given integer of edges
+     * @param edges - given integer of edges for polygon
+     */
     public void setEdges(int edges){ this.edges = edges; }
 
+    /**
+     * Sets coordinates to given list of coordinates
+     */
     public void setCoord(List<Double> xCoords, List<Double> yCoords) {
         this.xCoords = xCoords;
         this.yCoords = yCoords;

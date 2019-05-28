@@ -26,7 +26,7 @@ public class Shapes extends DrawShape {
     }
 
     /**
-     * Draws a single point (plot)
+     * Draws a single point
      * */
     public void drawPlot(){ g.strokeLine(coords[0][0], coords[0][1], coords[0][0], coords[0][1]); }
 
@@ -40,12 +40,13 @@ public class Shapes extends DrawShape {
      * */
     public void drawLine(){g.strokeLine(coords[0][0], coords[0][1], coords[1][0], coords[1][1]);}
 
+    /**
+     * Draws an ellipse from start point x,y with a width w and height h
+     * */
     public void drawEllipse(){ g.strokeOval(coords[0][0], coords[0][1],abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));}
 
     /**
-     * Draws a polygon
+     * Draws a polygon (this function is overridden in DrawPolygon class)
      * */
-    public void drawPolygon(){
-
-    };
+    public void drawPolygon(){};
 }

@@ -6,11 +6,17 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisplayFile{
+public class DisplayFile {
     private GraphicsContext g;
     private Canvas canvas;
     private String[][] fileLines;
 
+    /**
+     * Displays the drawing on the canvas using the read coordinates from the file for each shape.
+     * @param g - Graphics context of drawing canvas
+     * @param canvas - Drawing canvas
+     * @param fileLines - Scanned file lines from opened file
+     */
     public DisplayFile(GraphicsContext g, Canvas canvas, String[][] fileLines) {
         this.g = g;
         this.canvas = canvas;
@@ -40,6 +46,11 @@ public class DisplayFile{
         }
     }
 
+    /**
+     * Draws a plot on the canvas.
+     * @param t - Array of words from current file line
+     * @param b - single word from current file line
+     */
     public void displayPlot(String[] t, String b){
         try {
             double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
@@ -51,6 +62,10 @@ public class DisplayFile{
         }
     }
 
+    /**
+     * Draws a polygon on the canvas.
+     * @param t - Array of words from current file line
+     */
     public void displayPolygon(String[] t){
         try {
             int edges = t.length/2;
@@ -72,6 +87,10 @@ public class DisplayFile{
         }
     }
 
+    /**
+     * Draws a line, rectangle or ellipse on canvas.
+     * @param t - Array of words from current file line
+     */
     public void displayShape(String[] t, String b){
         try {
             double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},

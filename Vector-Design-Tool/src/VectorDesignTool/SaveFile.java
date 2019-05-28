@@ -14,29 +14,32 @@ public class SaveFile{
     public static DecimalFormat df = new DecimalFormat("0.000000");
     private GraphicsContext g;
 
+    /**
+     * Saves file to chosen directory based on user selection of 'VEC' or 'BMP' file type.
+     * @param g - Graphics Context of canvas
+     */
     public SaveFile(GraphicsContext g){
         this.g = g;
         saveFile.deleteCharAt(0);
         String savefile = saveFile.toString();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Resource File");
-
         // Set extension filter
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("VEC files (*.vec)", "*.vec");
         fileChooser.getExtensionFilters().add(extFilter);
-
         File file = fileChooser.showSaveDialog(null);
-
-        if (file != null)
-        {
+        if (file != null) {
             saveToFile(file, savefile);
         }
-
     }
 
-    private void saveToFile(File file, String result)
-    {
+    /**
+     * Writes the file using FileWriter class.
+     * @param file - file being saved to
+     * @param result - string of contents being written to file
+     */
+    private void saveToFile(File file, String result) {
         try {
             FileWriter vecFile;
             vecFile = new FileWriter(file);
@@ -47,11 +50,6 @@ public class SaveFile{
             System.out.println("Failed to save file: " + e);
         }
     }
-
-    private void writeFileContents(){
-
-    }
-
 }
 
 

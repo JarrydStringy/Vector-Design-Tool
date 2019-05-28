@@ -27,16 +27,16 @@ public class Alerts {
         alert.setTitle("Confirm Clear Canvas");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to clear the canvas?");
-
         ButtonType buttonYes = new ButtonType("Yes");
         ButtonType buttonCancel = new ButtonType("Cancel");
-
         alert.getButtonTypes().setAll(buttonYes, buttonCancel);
-
         Optional<ButtonType> result = alert.showAndWait();
         return result;
     }
 
+    /**
+     * Alerts the user with an error dialogue stating they have entered an incorrect brush size value.
+     * */
     public void brushSizeError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Invalid Input");
@@ -45,17 +45,21 @@ public class Alerts {
         alert.showAndWait();
     }
 
+    /**
+     * Alerts the user with an error dialogue stating they have entered an incorrect brush size value.
+     * */
     public Optional<String> polygonPromptEdgeInput(){
         TextInputDialog dialog = new TextInputDialog("4");
         dialog.setTitle("Polygon Edges");
         dialog.setHeaderText(null);
         dialog.setContentText("Please enter the number of edges:");
-
-        // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         return result;
     }
 
+    /**
+     * Alerts the user with an error dialogue stating they have entered an incorrect polygon edge value.
+     * */
     public void polygonEdgeError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Invalid Input");
@@ -64,6 +68,10 @@ public class Alerts {
         alert.showAndWait();
     }
 
+    /**
+     * Informs the user on how to draw a polygon.
+     * @param edges - the number of edges the user entered for the polygon.
+     * */
     public void polygonDrawInfo(int edges){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Draw Polygon");

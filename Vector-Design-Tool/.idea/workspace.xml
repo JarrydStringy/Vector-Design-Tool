@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8546a840-e515-4db6-bbc9-c023f2766fdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Alerts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Alerts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Shapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Shapes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/UI.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/src/Test/" />
@@ -17,29 +24,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UI.fxml">
+        <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Shapes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="114" column="39" lean-forward="true" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2901">
-              <caret line="152" column="13" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="506">
+              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
             </state>
           </provider>
         </entry>
@@ -65,13 +53,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" />
-        <option value="$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" />
-        <option value="$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java" />
-        <option value="$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java" />
-        <option value="$PROJECT_DIR$/src/VectorDesignTool/Controller.java" />
         <option value="$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java" />
         <option value="$PROJECT_DIR$/src/VectorDesignTool/UI.fxml" />
+        <option value="$PROJECT_DIR$/src/VectorDesignTool/Controller.java" />
+        <option value="$PROJECT_DIR$/src/VectorDesignTool/Alerts.java" />
+        <option value="$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" />
+        <option value="$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" />
+        <option value="$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java" />
+        <option value="$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java" />
+        <option value="$PROJECT_DIR$/src/VectorDesignTool/Shapes.java" />
       </list>
     </option>
   </component>
@@ -112,7 +102,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559024208395" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559026037562" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -167,7 +157,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17363112" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17363112" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -177,7 +167,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32953104" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32953104" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39923954" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -211,61 +201,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Alerts.java">
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UI.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="422">
+          <caret line="41" column="21" lean-forward="true" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/ReadFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Shapes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2901">
-          <caret line="152" column="13" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="13" />
-        </state>
-      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -274,13 +216,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UI.fxml">
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="114" column="39" lean-forward="true" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
+        <state relative-caret-position="-4415">
+          <caret line="82" column="49" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Alerts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="72" column="75" selection-start-line="72" selection-start-column="75" selection-end-line="72" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1634">
+          <caret line="90" column="53" selection-start-line="90" selection-start-column="53" selection-end-line="90" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="44" column="92" selection-start-line="44" selection-start-column="92" selection-end-line="44" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="64" column="22" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/ReadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-805">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Shapes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
