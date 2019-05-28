@@ -10,12 +10,10 @@ import java.util.Optional;
 
 public class DrawPolygon{
     private GraphicsContext g;
-    private int edges = 4;
-    public static int edgeCount = 0;
     public static List<Double> xCoords;
-    public double[] xArr;
-    public double[] yArr;
     public static List<Double> yCoords;
+    private int edgeCount = 0;
+    private int edges = 4;
 
     /**
      * Draws a polygon based on given plot coordinates from user.
@@ -28,9 +26,6 @@ public class DrawPolygon{
         xCoords = new ArrayList<>();
         yCoords = new ArrayList<>();
     }
-
-
-    public void setEdges(int edges){ this.edges = edges; }
 
     /**
      * Draws a polygon
@@ -57,14 +52,8 @@ public class DrawPolygon{
             edgeCount += 1;
             if(edgeCount == edges){
                 drawPolygon();
-                edgeCount = 0;
             }
         }
-    }
-
-    public void setCoord(List<Double> xCoords, List<Double> yCoords) {
-        this.xCoords = xCoords;
-        this.yCoords = yCoords;
     }
 
     /**
@@ -99,5 +88,18 @@ public class DrawPolygon{
             }
         } while(!correctInput);
         return 4;
+    }
+
+    public void resetPolygon(){
+        edgeCount = 0;
+        xCoords.clear();
+        yCoords.clear();
+    }
+
+    public void setEdges(int edges){ this.edges = edges; }
+
+    public void setCoord(List<Double> xCoords, List<Double> yCoords) {
+        this.xCoords = xCoords;
+        this.yCoords = yCoords;
     }
 }

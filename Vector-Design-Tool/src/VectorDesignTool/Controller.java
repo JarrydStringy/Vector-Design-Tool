@@ -190,10 +190,8 @@ public class Controller {
                     for (int i = 0; i < DrawPolygon.xCoords.size(); i++) {
                         x[i] = DrawPolygon.xCoords.get(i);
                         y[i] = DrawPolygon.yCoords.get(i);
-
                     }
 
-                    shapeSelected = "";
                     if (fill.isSelected()) {
                         g.fillPolygon(x, y, edges);
                         String hexF = "\nFILL " + "#" + RGBtoHex();
@@ -224,6 +222,7 @@ public class Controller {
                         System.out.println(savefile);
                     }
                     edgeCount = 0;
+                    polygon.resetPolygon();
                 }
 
             }
