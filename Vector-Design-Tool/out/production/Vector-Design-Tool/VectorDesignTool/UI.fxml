@@ -117,8 +117,10 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <ColorPicker fx:id="colorPicker">
-                                    <tooltip><Tooltip text="Choose drawing colour" /></tooltip>
+                                <ColorPicker fx:id="colorPicker" >
+                                    <tooltip>
+                                        <Tooltip text="Choose drawing colour" />
+                                    </tooltip>
                                 </ColorPicker>
                             </children>
                         </Group>
