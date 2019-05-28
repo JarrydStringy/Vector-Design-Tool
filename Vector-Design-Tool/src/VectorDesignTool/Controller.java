@@ -59,6 +59,23 @@ public class Controller {
      * Initialize the application and attach listener to canvas for all methods to draw
      */
     public void initialize(){
+
+        // Listener for the screen size
+        // Update screen size values for canvas and canvas2
+        canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
+            canvas.setWidth(newValue.doubleValue());
+        });
+        canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
+            canvas.setHeight(newValue.doubleValue());
+        });
+        canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
+            canvas2.setWidth(newValue.doubleValue());
+        });
+        canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
+            canvas2.setHeight(newValue.doubleValue());
+        });
+
+
         // Sets graphics context for drawing
         g = canvas.getGraphicsContext2D();
 
