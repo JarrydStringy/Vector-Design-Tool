@@ -77,12 +77,12 @@ public class Controller {
             if(isDrawing){
                 save.saveCurrentFile("currentFile.vec", savefile.toString());
                 readFile.setSelectedFile("currentFile.vec");
-                readFile.scanFile();
                 isDrawing = false;
             }
             canvas.setWidth(newValue.doubleValue());
-            try{
+            try {
                 g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                readFile.scanFile();
                 readFile.displayFile();
             } catch (Exception e){
                 System.out.println("Error in repainting canvas on resize: " + e);
@@ -165,7 +165,7 @@ public class Controller {
         colorPicker.setOnAction(click -> {
             if (fill.isSelected()) {
                 g.setFill(colorPicker.getValue());
-                savefile.append("\nPEN " + "#" + RGBtoHex());
+                savefile.append("\nFILL " + "#" + RGBtoHex());
             }
 
             if (pen.isSelected()) {
@@ -205,12 +205,10 @@ public class Controller {
                         shape.setIsFill(true);
                         shape.drawRectangle();
                         shape.setIsFill(false);
-                        savefile.append("\nFILL " + "#" + RGBtoHex());
                     } else if (shapeSelected == "ELLIPSE") {
                         shape.setIsFill(true);
                         shape.drawEllipse();
                         shape.setIsFill(false);
-                        savefile.append("\nFILL " + "#" + RGBtoHex());
                     }
                 }
                 result = "\n" + shapeSelected + " " + result;
@@ -230,7 +228,6 @@ public class Controller {
                     }
                     if (fill.isSelected()) {
                         g.fillPolygon(x, y, edges);
-                        savefile.append("\nFILL " + "#" + RGBtoHex());
                         savefile.append("\nPOLYGON");
                         for (int i = 0; i < x.length; i++) {
                             savefile.append(" " + df.format(x[i] / canvas.getWidth()) + " " + df.format(y[i] / canvas.getHeight()));
@@ -296,6 +293,7 @@ public class Controller {
             file.delete();
             isDrawing = false;
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            savefile.delete(0,savefile.length());
         }
     }
 
