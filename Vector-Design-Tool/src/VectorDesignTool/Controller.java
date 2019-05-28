@@ -33,6 +33,7 @@ public class Controller {
     List<Double> yCoords = DrawPolygon.yCoords;
     DecimalFormat df = SaveFile.df;
     String result = "";
+    
     @FXML
     private Canvas canvas;
     private Canvas canvas2;
@@ -41,9 +42,12 @@ public class Controller {
     @FXML
     private TextField brushSize;
     @FXML
+    private TextField gridSize;
+    @FXML
     private CheckBox pen;
     @FXML
     private CheckBox fill;
+
     // Stores Mouse coordinates
     private double[][] coords = {{0, 0}, {0, 0}};
     // Store polygon edges
@@ -256,7 +260,6 @@ public class Controller {
                 shape.drawShape();
             }
         });
-
     }
 
     /**
@@ -323,11 +326,13 @@ public class Controller {
     }
 
     /**
-     * Checks that the user input for brush size is a valid positive integer between 1 and 200.
+     * Checks that the user input for grid size is a valid positive integer between 1 and 1000.
      */
     public void checkBrushInput() {
         try {
-            if (brushSize.getText().matches("[0-9]*") == false || Integer.parseInt(brushSize.getText()) < 1 || Integer.parseInt(brushSize.getText()) > 200) {
+            if (brushSize.getText().matches("[0-9]*") == false
+                    || Integer.parseInt(gridSize.getText()) < 1
+                    || Integer.parseInt(brushSize.getText()) > 1000) {
                 alert.brushSizeError();
                 brushSize.setText("5");
                 g.setLineWidth(5);
@@ -338,7 +343,7 @@ public class Controller {
             }
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Invalid brushSize input: " + e);
+            System.out.println("Invalid gridSize input: " + e);
         }
         savefile.append("\nPEN-WIDTH " + brushSize.getText());
     }
@@ -378,5 +383,32 @@ public class Controller {
         shapeSelected = "POLYGON";
         polygon = new DrawPolygon(g);
         edges = polygon.getUserInput();
+    }
+
+    /**
+     *
+     */
+    public void onGrid(){
+        checkGridInput();
+    }
+
+    /**
+     *
+     */
+    public void checkGridInput() {
+        try {
+            if (gridSize.getText().matches("[0-9]*") == false
+                    || Integer.parseInt(gridSize.getText()) < 1
+                    || Integer.parseInt(gridSize.getText()) > 200) {
+                alert.gridSizeError();
+                gridSize.setText("15");
+            } else {
+                //Set grid width
+            }
+        } catch (Exception e) {
+            // Display if any errors occur
+            System.out.println("Invalid brushSize input: " + e);
+        }
+        //Save to file
     }
 }
