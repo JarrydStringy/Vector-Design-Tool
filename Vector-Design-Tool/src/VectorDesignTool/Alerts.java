@@ -80,4 +80,15 @@ public class Alerts {
                 ". \nPlace " + edges + " points on the canvas in the order which the edges will be drawn.");
         alert.showAndWait();
     }
+
+    /**
+     * Alerts the user with an error dialogue stating they have entered an incorrect brush size value.
+     * */
+    public void gridSizeError(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid Input");
+        alert.setHeaderText(null);
+        alert.setContentText("Please enter a positive integer between 1 and 1000.");
+        alert.showAndWait();
+    }
 }
