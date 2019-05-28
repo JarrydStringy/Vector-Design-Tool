@@ -129,23 +129,27 @@ public class Controller {
 
         // Set Pen and Fill Colour
         fill.setOnAction(click -> {
-            pen.setSelected(!fill.isSelected());
+            pen.setSelected(false);
+            fill.setSelected(true);
         });
 
         pen.setOnAction(click -> {
-            fill.setSelected(!pen.isSelected());
+            pen.setSelected(true);
+            fill.setSelected(false);
             g.setStroke(colorPicker.getValue());
             g2.setStroke(colorPicker.getValue());
-
         });
+
         colorPicker.setOnAction(click -> {
             if (fill.isSelected()) {
                 g.setFill(colorPicker.getValue());
+                savefile.append("\nPEN " + "#" + RGBtoHex());
             }
 
             if (pen.isSelected()) {
                 g.setStroke(colorPicker.getValue());
                 g2.setStroke(colorPicker.getValue());
+                savefile.append("\nPEN " + "#" + RGBtoHex());
             }
         });
 
@@ -168,17 +172,27 @@ public class Controller {
             g2.clearRect(0, 0, 600, 600);
             Shapes shape = new Shapes(shapeSelected, g, coords);
 
-
-            if(shapeSelected == "PLOT")
-            {
-                result = "\n" + shapeSelected + " " + result;
+            if(shapeSelected == "PLOT") {
+                result = "\nPLOT " + result;
                 savefile.append(result);
+                shape.drawShape();
             }
 
             if (shapeSelected != "PLOT" && shapeSelected != "POLYGON" && shapeSelected != "") {
+                // Check if Fill is selected
+                if (fill.isSelected()) {
+                    if (shapeSelected == "RECTANGLE") {
+                        g.fillRect(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
+                        savefile.append("\nFILL " + "#" + RGBtoHex());
+                    } else if (shapeSelected == "ELLIPSE") {
+                        g.fillOval(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
+                        savefile.append("\nFILL " + "#" + RGBtoHex());
+                    }
+                }
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
                 savefile.append(" " + df.format(coords[1][0] / canvas.getWidth()) + " " + df.format(coords[1][1] / canvas.getHeight()));
+                shape.drawShape();
             }
 
             if (shapeSelected == "POLYGON") {
@@ -191,52 +205,27 @@ public class Controller {
                         x[i] = DrawPolygon.xCoords.get(i);
                         y[i] = DrawPolygon.yCoords.get(i);
                     }
-
                     if (fill.isSelected()) {
                         g.fillPolygon(x, y, edges);
-                        String hexF = "\nFILL " + "#" + RGBtoHex();
-                        String fillColour = RGBtoHex();
-                        String hexP = "\nPEN " + "#" + RGBtoHex();
-                        if(hexP != "000000" && pen.isSelected())
-                        {
-                            savefile.append(hexP);
+                        savefile.append("\nFILL " + "#" + RGBtoHex());
+                        savefile.append("\nPOLYGON");
+                        for (int i = 0; i < x.length; i++) {
+                            savefile.append(" " + df.format(x[i] / canvas.getWidth()) +
+                                    " " + df.format(y[i] / canvas.getHeight()));
                         }
-                        if(fillColour != "000000" && fill.isSelected())
-                        {
-                            hexF = "\nFILL " + "#" + RGBtoHex();
-                            savefile.append(hexF);
-                            savefile.append("\nPOLYGON");
-                            for (int i = 0; i < x.length; i++) {
-                                savefile.append(" " + df.format(x[i] / canvas.getWidth()) +
-                                        " " + df.format(y[i] / canvas.getHeight()));
-                            }
+                    }
+                    else {
+                        savefile.append("\nPEN " + "#" + RGBtoHex());
+                        savefile.append("\nPOLYGON");
+                        for (int i = 0; i < x.length; i++) {
+                            savefile.append(" " + df.format(x[i] / canvas.getWidth()) +
+                                    " " + df.format(y[i] / canvas.getHeight()));
                         }
-                        else
-                        {
-                            savefile.append("\nPOLYGON");
-                            for (int i = 0; i < x.length; i++) {
-                                savefile.append(" " + df.format(x[i] / canvas.getWidth()) +
-                                        " " + df.format(y[i] / canvas.getHeight()));
-                            }
-                        }
-                        System.out.println(savefile);
                     }
                     edgeCount = 0;
                     polygon.resetPolygon();
                 }
 
-            }
-
-            if(shapeSelected != "POLYGON")
-                shape.drawShape();
-
-            //Fill Shapes
-            if (fill.isSelected()) {
-                if (shapeSelected == "RECTANGLE") {
-                    g.fillRect(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
-                } else if (shapeSelected == "ELLIPSE") {
-                    g.fillOval(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
-                }
             }
         });
 
@@ -332,6 +321,7 @@ public class Controller {
             // Display if any errors occur
             System.out.println("Invalid brushSize input: " + e);
         }
+        savefile.append("\nPEN-WIDTH " + brushSize.getText());
     }
 
     /**

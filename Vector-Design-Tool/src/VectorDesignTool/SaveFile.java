@@ -10,7 +10,6 @@ import javafx.stage.FileChooser;
 
 
 public class SaveFile{
-
     public static StringBuilder saveFile = new StringBuilder("");
     public static DecimalFormat df = new DecimalFormat("0.000000");
     private GraphicsContext g;
@@ -35,6 +34,7 @@ public class SaveFile{
         }
 
     }
+
     private void saveToFile(File file, String result)
     {
         try {
@@ -46,6 +46,10 @@ public class SaveFile{
         catch(Exception e) {
             System.out.println("Failed to save file: " + e);
         }
+    }
+
+    private void writeFileContents(){
+
     }
 
 }
