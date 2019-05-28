@@ -55,6 +55,22 @@ Toolbar             Brush size, colour picker, eraser
         </VBox>
     </top>
 
+    <center>
+        <AnchorPane >
+            <children>
+                <Pane fx:id="canvasPane"
+                      prefWidth="600"
+                      prefHeight="600">
+                    <children>
+                        <Canvas fx:id="canvas"
+                                width="600"
+                                height="600"/>
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+    </center>
+
     <right>
         <HBox spacing="10">
             <children>
@@ -132,17 +148,6 @@ Toolbar             Brush size, colour picker, eraser
             </children>
         </HBox>
     </right>
-    <center>
-        <AnchorPane >
-            <children>
-                <Pane fx:id="canvasPane" prefWidth="600" prefHeight="600">
-                    <children>
-                        <Canvas fx:id="canvas" width="600" height="600"/>
-                    </children>
-                </Pane>
-            </children>
-        </AnchorPane>
-    </center>
 
 
 </BorderPane>
