@@ -234,7 +234,6 @@ public class Controller {
             //Fill Shapes
             if (fill.isSelected()) {
                 if (shapeSelected == "RECTANGLE") {
-
                     g.fillRect(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
                 } else if (shapeSelected == "ELLIPSE") {
                     g.fillOval(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));

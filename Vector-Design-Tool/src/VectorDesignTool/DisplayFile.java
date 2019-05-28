@@ -3,6 +3,9 @@ package VectorDesignTool;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DisplayFile{
     private GraphicsContext g;
     private Canvas canvas;
@@ -25,6 +28,10 @@ public class DisplayFile{
                     displayPlot(t,b);
                 } else if (b.contains("POLYGON")) {
                     displayPolygon(t);
+                } else if(b.contains("FILL")){
+                    //IMPLEMENT
+                } else if(b.contains("PEN")){
+                    //IMPLEMENT
                 } else {
                     displayShape(t,b);
                 }
@@ -47,29 +54,21 @@ public class DisplayFile{
     public void displayPolygon(String[] t){
         try {
             int edges = t.length/2;
-            String xs = "";
-            String ys = "";
+            List<Double> xCoords = new ArrayList<>();
+            List<Double> yCoords = new ArrayList<>();
             for (int i = 1; i < t.length; i++) {
                 if(( i % 2 != 0 )){
-                    xs += t[i] + " ";
+                    xCoords.add(Double.parseDouble(t[i]) * canvas.getWidth());
                 } else {
-                    ys += t[i] + " ";
+                    yCoords.add(Double.parseDouble(t[i]) * canvas.getHeight());
                 }
             }
-            String[] xss = xs.split(" ");
-            String[] yss = ys.split(" ");
-            double[] x = new double[xss.length];
-            double[] y = new double[yss.length];
-            for (int i = 0; i < xss.length; i++) {
-                x[i] = Double.parseDouble(xss[i]) * canvas.getWidth();
-                y[i] = Double.parseDouble(yss[i]) * canvas.getHeight();
-            }
             DrawPolygon drawPolygon = new DrawPolygon(g);
-            drawPolygon.setCoord(x, y);
+            drawPolygon.setCoord(xCoords, yCoords);
             drawPolygon.setEdges(edges);
             drawPolygon.drawPolygon();
         } catch (Exception e) {
-            System.out.println("Error in POLYGON read: " + e);
+            System.out.println("Error in DisplayFile displayPolygon (76): " + e);
         }
     }
 

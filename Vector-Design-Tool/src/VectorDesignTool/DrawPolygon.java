@@ -32,8 +32,6 @@ public class DrawPolygon{
 
     public void setEdges(int edges){ this.edges = edges; }
 
-    public double[] getxArr() { return this.xArr; }
-    public double[] getyArr() { return this.yArr; }
     /**
      * Draws a polygon
      * */
@@ -64,10 +62,11 @@ public class DrawPolygon{
         }
     }
 
-    public void setCoord(double[] arrayX, double[] arrayY) {
-        this.xArr = arrayX;
-        this.yArr = arrayY;
+    public void setCoord(List<Double> xCoords, List<Double> yCoords) {
+        this.xCoords = xCoords;
+        this.yCoords = yCoords;
     }
+
     /**
      * Prompts the user to input how many edges their polygon will have.
      * Input cannot be negative or not a number

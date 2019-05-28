@@ -36,7 +36,6 @@ Toolbar             Brush size, colour picker, eraser
                 <Menu text="Edit">
                     <MenuItem text="Undo"/>
                     <MenuItem text="Redo"/>
-                    <MenuItem fx:id="clear" text="Clear" onAction="#clearCanvas"/>
                 </Menu>
                 <Menu text="Export">
                     <MenuItem text="Export as PNG" onAction="#onExport"/>
