@@ -198,10 +198,14 @@ public class Controller {
                 // Check if Fill is selected
                 if (fill.isSelected()) {
                     if (shapeSelected == "RECTANGLE") {
-                        g.fillRect(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
+                        shape.setIsFill(true);
+                        shape.drawRectangle();
+                        shape.setIsFill(false);
                         savefile.append("\nFILL " + "#" + RGBtoHex());
                     } else if (shapeSelected == "ELLIPSE") {
-                        g.fillOval(coords[0][0], coords[0][1], abs(coords[1][0] - coords[0][0]), abs(coords[1][1] - coords[0][1]));
+                        shape.setIsFill(true);
+                        shape.drawEllipse();
+                        shape.setIsFill(false);
                         savefile.append("\nFILL " + "#" + RGBtoHex());
                     }
                 }
