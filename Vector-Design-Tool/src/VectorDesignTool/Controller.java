@@ -130,7 +130,9 @@ public class Controller {
     }
 
     /**
-     * Testing method for the position of the mouse when clicked
+     * Method to test -
+     * Outputs the position of the mouse when clicked
+     * Also outputs the width and height of the canvas
      */
     public void MousePosition(MouseEvent mouseEvent)
     {
