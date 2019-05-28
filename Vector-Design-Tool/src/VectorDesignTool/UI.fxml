@@ -29,7 +29,6 @@ Toolbar             Brush size, colour picker, eraser
             <MenuBar>
                 <Menu text="File">
                     <MenuItem text="Exit" onAction="#onExit"/>
-                    <MenuItem text="Save" onAction="#onSave"/>
                     <MenuItem text="Open" onAction="#openFile"/>
                 </Menu>
                 <Menu text="Edit">
@@ -39,6 +38,7 @@ Toolbar             Brush size, colour picker, eraser
                 </Menu>
                 <Menu text="Export">
                     <MenuItem text="Export as PNG" onAction="#onExport"/>
+                    <MenuItem text="Export as VEC" onAction="#onSave"/>
                 </Menu>
             </MenuBar>
 
