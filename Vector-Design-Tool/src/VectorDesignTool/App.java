@@ -3,6 +3,7 @@ package VectorDesignTool;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -17,11 +18,20 @@ public class App extends Application {
      * @param stage - the main window of the application
      */
     public void start(Stage stage) throws Exception {
+
+        // Instantiate the fxml Window
+        Pane root = FXMLLoader.load(getClass().getResource("UI.fxml"));
+        Scene scene = new Scene(root);
+
         // Stage/Program name
         stage.setTitle("Vector Design Tool");
         // Creating a scene object from the UI file
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI.fxml"))));
         // Displays the contents of the stage
         stage.show();
+
+
+        root.prefWidthProperty().bind(scene.widthProperty());
+        root.prefHeightProperty().bind(scene.heightProperty());
     }
 }
