@@ -29,18 +29,24 @@ public class DrawPolygon{
         yCoords = new ArrayList<>();
     }
 
+
+    public void setEdges(int edges){ this.edges = edges; }
+
+    public double[] getxArr() { return this.xArr; }
+    public double[] getyArr() { return this.yArr; }
     /**
      * Draws a polygon
      * */
     public void drawPolygon(){
-        try{
-            g.strokePolygon(xArr, yArr, edges);
-        } catch (Exception e){
-            System.out.println("Error drawing polygon: " + e);
+        double[] x = new double[xCoords.size()];
+        double[] y = new double[yCoords.size()];
+
+        for(int i = 0; i < xCoords.size(); i++){
+            x[i] = xCoords.get(i);
+            y[i] = yCoords.get(i);
         }
-
+        g.strokePolygon(x, y, edges);
     }
-
     /**
      * Draws a plot to show the user where the vertices for their polygon will be placed
      * @param coords - gets the current coordinate of the mouse click
@@ -52,18 +58,16 @@ public class DrawPolygon{
             yCoords.add(coords[1]);
             edgeCount += 1;
             if(edgeCount == edges){
-                xArr = new double[xCoords.size()];
-                yArr = new double[yCoords.size()];
-                for(int i = 0; i < xCoords.size(); i++){
-                    xArr[i] = xCoords.get(i);
-                    yArr[i] = yCoords.get(i);
-                }
                 drawPolygon();
-                resetPolygon();
+                edgeCount = 0;
             }
         }
     }
 
+    public void setCoord(double[] arrayX, double[] arrayY) {
+        this.xArr = arrayX;
+        this.yArr = arrayY;
+    }
     /**
      * Prompts the user to input how many edges their polygon will have.
      * Input cannot be negative or not a number
@@ -71,48 +75,48 @@ public class DrawPolygon{
      * */
     public int getUserInput(){
         boolean correctInput = false;
-        Alerts alert = new Alerts();
         do {
+            TextInputDialog dialog = new TextInputDialog("4");
+            dialog.setTitle("Polygon Edges");
+            dialog.setHeaderText(null);
+            dialog.setContentText("Please enter the number of edges:");
+
             // Traditional way to get the response value.
-            Optional<String> result = alert.polygonPromptEdgeInput();
+            Optional<String> result = dialog.showAndWait();
+
             // Check if user input is valid
             if (result.isPresent()) {
                 try {
                     if (result.get().matches("[0-9]*") == false || Integer.parseInt(result.get()) < 3 || Integer.parseInt(result.get()) > 100) {
-                        alert.polygonEdgeError();
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Invalid Input");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Please enter a positive integer between 3 and 100.");
+                        alert.showAndWait();
                     } else {
                         edges = Integer.parseInt(result.get());
-                        alert.polygonDrawInfo(edges);
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Draw Polygon");
+                        alert.setHeaderText(null);
+                        alert.setContentText("You have set the number of edges to " + edges +
+                                ". \nPlace " + edges + " points on the canvas in the order which the edges will be drawn.");
+                        alert.showAndWait();
                         return edges;
                     }
                 } catch (Exception e) {
-                    alert.polygonEdgeError();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Invalid Input");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please enter a positive integer between 3 and 100.");
+                    alert.showAndWait();
+                    // Display if any errors occur
+                    System.out.println("Failed to open file: " + e);
                 }
             } else {
                 correctInput = true;
             }
         } while(!correctInput);
         return 4;
-    }
-
-    /**
-     * This sets the polygon array coordinates to a given array of x and y coordinates
-     * @param arrayX - double array of x coordinates
-     * @param arrayY - double array of y coordinates
-     * */
-    public void setCoord(double[] arrayX, double[] arrayY) {
-        this.xArr = arrayX;
-        this.yArr = arrayY;
-    }
-
-    public void setEdges(int edges){ this.edges = edges; }
-
-    public double[] getxArr() { return this.xArr; }
-    public double[] getyArr() { return this.yArr; }
-
-    public void resetPolygon(){
-        edgeCount = 0;
-        xCoords.clear();
-        yCoords.clear();
     }
 }
