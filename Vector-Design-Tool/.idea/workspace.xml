@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b81d743d-6861-4bdf-bc7c-50c0fd5aad8a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Alerts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Alerts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/DrawShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/Shapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/Shapes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/UI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newVec.vec" beforeDir="false" afterPath="$PROJECT_DIR$/../newVec.vec" afterDir="false" />
-    </list>
+    <list default="true" id="b81d743d-6861-4bdf-bc7c-50c0fd5aad8a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/src/Test/" />
     <ignored path="$PROJECT_DIR$/src/sample/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,7 +24,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6631">
+            <state relative-caret-position="6403">
               <caret line="356" column="20" selection-start-line="356" selection-start-column="20" selection-end-line="356" selection-end-column="20" />
             </state>
           </provider>
@@ -63,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+            <state relative-caret-position="272">
+              <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -95,7 +83,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -119,6 +106,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -177,7 +165,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18011527" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18299712" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -273,7 +261,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6631">
+        <state relative-caret-position="6403">
           <caret line="356" column="20" selection-start-line="356" selection-start-column="20" selection-end-line="356" selection-end-column="20" />
         </state>
       </provider>
@@ -294,8 +282,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+        <state relative-caret-position="272">
+          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
         </state>
       </provider>
     </entry>
