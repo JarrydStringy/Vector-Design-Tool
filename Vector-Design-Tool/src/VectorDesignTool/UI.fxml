@@ -48,10 +48,19 @@ Toolbar             Brush size, colour picker, eraser
                     <Button text="Redo" onAction="#onRedo">
                         <tooltip><Tooltip text="KeyBoard Shortcut: ctrl+y" /></tooltip>
                     </Button>
-                    <Separator />
+                    <Separator orientation="VERTICAL"/>
                     <Button fx:id="clear" text="Clear" onAction="#onClearCanvas">
                         <tooltip><Tooltip text="Clear Canvas" /></tooltip>
                     </Button>
+                    <Separator orientation="VERTICAL"/>
+                    <CheckBox fx:id="grid" text="Grid On">
+                        <tooltip><Tooltip text="Check to create grid" /></tooltip>
+                    </CheckBox>
+                    <TextField fx:id="gridSize" text="15" onKeyTyped="#checkGridInput" maxWidth="50">
+                        <tooltip>
+                            <Tooltip text="Enter amount of grids, must be integer between 1 and 1000." />
+                        </tooltip>
+                    </TextField>
                 </HBox>
             </ToolBar>
         </VBox>
@@ -117,8 +126,10 @@ Toolbar             Brush size, colour picker, eraser
                         </Group>
                         <Group>
                             <children>
-                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput">
-                                    <tooltip><Tooltip text="Enter Brush thickness, must be integer between 1 and 200." /></tooltip>
+                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput" maxWidth="50">
+                                    <tooltip>
+                                        <Tooltip text="Enter Brush thickness, must be integer between 1 and 200." />
+                                    </tooltip>
                                 </TextField>
                             </children>
                         </Group>
@@ -145,14 +156,18 @@ Toolbar             Brush size, colour picker, eraser
                         <Group>
                             <children>
                                 <Button text="Rectangle" onAction="#createRectangle">
-                                    <tooltip><Tooltip text="Click on canvas and drag to draw rectangle" /></tooltip>
+                                    <tooltip>
+                                        <Tooltip text="Click on canvas and drag to draw rectangle" />
+                                    </tooltip>
                                 </Button>
                             </children>
                         </Group>
                         <Group>
                             <children>
                                 <Button text="Ellipse" onAction="#createEllipse">
-                                    <tooltip><Tooltip text="Click on canvas and drag to draw ellipse" /></tooltip>
+                                    <tooltip>
+                                        <Tooltip text="Click on canvas and drag to draw ellipse" />
+                                    </tooltip>
                                 </Button>
                             </children>
                         </Group>

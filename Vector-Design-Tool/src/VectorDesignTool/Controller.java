@@ -381,4 +381,11 @@ public class Controller {
         polygon = new DrawPolygon(g);
         edges = polygon.getUserInput();
     }
+
+    /**
+     * Checks that the user input for brush size is a valid positive integer between 1 and 200.
+     */
+    public void checkGridInput() {
+
+    }
 }
