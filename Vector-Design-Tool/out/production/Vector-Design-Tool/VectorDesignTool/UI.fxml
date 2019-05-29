@@ -64,7 +64,7 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                     </Button>
                     <Separator orientation="VERTICAL"/>
                     <Label text="Grid On:"/>
-                    <CheckBox fx:id="grid">
+                    <CheckBox fx:id="grid" onAction="#onGrid">
                         <tooltip><Tooltip text="Check to create grid" /></tooltip>
                     </CheckBox>
                     <Label text="Grid Size:"/>
