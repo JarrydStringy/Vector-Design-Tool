@@ -16,6 +16,7 @@ public class UndoRedo {
     private File currentFile;
     private ReadFile readFile;
     private SaveFile saveFile;
+    StringBuilder savefile = SaveFile.saveFile;
     private List<String[]> currentFileLines;
     private String[] removedLine;
     private GraphicsContext g;
@@ -41,11 +42,14 @@ public class UndoRedo {
         }
     }
 
+    //Appended savefile on undo
     public void Undo(){
         if(getCurrentFileLines()){
             try {
                 removedLine = currentFileLines.get(currentFileLines.size() - 1);
                 currentFileLines.remove(currentFileLines.size() - 1);
+                int start = savefile.lastIndexOf("\n" + removedLine[0] + " " + removedLine[1]);
+                savefile.delete(start, savefile.length());
                 displayChange();
             } catch(Exception e){
                 System.out.println("Error in undo (51): " + e);
@@ -53,9 +57,11 @@ public class UndoRedo {
         }
     }
 
+    //Appended savefile on redo
     public void Redo(){
         try {
             currentFileLines.add(removedLine);
+            savefile.append("\n" + String.join(" ", removedLine));
             displayChange();
         } catch(Exception e){
             System.out.println("Error in redo (61): " + e);
