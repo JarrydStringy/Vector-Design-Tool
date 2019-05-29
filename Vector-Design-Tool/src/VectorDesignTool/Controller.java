@@ -54,6 +54,7 @@ public class Controller {
     private String shapeSelected = "PLOT";
     public static boolean isDrawing;
     // Instantiations
+    private SaveFile save;
     private ResizeCanvas resizeCanvas;
     private DrawPolygon polygon;
     private Alerts alert;
@@ -76,12 +77,12 @@ public class Controller {
         file.delete();
 
         // Instantiate classes
-        SaveFile save = new SaveFile(g);
+        save = new SaveFile(g);
         ReadFile readFile = new ReadFile(g, canvas);
         resizeCanvas = new ResizeCanvas();
         resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2, file);
         alert = new Alerts();
-        undoRedo = new UndoRedo();
+        undoRedo = new UndoRedo(g, canvas);
 
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
@@ -226,6 +227,7 @@ public class Controller {
                     polygon.resetPolygon();
                 }
             }
+            save.saveCurrentFile("currentFile.vec", savefile.toString());
         });
         // ------------------------------------ Listener for when mouse is dragged
         canvas.setOnMouseDragged(e -> {

@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class App extends Application {
     /**
      * Launches and sets up JavaFX application
@@ -33,5 +35,11 @@ public class App extends Application {
 
         root.prefWidthProperty().bind(scene.widthProperty());
         root.prefHeightProperty().bind(scene.heightProperty());
+
+        stage.setOnCloseRequest(event -> {
+            File file = new File("currentFile.vec");
+            file.delete();
+            System.out.println("Stage is closing, deleted current file");
+        });
     }
 }

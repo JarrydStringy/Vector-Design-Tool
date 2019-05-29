@@ -90,4 +90,11 @@ public class ReadFile {
      * @return 2 dimensional String array of scanned file lines
      */
     public String[][] getFileLines(){ return fileLines; }
+
+    /**
+     * Gets the scanned file lines.
+     */
+    public void setFileLines(String[][] fileLines){
+        this.fileLines = fileLines;
+    }
 }
