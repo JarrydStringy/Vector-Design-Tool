@@ -16,11 +16,13 @@ Menu                File-> Exit
                     Export-> To PNG/VEC
 Toolbar             Undo, Redo, Clear, Grid On, Grid size
 
-
-                    plot, line, rectangle, ellipse, polygon
-Toolbar             Brush size, colour picker, eraser
-
-<right>             Vertical Button Menu: plot, line, rectangle, ellipse, polygon
+<right>             Vertical Button Menu:
+                        Drawing Type:
+                            Pen, Fill
+                        Pen Colour
+                        Brush Size
+                        Vector Type:
+                            plot, line, rectangle, ellipse, polygon
 
 <centre>            Canvas
 -->

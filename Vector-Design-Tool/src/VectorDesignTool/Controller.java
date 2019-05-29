@@ -21,11 +21,7 @@ import java.util.Optional;
 import static java.lang.Math.abs;
 
 public class Controller {
-    // References to UI objects
-    @FXML
-    Pane canvasPane;
-    @FXML
-    Pane canvasPane2;
+
     // Sets graphics context for drawing
     GraphicsContext g;
     GraphicsContext g2;
@@ -34,6 +30,12 @@ public class Controller {
     List<Double> yCoords = DrawPolygon.yCoords;
     DecimalFormat df = SaveFile.df;
     String result = "";
+
+    // References to UI objects
+    @FXML
+    Pane canvasPane;
+    @FXML
+    Pane canvasPane2;
     @FXML
     Canvas canvas;
     Canvas canvas2;
@@ -42,9 +44,12 @@ public class Controller {
     @FXML
     private TextField brushSize;
     @FXML
+    private TextField gridSize;
+    @FXML
     private CheckBox pen;
     @FXML
     private CheckBox fill;
+
     // Stores Mouse coordinates
     private double[][] coords = {{0, 0}, {0, 0}};
     // Store polygon edges
@@ -119,8 +124,6 @@ public class Controller {
         return hex2.toUpperCase();
     }
 
-
-
     /**
      * Listener for when mouse is clicked or dragged
      */
@@ -156,7 +159,8 @@ public class Controller {
                 coords[0][0] = coords[1][0] = e.getX();
                 coords[0][1] = coords[1][1] = e.getY();
                 if (shapeSelected != "POLYGON" || shapeSelected != ""){
-                    result = df.format(coords[0][0] / canvas.getWidth()) + " " + df.format(coords[0][1] / canvas.getHeight());
+                    result = df.format(coords[0][0] / canvas.getWidth()) + " "
+                            + df.format(coords[0][1] / canvas.getHeight());
                 }
                 isDrawing = true;
             } else {
@@ -189,7 +193,8 @@ public class Controller {
                 }
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
-                savefile.append(" " + df.format(coords[1][0] / canvas.getWidth()) + " " + df.format(coords[1][1] / canvas.getHeight()));
+                savefile.append(" " + df.format(coords[1][0] / canvas.getWidth())
+                        + " " + df.format(coords[1][1] / canvas.getHeight()));
                 shape.drawShape();
             }
             if (shapeSelected == "POLYGON") {
@@ -206,14 +211,16 @@ public class Controller {
                         g.fillPolygon(x, y, edges);
                         savefile.append("\nPOLYGON");
                         for (int i = 0; i < x.length; i++) {
-                            savefile.append(" " + df.format(x[i] / canvas.getWidth()) + " " + df.format(y[i] / canvas.getHeight()));
+                            savefile.append(" " + df.format(x[i] / canvas.getWidth())
+                                    + " " + df.format(y[i] / canvas.getHeight()));
                         }
                     }
                     else {
                         savefile.append("\nPEN " + "#" + RGBtoHex());
                         savefile.append("\nPOLYGON");
                         for (int i = 0; i < x.length; i++) {
-                            savefile.append(" " + df.format(x[i] / canvas.getWidth()) + " " + df.format(y[i] / canvas.getHeight()));
+                            savefile.append(" " + df.format(x[i] / canvas.getWidth())
+                                    + " " + df.format(y[i] / canvas.getHeight()));
                         }
                     }
                     edgeCount = 0;
@@ -293,7 +300,8 @@ public class Controller {
             // Record what is in canvas
             Image snapshot = canvas.snapshot(null, null);
             // Save to .png file
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "VEC", new File("VectorDesign.VEC"));
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null)
+                    , "VEC", new File("VectorDesign.VEC"));
         } catch (Exception e) {
             // Display if any errors occur
             System.out.println("Error in Controller, export (276): " + e);
@@ -329,7 +337,9 @@ public class Controller {
      */
     public void checkBrushInput() {
         try {
-            if (brushSize.getText().matches("[0-9]*") == false || Integer.parseInt(brushSize.getText()) < 1 || Integer.parseInt(brushSize.getText()) > 200) {
+            if (brushSize.getText().matches("[0-9]*") == false
+                    || Integer.parseInt(brushSize.getText()) < 1
+                    || Integer.parseInt(brushSize.getText()) > 200) {
                 alert.brushSizeError();
                 brushSize.setText("5");
                 g.setLineWidth(5);
@@ -383,9 +393,28 @@ public class Controller {
     }
 
     /**
-     * Checks that the user input for brush size is a valid positive integer between 1 and 200.
+     * Checks that the user input for grid size is a valid positive integer between 1 and 1000.
      */
     public void checkGridInput() {
+        try {
+            if (gridSize.getText().matches("[0-9]*") == false
+                    || Integer.parseInt(gridSize.getText()) < 1
+                    || Integer.parseInt(gridSize.getText()) > 1000) {
+                alert.gridSizeError();
+                gridSize.setText("15");
+            } else {
+                displayGrid();
+            }
+        } catch (Exception e) {
+            // Display if any errors occur
+            System.out.println("Invalid grid size input: " + e);
+        }
+    }
+
+    /**
+     * Displays the grid on the canvas
+     */
+    public void displayGrid(){
 
     }
 }
