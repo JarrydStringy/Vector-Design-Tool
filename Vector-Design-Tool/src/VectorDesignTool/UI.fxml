@@ -90,14 +90,14 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                         </Group>
                         <Group>
                             <children>
-                                <ListView fx:id="history" prefWidth="150">
+                                <ListView fx:id="history" prefWidth="150" mouseTransparent="true" focusTraversable="false">
                                 </ListView>
                             </children>
                         </Group>
                         <Separator />
                         <Group>
                             <children>
-                                <Button text="Confirm"/>
+                                <Button text="Confirm" onAction="#onConfirm"/>
                             </children>
                         </Group>
                     </items>

@@ -1,6 +1,7 @@
 package VectorDesignTool;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -43,7 +44,6 @@ public class Controller {
     private CheckBox fill;
     @FXML
     private ListView history;
-
     // Sets graphics context for drawing
     GraphicsContext g;
     GraphicsContext g2;
@@ -210,7 +210,7 @@ public class Controller {
                 savefile.append(result);
                 String coord = " " + df.format(coords[1][0] / canvas.getWidth())
                         + " " + df.format(coords[1][1] / canvas.getHeight());
-                savefile.append(coords);
+                savefile.append(coord);
                 shape.drawShape();
             }
             if (shapeSelected == "POLYGON") {
@@ -239,7 +239,7 @@ public class Controller {
                                     + " " + df.format(y[i] / canvas.getHeight()));
                         }
                     }
-                    edgeCount = 0;
+
                     polygon.resetPolygon();
                 }
             }
@@ -261,18 +261,42 @@ public class Controller {
 
     public void updateHistory()
     {
-        savefile.deleteCharAt(0);
-        String last = savefile.substring(savefile.lastIndexOf("\n")).replace("\n", "");
-        if(Arrays.stream(shapes).parallel().anyMatch(last::contains))
-            history.getItems().add(last);
+        if(shapeSelected != "POLYGON")
+        {
+            history.setMouseTransparent( false );
+            history.setFocusTraversable( true );
+            String last =  savefile.substring(savefile.lastIndexOf("\n"))
+                    .replace("\n", "");
+            if(Arrays.stream(shapes).parallel().anyMatch(last::contains))
+                history.getItems().add(last);
+        }
+
+        else
+            if(edgeCount >= edges && edges != 0)
+            {
+                history.setMouseTransparent( false );
+                history.setFocusTraversable( true );
+                String last =  savefile.substring(savefile.lastIndexOf("\n"))
+                        .replace("\n", "");
+                if(Arrays.stream(shapes).parallel().anyMatch(last::contains))
+                    history.getItems().add(last);
+                    edgeCount = 0;
+            }
     }
 
     /**
      * Removes most recent drawing and stashes it for later redo.
      * User can also press "ctrl" + "z" to perform this action
      */
-    public void onUndo(){
-        undoRedo.Undo();
+    public void onUndo() {
+        String[] a = savefile.toString().split("\n");
+        for (String b : a) {
+            if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
+                history.getItems().remove(history.getItems().size() - 1);
+                undoRedo.Undo();
+                break;
+            }
+        }
     }
 
     /**
@@ -284,6 +308,38 @@ public class Controller {
         undoRedo.Redo();
     }
 
+    public void onConfirm()
+    {
+        String choice = history.getSelectionModel().getSelectedItem().toString();
+
+        savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
+        history.getItems().clear();
+        g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        String last =  savefile.substring(savefile.lastIndexOf("\n"))
+                .replace("\n", "");
+
+        if(Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
+            // Store each line in array
+            String[] a = savefile.toString().split("\n");
+            // Store each command in an array per line
+            String[][] fileLines = new String[a.length][];
+            for (int i = 0; i < a.length; i++) {
+                fileLines[i] = a[i].split(" ");
+            }
+
+            DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
+            displayFile.displayFile();
+        }
+        String[] a = savefile.toString().split("\n");
+        for ( String b : a)
+        {
+            if(Arrays.stream(shapes).parallel().anyMatch(b::contains))
+            {
+                history.getItems().add(b);
+            }
+        }
+    }
     /**
      * Clears the canvas if user selects yes in confirmation dialogue
      */
@@ -294,6 +350,7 @@ public class Controller {
             file.delete();
             isDrawing = false;
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            history.getItems().removeAll();
             savefile.delete(0,savefile.length());
         }
     }
@@ -302,6 +359,10 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave() {
+        if(savefile.toString().chars().filter(line -> line == '\n').count() > 1)
+        {
+            alert.nullExportError();
+        }
         try {
             SaveFile savefile = new SaveFile(g);
             savefile.saveFile();
