@@ -47,9 +47,10 @@ public class UndoRedo {
     public void Undo(){
         if(getCurrentFileLines()){
             try {
-                removedLine.add(currentFileLines.get(currentFileLines.size() - 1));
+                String[] removed = currentFileLines.get(currentFileLines.size() - 1);
+                removedLine.add(removed);
                 currentFileLines.remove(currentFileLines.size() - 1);
-                int start = savefile.lastIndexOf("\n" + removedLine[0] + " " + removedLine[1]);
+                int start = savefile.lastIndexOf("\n" + removed[0] + " " + removed[1]);
                 savefile.delete(start, savefile.length());
                 displayChange();
             } catch(Exception e){
