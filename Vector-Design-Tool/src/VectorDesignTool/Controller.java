@@ -18,8 +18,7 @@ import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.text.DecimalFormat;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static java.lang.Math.abs;
 
@@ -42,6 +41,9 @@ public class Controller {
     private CheckBox pen;
     @FXML
     private CheckBox fill;
+    @FXML
+    private ListView history;
+
     // Sets graphics context for drawing
     GraphicsContext g;
     GraphicsContext g2;
@@ -52,6 +54,7 @@ public class Controller {
     DecimalFormat df = SaveFile.df;
     String result = "";
 
+    String[] shapes = {"PLOT", "LINE", "RECTANGLE", "ELLIPSE", "POLYGON"};
     // Stores Mouse coordinates
     private double[][] coords = {{0, 0}, {0, 0}};
     // Store polygon edges
@@ -65,6 +68,7 @@ public class Controller {
     private ResizeCanvas resizeCanvas;
     private DrawPolygon polygon;
     private Alerts alert;
+    private List<String[]> currentFileLines;
     public static UndoRedo undoRedo;
 
     /**
@@ -204,8 +208,9 @@ public class Controller {
                 }
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
-                savefile.append(" " + df.format(coords[1][0] / canvas.getWidth())
-                        + " " + df.format(coords[1][1] / canvas.getHeight()));
+                String coord = " " + df.format(coords[1][0] / canvas.getWidth())
+                        + " " + df.format(coords[1][1] / canvas.getHeight());
+                savefile.append(coords);
                 shape.drawShape();
             }
             if (shapeSelected == "POLYGON") {
@@ -238,6 +243,7 @@ public class Controller {
                     polygon.resetPolygon();
                 }
             }
+            updateHistory();
             save.saveCurrentFile("currentFile.vec", savefile.toString());
         });
         // ------------------------------------ Listener for when mouse is dragged
@@ -251,6 +257,14 @@ public class Controller {
             }
         });
         // ------------------------------------ Listener for Key presses
+    }
+
+    public void updateHistory()
+    {
+        savefile.deleteCharAt(0);
+        String last = savefile.substring(savefile.lastIndexOf("\n")).replace("\n", "");
+        if(Arrays.stream(shapes).parallel().anyMatch(last::contains))
+            history.getItems().add(last);
     }
 
     /**
@@ -371,39 +385,41 @@ public class Controller {
         savefile.append("\nPEN-WIDTH " + brushSize.getText());
     }
 
+
+
     /**
      * Draw a plot
      */
     public void createPlot() {
-        shapeSelected = "PLOT";
+        shapeSelected = shapes[0];
     }
 
     /**
      * Draw a line
      */
     public void createLine() {
-        shapeSelected = "LINE";
+        shapeSelected = shapes[1];
     }
 
     /**
      * Draw a rectangle
      */
     public void createRectangle() {
-        shapeSelected = "RECTANGLE";
+        shapeSelected = shapes[2];
     }
 
     /**
      * Draw a ellipse
      */
     public void createEllipse() {
-        shapeSelected = "ELLIPSE";
+        shapeSelected = shapes[3];
     }
 
     /**
      * Draw a polygon
      */
     public void createPolygon() {
-        shapeSelected = "POLYGON";
+        shapeSelected = shapes[4];
         polygon = new DrawPolygon(g);
         edges = polygon.getUserInput();
     }
