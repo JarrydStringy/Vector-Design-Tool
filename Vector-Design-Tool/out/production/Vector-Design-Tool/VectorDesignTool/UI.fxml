@@ -11,8 +11,13 @@
 prefHeight/Width    Application Height/Width
 
 <top>               Menu, toolbar
-Menu                File-> Save, Exit
-                    Tool-> plot, line, rectangle, ellipse, polygon
+Menu                File-> Exit
+                    Import-> Open
+                    Export-> To PNG/VEC
+Toolbar             Undo, Redo, Clear, Grid On, Grid size
+
+
+                    plot, line, rectangle, ellipse, polygon
 Toolbar             Brush size, colour picker, eraser
 
 <right>             Vertical Button Menu: plot, line, rectangle, ellipse, polygon
@@ -32,6 +37,8 @@ Toolbar             Brush size, colour picker, eraser
             <MenuBar>
                 <Menu text="File">
                     <MenuItem text="Exit" onAction="#onExit"/>
+                </Menu>
+                <Menu text="Import">
                     <MenuItem text="Open" onAction="#openFile"/>
                 </Menu>
                 <Menu text="Export">
@@ -53,9 +60,11 @@ Toolbar             Brush size, colour picker, eraser
                         <tooltip><Tooltip text="Clear Canvas" /></tooltip>
                     </Button>
                     <Separator orientation="VERTICAL"/>
-                    <CheckBox fx:id="grid" text="Grid On">
+                    <Label text="Grid On:"/>
+                    <CheckBox fx:id="grid">
                         <tooltip><Tooltip text="Check to create grid" /></tooltip>
                     </CheckBox>
+                    <Label text="Grid Size:"/>
                     <TextField fx:id="gridSize" text="15" onKeyTyped="#checkGridInput" maxWidth="50">
                         <tooltip>
                             <Tooltip text="Enter amount of grids, must be integer between 1 and 1000." />
@@ -183,6 +192,4 @@ Toolbar             Brush size, colour picker, eraser
             </children>
         </HBox>
     </right>
-
-
 </BorderPane>
