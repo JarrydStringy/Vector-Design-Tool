@@ -14,6 +14,7 @@ public class SaveFile{
     public static DecimalFormat df = new DecimalFormat("0.000000");
     private GraphicsContext g;
 
+
     /**
      * Saves file to chosen directory based on user selection of 'VEC' or 'BMP' file type.
      * @param g - Graphics Context of canvas

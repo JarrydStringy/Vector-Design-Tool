@@ -277,6 +277,8 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave() {
+
+
         try {
             SaveFile savefile = new SaveFile(g);
             savefile.saveFile();
@@ -284,6 +286,8 @@ public class Controller {
             System.out.println("Error in Controller, saving file (261): " + e);
         }
     }
+
+
 
     /**
      * Saves a snapshot of the canvas as a '.png' file
@@ -293,7 +297,7 @@ public class Controller {
             // Record what is in canvas
             Image snapshot = canvas.snapshot(null, null);
             // Save to .png file
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "VEC", new File("VectorDesign.VEC"));
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "PNG", new File("VectorDesign2.PNG"));
         } catch (Exception e) {
             // Display if any errors occur
             System.out.println("Error in Controller, export (276): " + e);
