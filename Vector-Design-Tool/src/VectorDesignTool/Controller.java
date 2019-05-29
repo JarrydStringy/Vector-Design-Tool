@@ -26,14 +26,6 @@ public class Controller {
     Pane canvasPane;
     @FXML
     Pane canvasPane2;
-    // Sets graphics context for drawing
-    GraphicsContext g;
-    GraphicsContext g2;
-    StringBuilder savefile = SaveFile.saveFile;
-    List<Double> xCoords = DrawPolygon.xCoords;
-    List<Double> yCoords = DrawPolygon.yCoords;
-    DecimalFormat df = SaveFile.df;
-    String result = "";
     @FXML
     Canvas canvas;
     Canvas canvas2;
@@ -45,17 +37,27 @@ public class Controller {
     private CheckBox pen;
     @FXML
     private CheckBox fill;
+    // Sets graphics context for drawing
+    GraphicsContext g;
+    GraphicsContext g2;
+    StringBuilder savefile = SaveFile.saveFile;
+    List<Double> xCoords = DrawPolygon.xCoords;
+    List<Double> yCoords = DrawPolygon.yCoords;
+    DecimalFormat df = SaveFile.df;
+    String result = "";
     // Stores Mouse coordinates
     private double[][] coords = {{0, 0}, {0, 0}};
     // Store polygon edges
     private int edges;
     private int edgeCount = 0;
-    private DrawPolygon polygon;
     // Current shape selection
     private String shapeSelected = "PLOT";
+    public static boolean isDrawing;
+    // Instantiations
+    private ResizeCanvas resizeCanvas;
+    private DrawPolygon polygon;
     private Alerts alert;
-    public static boolean isDrawing = false;
-    private ResizeCanvas2 resizeCanvas;
+    private UndoRedo undoRedo;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -69,16 +71,20 @@ public class Controller {
         canvasPane2.getChildren().add(canvas2);
         canvas2.toBack();
 
+        // Get drawing file ready
+        File file = new File("currentFile.vec");
+        file.delete();
+
+        // Instantiate classes
         SaveFile save = new SaveFile(g);
         ReadFile readFile = new ReadFile(g, canvas);
-        resizeCanvas = new ResizeCanvas2();
-        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2);
+        resizeCanvas = new ResizeCanvas();
+        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2, file);
+        alert = new Alerts();
+        undoRedo = new UndoRedo();
 
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
-
-        // Instantiate Alerts
-        alert = new Alerts();
 
         // Check brush input
         checkBrushInput();
@@ -247,7 +253,7 @@ public class Controller {
      * User can also press "ctrl" + "z" to perform this action
      */
     public void onUndo(){
-
+        undoRedo.Undo();
     }
 
     /**
@@ -256,7 +262,7 @@ public class Controller {
      * User can also press "ctrl" + "y" to perform this action
      */
     public void onRedo(){
-
+        undoRedo.Undo();
     }
 
     /**

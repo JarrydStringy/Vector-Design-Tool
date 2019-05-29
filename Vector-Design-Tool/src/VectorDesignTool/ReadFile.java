@@ -84,4 +84,10 @@ public class ReadFile {
     public void setSelectedFile(String selectedFile){
         this.selectedFile = selectedFile;
     }
+
+    /**
+     * Gets the scanned file lines.
+     * @return 2 dimensional String array of scanned file lines
+     */
+    public String[][] getFileLines(){ return fileLines; }
 }

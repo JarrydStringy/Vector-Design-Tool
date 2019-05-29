@@ -5,21 +5,26 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 
-public class ResizeCanvas2 {
-    public void resize(Pane canvasPane, GraphicsContext g, StringBuilder savefile, SaveFile save, ReadFile readFile, Canvas canvas, Canvas canvas2){
-        // Readjust canvas values
+import java.io.File;
+
+public class ResizeCanvas {
+    private String fileName = "currentFile.vec";
+
+    public void resize(Pane canvasPane, GraphicsContext g, StringBuilder savefile, SaveFile save, ReadFile readFile, Canvas canvas, Canvas canvas2, File file){
+
         canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
             if(Controller.isDrawing){
-                save.saveCurrentFile("currentFile.vec", savefile.toString());
-                readFile.setSelectedFile("currentFile.vec");
+                save.saveCurrentFile(fileName, savefile.toString());
+                readFile.setSelectedFile(fileName);
                 Controller.isDrawing = false;
             }
             canvas.setWidth(newValue.doubleValue());
-            try {
+            // Check if file exists
+            if(file.exists()){
                 g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 readFile.scanFile();
                 readFile.displayFile();
-            } catch (Exception e){ }
+            }
         });
         canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
             canvas.setHeight(newValue.doubleValue());
