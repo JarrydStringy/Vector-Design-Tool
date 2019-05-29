@@ -46,27 +46,36 @@ public class UndoRedo {
             try {
                 removedLine = currentFileLines.get(currentFileLines.size() - 1);
                 currentFileLines.remove(currentFileLines.size() - 1);
-                String[][] newFileLines = new String[currentFileLines.size()][];
-                String saveFileResult = "";
-                for (int i = 0; i < currentFileLines.size(); i++) {
-                    newFileLines[i] = currentFileLines.get(i);
-                    for (int j = 0; j < currentFileLines.get(i).length; j++) {
-                        saveFileResult += currentFileLines.get(i)[j] + " ";
-                    }
-                    saveFileResult += "\n";
-                }
-                readFile.setFileLines(newFileLines);
-                saveFile.saveCurrentFile(currentFileName, saveFileResult);
-                g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                readFile.displayFile();
+                displayChange();
             } catch(Exception e){
-                System.out.println("Error in undo (57): " + e);
+                System.out.println("Error in undo (51): " + e);
             }
         }
     }
 
     public void Redo(){
+        try {
+            currentFileLines.add(removedLine);
+            displayChange();
+        } catch(Exception e){
+            System.out.println("Error in redo (61): " + e);
+        }
+    }
 
+    public void displayChange(){
+        String[][] newFileLines = new String[currentFileLines.size()][];
+        String saveFileResult = "";
+        for (int i = 0; i < currentFileLines.size(); i++) {
+            newFileLines[i] = currentFileLines.get(i);
+            for (int j = 0; j < currentFileLines.get(i).length; j++) {
+                saveFileResult += currentFileLines.get(i)[j] + " ";
+            }
+            saveFileResult += "\n";
+        }
+        readFile.setFileLines(newFileLines);
+        saveFile.saveCurrentFile(currentFileName, saveFileResult);
+        g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        readFile.displayFile();
     }
 
 }

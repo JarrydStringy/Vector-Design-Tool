@@ -2,12 +2,15 @@ package VectorDesignTool;
 
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -62,7 +65,7 @@ public class Controller {
     private ResizeCanvas resizeCanvas;
     private DrawPolygon polygon;
     private Alerts alert;
-    private UndoRedo undoRedo;
+    public static UndoRedo undoRedo;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -248,14 +251,6 @@ public class Controller {
             }
         });
         // ------------------------------------ Listener for Key presses
-        canvas.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->{
-            // Check if keyboard input is ctrl + z
-            if(key.getCode()== KeyCode.Z && key.isControlDown()) {
-                onUndo();
-            } else if(key.getCode()== KeyCode.Y && key.isControlDown()){
-                onRedo();
-            }
-        });
     }
 
     /**
@@ -297,7 +292,7 @@ public class Controller {
             SaveFile savefile = new SaveFile(g);
             savefile.saveFile();
         } catch (Exception e) {
-            System.out.println("Error in Controller, saving file (261): " + e);
+            System.out.println("Error in Controller, saving file (300): " + e);
         }
     }
 
@@ -306,7 +301,7 @@ public class Controller {
             SaveBMP savebmp = new SaveBMP(g);
             savebmp.saveBMPFile();
         } catch (Exception e) {
-            System.out.println("Error in Controller, saving bmp file (261): " + e);
+            System.out.println("Error in Controller, saving bmp file (309): " + e);
         }
     }
 
@@ -322,7 +317,7 @@ public class Controller {
                     , "VEC", new File("VectorDesign.VEC"));
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Error in Controller, export (276): " + e);
+            System.out.println("Error in Controller, export (325): " + e);
         }
     }
 
@@ -371,7 +366,7 @@ public class Controller {
             }
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Invalid brushSize input: " + e);
+            System.out.println("Error in check brushSize (374): " + e);
         }
         savefile.append("\nPEN-WIDTH " + brushSize.getText());
     }
@@ -428,7 +423,7 @@ public class Controller {
             }
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Invalid grid size input: " + e);
+            System.out.println("Invalid grid size input (431): " + e);
         }
     }
 

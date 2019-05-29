@@ -53,10 +53,10 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
             <ToolBar>
                 <HBox alignment="CENTER" spacing="10">
                     <Button text="Undo" onAction="#onUndo">
-                        <tooltip><Tooltip text="KeyBoard Shortcut: ctrl+z" /></tooltip>
+                        <tooltip><Tooltip text="KeyBoard Shortcut: CTRL + Z" /></tooltip>
                     </Button>
                     <Button text="Redo" onAction="#onRedo">
-                        <tooltip><Tooltip text="KeyBoard Shortcut: ctrl+y" /></tooltip>
+                        <tooltip><Tooltip text="KeyBoard Shortcut: CTRL + Y" /></tooltip>
                     </Button>
                     <Separator orientation="VERTICAL"/>
                     <Button fx:id="clear" text="Clear" onAction="#onClearCanvas">
