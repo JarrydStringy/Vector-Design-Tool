@@ -285,7 +285,6 @@ public class Controller {
      */
     public void onSave() {
 
-
         try {
             SaveFile savefile = new SaveFile(g);
             savefile.saveFile();
@@ -293,8 +292,6 @@ public class Controller {
             System.out.println("Error in Controller, saving file (261): " + e);
         }
     }
-
-
 
     /**
      * Saves a snapshot of the canvas as a '.png' file
@@ -415,10 +412,17 @@ public class Controller {
         }
     }
 
+    public void displayGrid(){}
     /**
      * Displays the grid on the canvas
      */
-    public void displayGrid(){
+    public void onGrid(){
+//        //Sets shape selected to line
+//        createLine();
+//        //Creates shape object on canvas 2
+//        Shapes shape = new Shapes(shapeSelected, g2, coords);
+//        shape.drawLine();
 
+        g.strokeLine(0, 50, canvas.getWidth(),50);
     }
 }
