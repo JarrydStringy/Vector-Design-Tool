@@ -78,6 +78,34 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
         </VBox>
     </top>
 
+    <left>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <ToolBar orientation="VERTICAL">
+                    <items>
+                        <Group>
+                            <children>
+                                <Label text="History Selection"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <ListView fx:id="history" prefWidth="150">
+                                </ListView>
+                            </children>
+                        </Group>
+                        <Separator />
+                        <Group>
+                            <children>
+                                <Button text="Confirm"/>
+                            </children>
+                        </Group>
+                    </items>
+                </ToolBar>
+            </children>
+        </HBox>
+    </left>
+
     <center>
         <AnchorPane >
             <children>
