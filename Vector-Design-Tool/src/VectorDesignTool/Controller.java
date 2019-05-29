@@ -26,22 +26,6 @@ public class Controller {
     Pane canvasPane;
     @FXML
     Pane canvasPane2;
-
-    // Sets graphics context for drawing
-    GraphicsContext g;
-    GraphicsContext g2;
-    StringBuilder savefile = SaveFile.saveFile;
-    StringBuilder savebmp = SaveBMP.saveBMPFile;
-    List<Double> xCoords = DrawPolygon.xCoords;
-    List<Double> yCoords = DrawPolygon.yCoords;
-    DecimalFormat df = SaveFile.df;
-    String result = "";
-
-    // References to UI objects
-    @FXML
-    Pane canvasPane;
-    @FXML
-    Pane canvasPane2;
     @FXML
     Canvas canvas;
     Canvas canvas2;
@@ -59,6 +43,7 @@ public class Controller {
     GraphicsContext g;
     GraphicsContext g2;
     StringBuilder savefile = SaveFile.saveFile;
+    StringBuilder savebmp = SaveBMP.saveBMPFile;
     List<Double> xCoords = DrawPolygon.xCoords;
     List<Double> yCoords = DrawPolygon.yCoords;
     DecimalFormat df = SaveFile.df;
@@ -287,7 +272,7 @@ public class Controller {
      * User can also press "ctrl" + "y" to perform this action
      */
     public void onRedo(){
-        undoRedo.Undo();
+        undoRedo.Redo();
     }
 
     /**
@@ -345,6 +330,9 @@ public class Controller {
      * Exits program and shuts down the JavaFX application
      */
     public void onExit() {
+        File file = new File("currentFile.vec");
+        file.delete();
+        System.out.println("Stage is closing, deleted current file");
         //Shutdown JavaFX application
         Platform.exit();
     }
