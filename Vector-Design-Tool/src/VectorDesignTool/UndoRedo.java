@@ -17,7 +17,7 @@ public class UndoRedo {
     private ReadFile readFile;
     private SaveFile saveFile;
     private List<String[]> currentFileLines;
-    private String[] removedLine;
+    private List<String[]> removedLine;
     private GraphicsContext g;
     private Canvas canvas;
 
@@ -27,6 +27,7 @@ public class UndoRedo {
         readFile = new ReadFile(g, canvas);
         saveFile = new SaveFile(g);
         currentFile = new File(currentFileName);
+        removedLine = new ArrayList<>();
     }
 
     public boolean getCurrentFileLines(){
@@ -44,7 +45,7 @@ public class UndoRedo {
     public void Undo(){
         if(getCurrentFileLines()){
             try {
-                removedLine = currentFileLines.get(currentFileLines.size() - 1);
+                removedLine.add(currentFileLines.get(currentFileLines.size() - 1));
                 currentFileLines.remove(currentFileLines.size() - 1);
                 displayChange();
             } catch(Exception e){
@@ -55,7 +56,8 @@ public class UndoRedo {
 
     public void Redo(){
         try {
-            currentFileLines.add(removedLine);
+            currentFileLines.add(removedLine.get(removedLine.size()-1));
+            removedLine.remove(removedLine.get(removedLine.size()-1));
             displayChange();
         } catch(Exception e){
             System.out.println("Error in redo (61): " + e);

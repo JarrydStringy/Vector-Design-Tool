@@ -15,25 +15,25 @@ public class ResizeCanvas {
         canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
             if(Controller.isDrawing){
                 save.saveCurrentFile(fileName, savefile.toString());
-                readFile.setSelectedFile(fileName);
                 Controller.isDrawing = false;
             }
-            canvas.setWidth(newValue.doubleValue());
+            canvas.setWidth(newValue.doubleValue() - 151);
             // Check if file exists
             if(file.exists()){
                 g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                readFile.setSelectedFile(fileName);
                 readFile.scanFile();
                 readFile.displayFile();
             }
         });
         canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
-            canvas.setHeight(newValue.doubleValue());
+            canvas.setHeight(newValue.doubleValue() - 69);
         });
         canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
-            canvas2.setWidth(newValue.doubleValue());
+            canvas2.setWidth(newValue.doubleValue() - 151);
         });
         canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
-            canvas2.setHeight(newValue.doubleValue());
+            canvas2.setHeight(newValue.doubleValue() - 69);
         });
     }
 }
