@@ -30,6 +30,7 @@ public class Controller {
     GraphicsContext g;
     GraphicsContext g2;
     StringBuilder savefile = SaveFile.saveFile;
+    StringBuilder savebmp = SaveBMP.saveBMPFile;
     List<Double> xCoords = DrawPolygon.xCoords;
     List<Double> yCoords = DrawPolygon.yCoords;
     DecimalFormat df = SaveFile.df;
@@ -70,6 +71,7 @@ public class Controller {
         canvas2.toBack();
 
         SaveFile save = new SaveFile(g);
+        SaveBMP bmpsave = new SaveBMP(g);
         ReadFile readFile = new ReadFile(g, canvas);
         resizeCanvas = new ResizeCanvas2();
         resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2);
@@ -277,8 +279,6 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave() {
-
-
         try {
             SaveFile savefile = new SaveFile(g);
             savefile.saveFile();
@@ -287,7 +287,14 @@ public class Controller {
         }
     }
 
-
+    public void onBMPSave() {
+        try {
+            SaveBMP savebmp = new SaveBMP(g);
+            savebmp.saveBMPFile();
+        } catch (Exception e) {
+            System.out.println("Error in Controller, saving bmp file (261): " + e);
+        }
+    }
 
     /**
      * Saves a snapshot of the canvas as a '.png' file

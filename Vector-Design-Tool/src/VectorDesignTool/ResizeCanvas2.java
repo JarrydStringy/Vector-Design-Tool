@@ -11,6 +11,7 @@ public class ResizeCanvas2 {
         canvasPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> {
             if(Controller.isDrawing){
                 save.saveCurrentFile("currentFile.vec", savefile.toString());
+
                 readFile.setSelectedFile("currentFile.vec");
                 Controller.isDrawing = false;
             }

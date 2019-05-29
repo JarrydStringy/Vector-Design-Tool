@@ -46,6 +46,7 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                 <Menu text="Export">
                     <MenuItem text="Export as PNG" onAction="#onExport"/>
                     <MenuItem text="Export as VEC" onAction="#onSave"/>
+                    <MenuItem text="Export as BMP" onAction="#onBMPSave"/>
                 </Menu>
             </MenuBar>
 
