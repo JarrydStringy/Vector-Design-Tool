@@ -16,7 +16,7 @@ public class SaveFile{
 
 
     /**
-     * Saves file to chosen directory based on user selection of 'VEC' or 'BMP' file type.
+     * Saves file to chosen directory based on user selection, of file type 'VEC'.
      * @param g - Graphics Context of canvas
      */
     public SaveFile(GraphicsContext g){
