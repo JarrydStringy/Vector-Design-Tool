@@ -284,6 +284,8 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave() {
+
+
         try {
             SaveFile savefile = new SaveFile(g);
             savefile.saveFile();
@@ -291,6 +293,8 @@ public class Controller {
             System.out.println("Error in Controller, saving file (261): " + e);
         }
     }
+
+
 
     /**
      * Saves a snapshot of the canvas as a '.png' file
