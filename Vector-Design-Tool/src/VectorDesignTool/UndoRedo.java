@@ -62,7 +62,7 @@ public class UndoRedo {
     public void Redo(){
         try {
             currentFileLines.add(removedLine.get(removedLine.size()-1));
-            savefile.append("\n" + String.join(" ", removedLine));
+            savefile.append("\n" + String.join(" ", removedLine.get(removedLine.size()-1)));
             removedLine.remove(removedLine.get(removedLine.size()-1));
             displayChange();
         } catch(Exception e){

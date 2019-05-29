@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7278dba4-0956-42d6-896d-dadd878614ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/ReadFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/ReadFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/ResizeCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vector-Design-Tool/VectorDesignTool/ResizeCanvas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/ReadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/ReadFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/ResizeCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/ResizeCanvas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/src/Test/" />
@@ -40,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+            <state relative-caret-position="558">
+              <caret line="64" column="89" selection-start-line="64" selection-start-column="89" selection-end-line="64" selection-end-column="89" />
             </state>
           </provider>
         </entry>
@@ -75,7 +70,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -98,6 +92,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -156,7 +151,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1721902" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17507204" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -192,20 +187,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="67" column="17" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UI.fxml">
       <provider selected="true" editor-type-id="text-editor">
@@ -249,10 +230,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="67" column="17" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+        <state relative-caret-position="558">
+          <caret line="64" column="89" selection-start-line="64" selection-start-column="89" selection-end-line="64" selection-end-column="89" />
         </state>
       </provider>
     </entry>
