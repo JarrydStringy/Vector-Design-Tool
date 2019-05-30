@@ -49,7 +49,7 @@ public class DisplayFile {
                     changePenColour(t[1]);
                 } else if(b.contains("PEN-WIDTH")){
                     changePenWidth(t[1]);
-                } else if(b.contains("LINE") || b.contains("RECTANGLE")){
+                } else if(b.contains("LINE") || b.contains("RECTANGLE") || b.contains("ELLIPSE")){
                     displayShape(t);
                 }
                 break;

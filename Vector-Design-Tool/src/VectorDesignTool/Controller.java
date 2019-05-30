@@ -1,13 +1,17 @@
 package VectorDesignTool;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -15,22 +19,11 @@ import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.text.DecimalFormat;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static java.lang.Math.abs;
 
 public class Controller {
-
-    // Sets graphics context for drawing
-    GraphicsContext g;
-    GraphicsContext g2;
-    StringBuilder savefile = SaveFile.saveFile;
-    List<Double> xCoords = DrawPolygon.xCoords;
-    List<Double> yCoords = DrawPolygon.yCoords;
-    DecimalFormat df = SaveFile.df;
-    String result = "";
-
     // References to UI objects
     @FXML
     Pane canvasPane;
@@ -49,18 +42,34 @@ public class Controller {
     private CheckBox pen;
     @FXML
     private CheckBox fill;
+    @FXML
+    private ListView history;
+    // Sets graphics context for drawing
+    GraphicsContext g;
+    GraphicsContext g2;
+    StringBuilder savefile = SaveFile.saveFile;
+    StringBuilder savebmp = SaveBMP.saveBMPFile;
+    List<Double> xCoords = DrawPolygon.xCoords;
+    List<Double> yCoords = DrawPolygon.yCoords;
+    DecimalFormat df = SaveFile.df;
+    String result = "";
 
+    String[] shapes = {"PLOT", "LINE", "RECTANGLE", "ELLIPSE", "POLYGON"};
     // Stores Mouse coordinates
     private double[][] coords = {{0, 0}, {0, 0}};
     // Store polygon edges
     private int edges;
     private int edgeCount = 0;
-    private DrawPolygon polygon;
     // Current shape selection
     private String shapeSelected = "PLOT";
+    public static boolean isDrawing;
+    // Instantiations
+    private SaveFile save;
+    private ResizeCanvas resizeCanvas;
+    private DrawPolygon polygon;
     private Alerts alert;
-    public static boolean isDrawing = false;
-    private ResizeCanvas2 resizeCanvas;
+    private List<String[]> currentFileLines;
+    public static UndoRedo undoRedo;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -74,16 +83,22 @@ public class Controller {
         canvasPane2.getChildren().add(canvas2);
         canvas2.toBack();
 
+        // Get drawing file ready
+        File file = new File("currentFile.vec");
+        file.delete();
+
+        // Instantiate classes
+        save = new SaveFile(g);
         SaveFile save = new SaveFile(g);
+        SaveBMP bmpsave = new SaveBMP(g);
         ReadFile readFile = new ReadFile(g, canvas);
-        resizeCanvas = new ResizeCanvas2();
-        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2);
+        resizeCanvas = new ResizeCanvas();
+        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2, file);
+        alert = new Alerts();
+        undoRedo = new UndoRedo(g, canvas);
 
         // Set initial value of colour picker
         colorPicker.setValue(Color.BLACK);
-
-        // Instantiate Alerts
-        alert = new Alerts();
 
         // Check brush input
         checkBrushInput();
@@ -193,8 +208,9 @@ public class Controller {
                 }
                 result = "\n" + shapeSelected + " " + result;
                 savefile.append(result);
-                savefile.append(" " + df.format(coords[1][0] / canvas.getWidth())
-                        + " " + df.format(coords[1][1] / canvas.getHeight()));
+                String coord = " " + df.format(coords[1][0] / canvas.getWidth())
+                        + " " + df.format(coords[1][1] / canvas.getHeight());
+                savefile.append(coord);
                 shape.drawShape();
             }
             if (shapeSelected == "POLYGON") {
@@ -223,10 +239,12 @@ public class Controller {
                                     + " " + df.format(y[i] / canvas.getHeight()));
                         }
                     }
-                    edgeCount = 0;
+
                     polygon.resetPolygon();
                 }
             }
+            updateHistory();
+            save.saveCurrentFile("currentFile.vec", savefile.toString());
         });
         // ------------------------------------ Listener for when mouse is dragged
         canvas.setOnMouseDragged(e -> {
@@ -239,22 +257,46 @@ public class Controller {
             }
         });
         // ------------------------------------ Listener for Key presses
-        canvas.addEventHandler(KeyEvent.KEY_PRESSED, (key) ->{
-            // Check if keyboard input is ctrl + z
-            if(key.getCode()== KeyCode.Z && key.isControlDown()) {
-                onUndo();
-            } else if(key.getCode()== KeyCode.Y && key.isControlDown()){
-                onRedo();
+    }
+
+    public void updateHistory()
+    {
+        if(shapeSelected != "POLYGON")
+        {
+            history.setMouseTransparent( false );
+            history.setFocusTraversable( true );
+            String last =  savefile.substring(savefile.lastIndexOf("\n"))
+                    .replace("\n", "");
+            if(Arrays.stream(shapes).parallel().anyMatch(last::contains))
+                history.getItems().add(last);
+        }
+
+        else
+            if(edgeCount >= edges && edges != 0)
+            {
+                history.setMouseTransparent( false );
+                history.setFocusTraversable( true );
+                String last =  savefile.substring(savefile.lastIndexOf("\n"))
+                        .replace("\n", "");
+                if(Arrays.stream(shapes).parallel().anyMatch(last::contains))
+                    history.getItems().add(last);
+                    edgeCount = 0;
             }
-        });
     }
 
     /**
      * Removes most recent drawing and stashes it for later redo.
      * User can also press "ctrl" + "z" to perform this action
      */
-    public void onUndo(){
-
+    public void onUndo() {
+        String[] a = savefile.toString().split("\n");
+        for (String b : a) {
+            if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
+                history.getItems().remove(history.getItems().size() - 1);
+                undoRedo.Undo();
+                break;
+            }
+        }
     }
 
     /**
@@ -263,9 +305,41 @@ public class Controller {
      * User can also press "ctrl" + "y" to perform this action
      */
     public void onRedo(){
-
+        undoRedo.Redo();
     }
 
+    public void onConfirm()
+    {
+        String choice = history.getSelectionModel().getSelectedItem().toString();
+
+        savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
+        history.getItems().clear();
+        g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        String last =  savefile.substring(savefile.lastIndexOf("\n"))
+                .replace("\n", "");
+
+        if(Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
+            // Store each line in array
+            String[] a = savefile.toString().split("\n");
+            // Store each command in an array per line
+            String[][] fileLines = new String[a.length][];
+            for (int i = 0; i < a.length; i++) {
+                fileLines[i] = a[i].split(" ");
+            }
+
+            DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
+            displayFile.displayFile();
+        }
+        String[] a = savefile.toString().split("\n");
+        for ( String b : a)
+        {
+            if(Arrays.stream(shapes).parallel().anyMatch(b::contains))
+            {
+                history.getItems().add(b);
+            }
+        }
+    }
     /**
      * Clears the canvas if user selects yes in confirmation dialogue
      */
@@ -276,6 +350,7 @@ public class Controller {
             file.delete();
             isDrawing = false;
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            history.getItems().removeAll();
             savefile.delete(0,savefile.length());
         }
     }
@@ -284,12 +359,24 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave() {
-
+        if(savefile.toString().chars().filter(line -> line == '\n').count() > 1)
+        {
+            alert.nullExportError();
+        }
         try {
             SaveFile savefile = new SaveFile(g);
             savefile.saveFile();
         } catch (Exception e) {
-            System.out.println("Error in Controller, saving file (261): " + e);
+            System.out.println("Error in Controller, saving file (300): " + e);
+        }
+    }
+
+    public void onBMPSave() {
+        try {
+            SaveBMP savebmp = new SaveBMP(g);
+            savebmp.saveBMPFile();
+        } catch (Exception e) {
+            System.out.println("Error in Controller, saving bmp file (309): " + e);
         }
     }
 
@@ -305,7 +392,7 @@ public class Controller {
                     , "VEC", new File("VectorDesign.VEC"));
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Error in Controller, export (276): " + e);
+            System.out.println("Error in Controller, export (325): " + e);
         }
     }
 
@@ -313,6 +400,9 @@ public class Controller {
      * Exits program and shuts down the JavaFX application
      */
     public void onExit() {
+        File file = new File("currentFile.vec");
+        file.delete();
+        System.out.println("Stage is closing, deleted current file");
         //Shutdown JavaFX application
         Platform.exit();
     }
@@ -351,44 +441,46 @@ public class Controller {
             }
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Invalid brushSize input: " + e);
+            System.out.println("Error in check brushSize (374): " + e);
         }
         savefile.append("\nPEN-WIDTH " + brushSize.getText());
     }
+
+
 
     /**
      * Draw a plot
      */
     public void createPlot() {
-        shapeSelected = "PLOT";
+        shapeSelected = shapes[0];
     }
 
     /**
      * Draw a line
      */
     public void createLine() {
-        shapeSelected = "LINE";
+        shapeSelected = shapes[1];
     }
 
     /**
      * Draw a rectangle
      */
     public void createRectangle() {
-        shapeSelected = "RECTANGLE";
+        shapeSelected = shapes[2];
     }
 
     /**
      * Draw a ellipse
      */
     public void createEllipse() {
-        shapeSelected = "ELLIPSE";
+        shapeSelected = shapes[3];
     }
 
     /**
      * Draw a polygon
      */
     public void createPolygon() {
-        shapeSelected = "POLYGON";
+        shapeSelected = shapes[4];
         polygon = new DrawPolygon(g);
         edges = polygon.getUserInput();
     }
@@ -403,26 +495,22 @@ public class Controller {
                     || Integer.parseInt(gridSize.getText()) > 1000) {
                 alert.gridSizeError();
                 gridSize.setText("15");
-            } else {
-                displayGrid();
             }
         } catch (Exception e) {
             // Display if any errors occur
-            System.out.println("Invalid grid size input: " + e);
+            System.out.println("Invalid grid size input (431): " + e);
         }
     }
 
-    public void displayGrid(){}
     /**
      * Displays the grid on the canvas
      */
     public void onGrid(){
-//        //Sets shape selected to line
-//        createLine();
-//        //Creates shape object on canvas 2
-//        Shapes shape = new Shapes(shapeSelected, g2, coords);
-//        shape.drawLine();
-
-        g.strokeLine(0, 50, canvas.getWidth(),50);
+        //Make grid thin
+        g.setLineWidth(1);
+        for(int i = 2; i == Integer.parseInt(gridSize.getText()); i++){
+            g.strokeLine(0, canvas.getHeight()/i, canvas.getWidth(), canvas.getHeight()/i);
+            g.strokeLine(canvas.getWidth()/i, 0, canvas.getWidth()/i, canvas.getHeight());
+        }
     }
 }

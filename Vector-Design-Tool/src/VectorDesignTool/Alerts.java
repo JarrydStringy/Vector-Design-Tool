@@ -91,4 +91,13 @@ public class Alerts {
         alert.setContentText("Please enter a positive integer between 1 and 1000.");
         alert.showAndWait();
     }
+
+    public void nullExportError()
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Empty Canvas");
+        alert.setHeaderText(null);
+        alert.setContentText("You can not export blank VEC files");
+        alert.showAndWait();
+    }
 }

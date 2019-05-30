@@ -1,10 +1,15 @@
 package VectorDesignTool;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class App extends Application {
     /**
@@ -33,5 +38,24 @@ public class App extends Application {
 
         root.prefWidthProperty().bind(scene.widthProperty());
         root.prefHeightProperty().bind(scene.heightProperty());
+
+        // Listen to key presses
+        root.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent ke) {
+                if (ke.getCode() == KeyCode.Z && ke.isControlDown()) {
+                    System.out.println("Key Pressed: " + ke.getCode());
+                    Controller.undoRedo.Undo();
+                } else if (ke.getCode() == KeyCode.Y && ke.isControlDown()){
+                    System.out.println("Key Pressed: " + ke.getCode());
+                    Controller.undoRedo.Redo();
+                }
+            }
+        });
+
+        stage.setOnCloseRequest(event -> {
+            File file = new File("currentFile.vec");
+            file.delete();
+            System.out.println("Stage is closing, deleted current file");
+        });
     }
 }

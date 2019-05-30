@@ -46,16 +46,17 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                 <Menu text="Export">
                     <MenuItem text="Export as PNG" onAction="#onExport"/>
                     <MenuItem text="Export as VEC" onAction="#onSave"/>
+                    <MenuItem text="Export as BMP" onAction="#onBMPSave"/>
                 </Menu>
             </MenuBar>
 
             <ToolBar>
                 <HBox alignment="CENTER" spacing="10">
                     <Button text="Undo" onAction="#onUndo">
-                        <tooltip><Tooltip text="KeyBoard Shortcut: ctrl+z" /></tooltip>
+                        <tooltip><Tooltip text="KeyBoard Shortcut: CTRL + Z" /></tooltip>
                     </Button>
                     <Button text="Redo" onAction="#onRedo">
-                        <tooltip><Tooltip text="KeyBoard Shortcut: ctrl+y" /></tooltip>
+                        <tooltip><Tooltip text="KeyBoard Shortcut: CTRL + Y" /></tooltip>
                     </Button>
                     <Separator orientation="VERTICAL"/>
                     <Button fx:id="clear" text="Clear" onAction="#onClearCanvas">
@@ -76,6 +77,34 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
             </ToolBar>
         </VBox>
     </top>
+
+    <left>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <ToolBar orientation="VERTICAL">
+                    <items>
+                        <Group>
+                            <children>
+                                <Label text="History Selection"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <ListView fx:id="history" prefWidth="150" mouseTransparent="true" focusTraversable="false">
+                                </ListView>
+                            </children>
+                        </Group>
+                        <Separator />
+                        <Group>
+                            <children>
+                                <Button text="Confirm" onAction="#onConfirm"/>
+                            </children>
+                        </Group>
+                    </items>
+                </ToolBar>
+            </children>
+        </HBox>
+    </left>
 
     <center>
         <AnchorPane >
