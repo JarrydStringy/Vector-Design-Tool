@@ -14,12 +14,16 @@ import java.io.File;
 public class App extends Application {
     /**
      * Launches and sets up JavaFX application
+     *
      * @param args - commandline arguments as an array of String objects
      */
-    public static void main(String[] args) { launch(args); }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     /**
      * Prepares stage and sets scene with UI content
+     *
      * @param stage - the main window of the application
      */
     public void start(Stage stage) throws Exception {
@@ -45,7 +49,7 @@ public class App extends Application {
                 if (ke.getCode() == KeyCode.Z && ke.isControlDown()) {
                     System.out.println("Key Pressed: " + ke.getCode());
                     Controller.undoRedo.Undo();
-                } else if (ke.getCode() == KeyCode.Y && ke.isControlDown()){
+                } else if (ke.getCode() == KeyCode.Y && ke.isControlDown()) {
                     System.out.println("Key Pressed: " + ke.getCode());
                     Controller.undoRedo.Redo();
                 }
