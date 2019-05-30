@@ -1,27 +1,27 @@
 package VectorDesignTool;
 
 import javafx.scene.canvas.GraphicsContext;
-
-import java.io.File;
-import java.text.DecimalFormat;
-
-import java.io.FileWriter;
 import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.text.DecimalFormat;
+
 public class SaveBMP {
-    public static StringBuilder saveBMPFile = new StringBuilder("");
+    public static StringBuilder saveBMPFile = new StringBuilder();
     public static DecimalFormat df2 = new DecimalFormat("0.000000");
     private GraphicsContext g;
 
     /**
      * Saves file to chosen directory based on user selection, of file type 'VEC'.
+     *
      * @param g - Graphics Context of canvas
      */
-    public SaveBMP(GraphicsContext g){
+    public SaveBMP(GraphicsContext g) {
         this.g = g;
     }
 
-    public void saveBMPFile(){
+    public void saveBMPFile() {
         saveBMPFile.deleteCharAt(0);
         String saveBMPfile = saveBMPFile.toString();
         FileChooser fileChooser = new FileChooser();
@@ -38,7 +38,8 @@ public class SaveBMP {
 
     /**
      * Writes the file using FileWriter class.
-     * @param file - file being saved to
+     *
+     * @param file   - file being saved to
      * @param result - string of contents being written to file
      */
     private void saveToFile(File file, String result) {
@@ -47,8 +48,7 @@ public class SaveBMP {
             bmpFile = new FileWriter(file);
             bmpFile.write(result);
             bmpFile.close();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Failed to save file: " + e);
         }
     }

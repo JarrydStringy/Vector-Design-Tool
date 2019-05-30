@@ -16,8 +16,9 @@ public class DisplayFile {
 
     /**
      * Displays the drawing on the canvas using the read coordinates from the file for each shape.
-     * @param g - Graphics context of drawing canvas
-     * @param canvas - Drawing canvas
+     *
+     * @param g         - Graphics context of drawing canvas
+     * @param canvas    - Drawing canvas
      * @param fileLines - Scanned file lines from opened file
      */
     public DisplayFile(GraphicsContext g, Canvas canvas, String[][] fileLines) {
@@ -36,20 +37,20 @@ public class DisplayFile {
         for (String[] t : fileLines) {
             for (String b : t) {
                 if (b.contains("PLOT")) {
-                    displayPlot(t,b);
+                    displayPlot(t, b);
                 } else if (b.contains("POLYGON")) {
                     displayPolygon(t);
-                } else if(b.contains("FILL")){
+                } else if (b.contains("FILL")) {
                     shape.setIsFill(true);
                     drawPolygon.setIsFill(true);
                     changeFillColour(t[1]);
-                } else if(b.contains("PEN") && !b.contains("PEN-WIDTH")){
+                } else if (b.contains("PEN") && !b.contains("PEN-WIDTH")) {
                     shape.setIsFill(false);
                     drawPolygon.setIsFill(false);
                     changePenColour(t[1]);
-                } else if(b.contains("PEN-WIDTH")){
+                } else if (b.contains("PEN-WIDTH")) {
                     changePenWidth(t[1]);
-                } else if(b.contains("LINE") || b.contains("RECTANGLE") || b.contains("ELLIPSE")){
+                } else if (b.contains("LINE") || b.contains("RECTANGLE") || b.contains("ELLIPSE")) {
                     displayShape(t);
                 }
                 break;
@@ -59,28 +60,28 @@ public class DisplayFile {
         drawPolygon.setIsFill(false);
     }
 
-    public void changeFillColour(String t){
-        try{
+    public void changeFillColour(String t) {
+        try {
             g.setFill(Color.web(t));
-        } catch(Exception e){
+        } catch (Exception e) {
             g.setFill(Color.BLACK);
             System.out.println("Error in change fill colour in DisplayFile (64): " + e);
         }
     }
 
-    public void changePenColour(String t){
-        try{
+    public void changePenColour(String t) {
+        try {
             g.setStroke(Color.web(t));
-        } catch(Exception e){
+        } catch (Exception e) {
             g.setStroke(Color.BLACK);
             System.out.println("Error in change stroke colour in DisplayFile (72): " + e);
         }
     }
 
-    public void changePenWidth(String t){
-        try{
+    public void changePenWidth(String t) {
+        try {
             g.setLineWidth(Integer.parseInt(t));
-        } catch(Exception e){
+        } catch (Exception e) {
             g.setLineWidth(5);
             System.out.println("Error in change stroke width in DisplayFile (80): " + e);
         }
@@ -88,10 +89,11 @@ public class DisplayFile {
 
     /**
      * Draws a plot on the canvas.
+     *
      * @param t - Array of words from current file line
      * @param b - single word from current file line
      */
-    public void displayPlot(String[] t, String b){
+    public void displayPlot(String[] t, String b) {
         try {
             double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
                     {Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()}};
@@ -105,15 +107,16 @@ public class DisplayFile {
 
     /**
      * Draws a polygon on the canvas.
+     *
      * @param t - Array of words from current file line
      */
-    public void displayPolygon(String[] t){
+    public void displayPolygon(String[] t) {
         try {
-            int edges = t.length/2;
+            int edges = t.length / 2;
             List<Double> xCoords = new ArrayList<>();
             List<Double> yCoords = new ArrayList<>();
             for (int i = 1; i < t.length; i++) {
-                if(( i % 2 != 0 )){
+                if ((i % 2 != 0)) {
                     xCoords.add(Double.parseDouble(t[i]) * canvas.getWidth());
                 } else {
                     yCoords.add(Double.parseDouble(t[i]) * canvas.getHeight());
@@ -129,9 +132,10 @@ public class DisplayFile {
 
     /**
      * Draws a line, rectangle or ellipse on canvas.
+     *
      * @param t - Array of words from current file line
      */
-    public void displayShape(String[] t){
+    public void displayShape(String[] t) {
         try {
             double[][] coords = {{Double.parseDouble(t[1]) * canvas.getWidth(), Double.parseDouble(t[2]) * canvas.getHeight()},
                     {Double.parseDouble(t[3]) * canvas.getWidth(), Double.parseDouble(t[4]) * canvas.getHeight()}};

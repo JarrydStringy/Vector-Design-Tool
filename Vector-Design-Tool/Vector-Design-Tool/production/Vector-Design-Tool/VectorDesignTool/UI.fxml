@@ -85,7 +85,7 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                     <items>
                         <Group>
                             <children>
-                                <Label text="History Selection"/>
+                                <Label text="History Selection:"/>
                             </children>
                         </Group>
                         <Group>

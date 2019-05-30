@@ -9,8 +9,8 @@ import java.util.Optional;
 public class Alerts {
     /**
      * Informs the user to select pen or fill to draw on the canvas.
-     * */
-    public void selectDraw(){
+     */
+    public void selectDraw() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Want to draw...?");
         alert.setHeaderText(null);
@@ -20,9 +20,10 @@ public class Alerts {
 
     /**
      * Checks if the user would like to clear the canvas.
+     *
      * @return the result
-     * */
-    public Optional<ButtonType> clearCanvasCheck(){
+     */
+    public Optional<ButtonType> clearCanvasCheck() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Clear Canvas");
         alert.setHeaderText(null);
@@ -36,8 +37,8 @@ public class Alerts {
 
     /**
      * Alerts the user with an error dialogue stating they have entered an incorrect brush size value.
-     * */
-    public void brushSizeError(){
+     */
+    public void brushSizeError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Invalid Input");
         alert.setHeaderText(null);
@@ -47,8 +48,8 @@ public class Alerts {
 
     /**
      * Alerts the user with an error dialogue stating they have entered an incorrect brush size value.
-     * */
-    public Optional<String> polygonPromptEdgeInput(){
+     */
+    public Optional<String> polygonPromptEdgeInput() {
         TextInputDialog dialog = new TextInputDialog("4");
         dialog.setTitle("Polygon Edges");
         dialog.setHeaderText(null);
@@ -59,8 +60,8 @@ public class Alerts {
 
     /**
      * Alerts the user with an error dialogue stating they have entered an incorrect polygon edge value.
-     * */
-    public void polygonEdgeError(){
+     */
+    public void polygonEdgeError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Invalid Input");
         alert.setHeaderText(null);
@@ -70,9 +71,10 @@ public class Alerts {
 
     /**
      * Informs the user on how to draw a polygon.
+     *
      * @param edges - the number of edges the user entered for the polygon.
-     * */
-    public void polygonDrawInfo(int edges){
+     */
+    public void polygonDrawInfo(int edges) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Draw Polygon");
         alert.setHeaderText(null);
@@ -83,8 +85,8 @@ public class Alerts {
 
     /**
      * Alerts the user with an error dialogue stating they have entered an incorrect grid size value.
-     * */
-    public void gridSizeError(){
+     */
+    public void gridSizeError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Invalid Input");
         alert.setHeaderText(null);
@@ -92,8 +94,7 @@ public class Alerts {
         alert.showAndWait();
     }
 
-    public void nullExportError()
-    {
+    public void nullExportError() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Empty Canvas");
         alert.setHeaderText(null);
