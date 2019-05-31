@@ -313,10 +313,6 @@ public class Controller {
             if(undoHistory == true)
             {
                 String[] a = currentLine.split("\n");
-                for(String b : a)
-                {
-                    System.out.println(b);
-                }
                 for (String b : a) {
                     if (Arrays.stream(shapes).anyMatch(b::contains)) {
 
@@ -330,7 +326,6 @@ public class Controller {
                 String[][] fileLines = new String[c.length][];
                 for (int i = 0; i < c.length; i++) {
                     fileLines[i] = c[i].split(" ");
-                    System.out.println("LINE: " + i + fileLines[i]);
                 }
 
                 DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
@@ -351,7 +346,6 @@ public class Controller {
             i++;
         } catch (Exception e) {
             alert.noRedo();
-            System.out.println(e);
         }
     }
 
@@ -359,7 +353,8 @@ public class Controller {
         try
         {
             String choice = history.getSelectionModel().getSelectedItem().toString();
-            String[] c = savefile.toString().split("\n");
+            String[] c = savefile.substring(savefile.lastIndexOf("\n" + choice)).split("\n");
+            currentLine = "";
             for(String b : c)
             {
                 if (Arrays.stream(shapes).parallel().anyMatch(b::contains))
