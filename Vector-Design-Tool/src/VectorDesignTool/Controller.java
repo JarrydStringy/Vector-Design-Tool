@@ -276,18 +276,21 @@ public class Controller {
     }
 
     /**
+     * Test Variables, will clean up later!
+     */
+    String currentLine = "";
+
+    int i = 1;
+    /**
      * Removes most recent drawing and stashes it for later redo.
      * User can also press "ctrl" + "z" to perform this action
      */
     public void onUndo() {
         String[] a = savefile.toString().split("\n");
-        for (String b : a) {
-            if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
-                history.getItems().remove(history.getItems().size() - 1);
-                undoRedo.Undo();
-                break;
-            }
-        }
+        undoRedo.Undo();
+        history.getItems().remove(history.getItems().size() - 1);
+        currentLine =  "\n" + a[a.length-1] + currentLine;
+        System.out.println(currentLine);
     }
 
     /**
@@ -296,7 +299,14 @@ public class Controller {
      * User can also press "ctrl" + "y" to perform this action
      */
     public void onRedo() {
-        undoRedo.Redo();
+        String[] a = currentLine.split("\n");
+        try {
+            undoRedo.Redo();
+            history.getItems().add(a[i]);
+            i++;
+        } catch (Exception e) {
+            alert.noRedo();
+        }
     }
 
     public void onConfirm() {
