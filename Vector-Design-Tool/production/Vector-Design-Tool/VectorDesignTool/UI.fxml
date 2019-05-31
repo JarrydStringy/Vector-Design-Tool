@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<!-- Comments for below code:
+prefHeight/Width    Application Height/Width
+
+<top>               Menu, toolbar
+Menu                File-> Exit
+                    Import-> Open
+                    Export-> To PNG/VEC
+Toolbar             Undo, Redo, Clear, Grid On, Grid size
+
+<right>             Vertical Button Menu:
+                        Drawing Type:
+                            Pen, Fill
+                        Pen Colour
+                        Brush Size
+                        Vector Type:
+                            plot, line, rectangle, ellipse, polygon
+
+<centre>            Canvas
+-->
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane fx:id="canvasPane"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="VectorDesignTool.Controller"
+            prefHeight="600.0" prefWidth="600.0">
+
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Exit" onAction="#onExit"/>
+                </Menu>
+                <Menu text="Import">
+                    <MenuItem text="Open" onAction="#openFile"/>
+                </Menu>
+                <Menu text="Export">
+                    <MenuItem text="Export as PNG" onAction="#onExport"/>
+                    <MenuItem text="Export as VEC" onAction="#onSave"/>
+                    <MenuItem text="Export as BMP" onAction="#onBMPSave"/>
+                </Menu>
+            </MenuBar>
+
+            <ToolBar>
+                <HBox alignment="CENTER" spacing="10">
+                    <Button text="Undo" onAction="#onUndo">
+                        <tooltip><Tooltip text="KeyBoard Shortcut: CTRL + Z" /></tooltip>
+                    </Button>
+                    <Button text="Redo" onAction="#onRedo">
+                        <tooltip><Tooltip text="KeyBoard Shortcut: CTRL + Y" /></tooltip>
+                    </Button>
+                    <Separator orientation="VERTICAL"/>
+                    <Button fx:id="clear" text="Clear" onAction="#onClearCanvas">
+                        <tooltip><Tooltip text="Clear Canvas" /></tooltip>
+                    </Button>
+                    <Separator orientation="VERTICAL"/>
+                    <Label text="Grid On:"/>
+                    <CheckBox fx:id="grid" onAction="#onGrid">
+                        <tooltip><Tooltip text="Check to create grid" /></tooltip>
+                    </CheckBox>
+                    <Label text="Grid Size:"/>
+                    <TextField fx:id="gridSize" text="15" onKeyTyped="#checkGridInput" maxWidth="50">
+                        <tooltip>
+                            <Tooltip text="Enter amount of grids, must be integer between 1 and 1000." />
+                        </tooltip>
+                    </TextField>
+                </HBox>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <left>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <ToolBar orientation="VERTICAL">
+                    <items>
+                        <Group>
+                            <children>
+                                <Label text="History Selection"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <ListView fx:id="history" prefWidth="150" mouseTransparent="true" focusTraversable="false">
+                                </ListView>
+                            </children>
+                        </Group>
+                        <Separator />
+                        <Group>
+                            <children>
+                                <Button text="Confirm" onAction="#onConfirm"/>
+                            </children>
+                        </Group>
+                    </items>
+                </ToolBar>
+            </children>
+        </HBox>
+    </left>
+
+    <center>
+        <AnchorPane >
+            <children>
+                <Pane fx:id="canvasPane2"
+                      prefWidth="600"
+                      prefHeight="600">
+                    <children>
+                        <Canvas fx:id="canvas"
+                                width="600"
+                                height="600"/>
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+    </center>
+
+    <right>
+        <HBox spacing="10">
+            <children>
+                <ToolBar orientation="VERTICAL">
+                    <items>
+                        <Group>
+                            <children>
+                                <Label text="Drawing Type:"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <CheckBox fx:id="pen" text="Pen">
+                                    <tooltip><Tooltip text="Check to use Pen tool" /></tooltip>
+                                </CheckBox>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <CheckBox fx:id="fill" text="Fill">
+                                    <tooltip><Tooltip text="Check to use Fill tool" /></tooltip>
+                                </CheckBox>
+                            </children>
+                        </Group>
+                        <Separator />
+                        <Group>
+                            <children>
+                                <Label text="Pen Colour:"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <ColorPicker fx:id="colorPicker">
+                                    <tooltip><Tooltip text="Choose drawing colour" /></tooltip>
+                                </ColorPicker>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Label text="Brush Size:"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput" maxWidth="50">
+                                    <tooltip>
+                                        <Tooltip text="Enter Brush thickness, must be integer between 1 and 200." />
+                                    </tooltip>
+                                </TextField>
+                            </children>
+                        </Group>
+                        <Separator />
+                        <Group>
+                            <children>
+                                <Label text="Vector Type:"/>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Plot" onAction="#createPlot">
+                                    <tooltip><Tooltip text="Click on canvas to create dot" /></tooltip>
+                                </Button>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Line" onAction="#createLine">
+                                    <tooltip><Tooltip text="Click on canvas and drag to draw line" /></tooltip>
+                                </Button>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Rectangle" onAction="#createRectangle">
+                                    <tooltip>
+                                        <Tooltip text="Click on canvas and drag to draw rectangle" />
+                                    </tooltip>
+                                </Button>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Ellipse" onAction="#createEllipse">
+                                    <tooltip>
+                                        <Tooltip text="Click on canvas and drag to draw ellipse" />
+                                    </tooltip>
+                                </Button>
+                            </children>
+                        </Group>
+                        <Group>
+                            <children>
+                                <Button text="Polygon" onAction="#createPolygon">
+                                    <tooltip><Tooltip text="Draw a polygon"/></tooltip>
+                                </Button>
+                            </children>
+                        </Group>
+                    </items>
+                </ToolBar>
+            </children>
+        </HBox>
+    </right>
+</BorderPane>
