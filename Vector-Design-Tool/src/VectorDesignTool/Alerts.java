@@ -26,7 +26,7 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Clear Canvas");
         alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to clear the canvas?");
+        alert.setContentText("Are you sure you want to clear the canvas?\nThis will reset your history");
         ButtonType buttonYes = new ButtonType("Yes");
         ButtonType buttonCancel = new ButtonType("Cancel");
         alert.getButtonTypes().setAll(buttonYes, buttonCancel);
@@ -118,4 +118,14 @@ public class Alerts {
         alert.setContentText("You have no more shapes to undo");
         alert.showAndWait();
     }
+
+    public void noSelect()
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Please select where you would like to rollback to");
+        alert.showAndWait();
+    }
+
 }

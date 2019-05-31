@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,7 +66,7 @@ public class Controller {
     private DrawPolygon polygon;
     private Alerts alert;
     private List<String[]> currentFileLines;
-
+    public boolean undoHistory = false;
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
      */
@@ -280,7 +281,6 @@ public class Controller {
      * Test Variables, will clean up later!
      */
     String currentLine = "";
-
     int i = 1;
     /**
      * Removes most recent drawing and stashes it for later redo.
@@ -288,8 +288,6 @@ public class Controller {
      */
 
     final KeyCombination undo = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
-
-
 
 
     public void onUndo() {
@@ -312,43 +310,97 @@ public class Controller {
      */
     public void onRedo() {
         try {
+            if(undoHistory == true)
+            {
+                String[] a = currentLine.split("\n");
+                for(String b : a)
+                {
+                    System.out.println(b);
+                }
+                for (String b : a) {
+                    if (Arrays.stream(shapes).anyMatch(b::contains)) {
+
+                        savefile.append("\n" + b);
+                        history.getItems().add(b);
+                    }
+                }
+                g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                String[] c = savefile.toString().split("\n");
+                // Store each command in an array per line
+                String[][] fileLines = new String[c.length][];
+                for (int i = 0; i < c.length; i++) {
+                    fileLines[i] = c[i].split(" ");
+                    System.out.println("LINE: " + i + fileLines[i]);
+                }
+
+                DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
+                displayFile.displayFile();
+                undoHistory = false;
+                history.setMouseTransparent( false );
+                history.setFocusTraversable(true);
+                return;
+            }
             String[] a = currentLine.split("\n");
+            if(history.getItems().contains(a[a.length-1]))
+            {
+                alert.noRedo();
+                return;
+            }
             undoRedo.Redo();
             history.getItems().add(a[i]);
             i++;
         } catch (Exception e) {
             alert.noRedo();
+            System.out.println(e);
         }
     }
 
     public void onConfirm() {
-        String choice = history.getSelectionModel().getSelectedItem().toString();
+        try
+        {
+            String choice = history.getSelectionModel().getSelectedItem().toString();
+            String[] c = savefile.toString().split("\n");
+            for(String b : c)
+            {
+                if (Arrays.stream(shapes).parallel().anyMatch(b::contains))
+                    currentLine = currentLine + "\n" + b;
+            }
+            savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
+            history.getItems().clear();
+            g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
-        history.getItems().clear();
-        g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            String last = savefile.substring(savefile.lastIndexOf("\n"))
+                    .replace("\n", "");
 
-        String last = savefile.substring(savefile.lastIndexOf("\n"))
-                .replace("\n", "");
+            if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
+                // Store each line in array
+                String[] a = savefile.toString().split("\n");
+                // Store each command in an array per line
+                String[][] fileLines = new String[a.length][];
+                for (int i = 0; i < a.length; i++) {
+                    fileLines[i] = a[i].split(" ");
+                }
 
-        if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
-            // Store each line in array
+                DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
+                displayFile.displayFile();
+            }
             String[] a = savefile.toString().split("\n");
-            // Store each command in an array per line
-            String[][] fileLines = new String[a.length][];
-            for (int i = 0; i < a.length; i++) {
-                fileLines[i] = a[i].split(" ");
+            for (String b : a) {
+                if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
+                    history.getItems().add(b);
+                }
             }
-
-            DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
-            displayFile.displayFile();
-        }
-        String[] a = savefile.toString().split("\n");
-        for (String b : a) {
-            if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
-                history.getItems().add(b);
+            undoHistory = true;
+            if(history.getItems().size() < 1)
+            {
+                history.setMouseTransparent( true );
+                history.setFocusTraversable(false);
             }
         }
+       catch (Exception e)
+       {
+            alert.noSelect();
+       }
     }
 
     /**
@@ -359,6 +411,7 @@ public class Controller {
         if (option.get().getText() == "Yes") {
             File file = new File("currentFile.vec");
             file.delete();
+            currentLine = "";
             isDrawing = false;
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             history.getItems().clear();
