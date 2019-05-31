@@ -68,7 +68,7 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                         <tooltip><Tooltip text="Check to create grid" /></tooltip>
                     </CheckBox>
                     <Label text="Grid Size:"/>
-                    <TextField fx:id="gridSize" text="15" onKeyTyped="#checkGridInput" maxWidth="50">
+                    <TextField fx:id="gridSize" text="1" onKeyTyped="#checkGridInput" maxWidth="50">
                         <tooltip>
                             <Tooltip text="Enter amount of grids, must be integer between 1 and 1000." />
                         </tooltip>
@@ -79,7 +79,7 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
     </top>
 
     <left>
-        <HBox alignment="CENTER_LEFT" spacing="10">
+        <HBox spacing="10">
             <children>
                 <ToolBar orientation="VERTICAL">
                     <items>

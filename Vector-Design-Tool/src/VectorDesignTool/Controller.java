@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -66,9 +67,10 @@ public class Controller {
     private DrawPolygon polygon;
     private Alerts alert;
     private List<String[]> currentFileLines;
-    public boolean undoHistory = false;
+    boolean undoHistory = false;
     String currentLine = "";
     String currentHistory = "";
+    boolean gridOn = false;
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
      */
@@ -553,7 +555,7 @@ public class Controller {
                     || Integer.parseInt(gridSize.getText()) < 1
                     || Integer.parseInt(gridSize.getText()) > 1000) {
                 alert.gridSizeError();
-                gridSize.setText("15");
+                gridSize.setText("1");
             }
         } catch (Exception e) {
             // Display if any errors occur
@@ -565,18 +567,27 @@ public class Controller {
      * Displays the grid on the canvas
      */
     public void onGrid() {
-        grid.setOnAction(click -> {
-
-        });
-
-        //Make grid thin
-        g.setLineWidth(1);
+        //Toggle Grid
+        gridOn = !gridOn;
         //Display grid size from user input
-        for (int i = 2; i == Integer.parseInt(gridSize.getText()); i++) {
-            g.strokeLine(0, canvas.getHeight() / i, canvas.getWidth(), canvas.getHeight() / i);
-            g.strokeLine(canvas.getWidth() / i, 0, canvas.getWidth() / i, canvas.getHeight());
+        g2.setLineWidth(Integer.parseInt(gridSize.getText()));
+
+        if (gridOn == true) {
+            // Vertical Lines
+            g2.setStroke(Color.BLACK);
+            for (int i = 0; i < canvas2.getWidth(); i += 30) {
+                g2.strokeLine(i, 0, i, canvas2.getHeight() - (canvas2.getHeight() % 30));
+            }
+
+            // Horizontal Lines
+            for (int i = 30; i < canvas2.getHeight(); i += 30) {
+                g2.strokeLine(1, i, canvas2.getWidth(), i);
+            }
         }
-        //Return Brush size to old brush size
-        g.setLineWidth(Integer.parseInt(brushSize.getText()));
+        if(gridOn == false)
+            {
+                g2.clearRect(0, 0, canvas2.getWidth(), canvas2.getHeight());
+            }
+        }
+
     }
-}
