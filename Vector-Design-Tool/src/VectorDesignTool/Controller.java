@@ -67,6 +67,8 @@ public class Controller {
     private Alerts alert;
     private List<String[]> currentFileLines;
     public boolean undoHistory = false;
+    String currentLine = "";
+    String currentHistory = "";
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
      */
@@ -280,7 +282,7 @@ public class Controller {
     /**
      * Test Variables, will clean up later!
      */
-    String currentLine = "";
+
     int i = 1;
     /**
      * Removes most recent drawing and stashes it for later redo.
@@ -312,7 +314,7 @@ public class Controller {
         try {
             if(undoHistory == true)
             {
-                String[] a = currentLine.split("\n");
+                String[] a = currentHistory.split("\n");
                 for (String b : a) {
                     if (Arrays.stream(shapes).anyMatch(b::contains)) {
 
@@ -354,11 +356,11 @@ public class Controller {
         {
             String choice = history.getSelectionModel().getSelectedItem().toString();
             String[] c = savefile.substring(savefile.lastIndexOf("\n" + choice)).split("\n");
-            currentLine = "";
+            currentHistory = "";
             for(String b : c)
             {
                 if (Arrays.stream(shapes).parallel().anyMatch(b::contains))
-                    currentLine = currentLine + "\n" + b;
+                    currentHistory = currentHistory + "\n" + b;
             }
             savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
             history.getItems().clear();
@@ -407,6 +409,7 @@ public class Controller {
             File file = new File("currentFile.vec");
             file.delete();
             currentLine = "";
+            currentHistory = "";
             isDrawing = false;
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             history.getItems().clear();
