@@ -18,7 +18,8 @@ public class ReadFile {
      * Opens file selection window with '.vec' file filter and gets selected file from user selection.
      * Reads the selected file by scanning it, then stores each line in an array. This array is then
      * used to draw the shapes and output the commands in the file onto the canvas.
-     * @param g - the GraphicsContext of the canvas being drawn on
+     *
+     * @param g      - the GraphicsContext of the canvas being drawn on
      * @param canvas - the canvas being drawn on
      */
     public ReadFile(GraphicsContext g, Canvas canvas) {
@@ -26,7 +27,7 @@ public class ReadFile {
         this.canvas = canvas;
     }
 
-    public void readfile(){
+    public void readfile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
 
@@ -38,7 +39,7 @@ public class ReadFile {
         try {
             File file = fileChooser.showOpenDialog(null);
             selectedFile = file.getAbsolutePath();
-        } catch(Exception e){
+        } catch (Exception e) {
             // Display if any errors occur
             System.out.println("Failed to open file: " + e);
         }
@@ -48,25 +49,25 @@ public class ReadFile {
     /**
      * Opens and reads scanned file line by line and stores each line in an array
      */
-    public void scanFile(){
+    public void scanFile() {
         // Scan file using Scanner class
-        try{
+        try {
             x = new Scanner(new File(selectedFile));
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error in scanFile: " + e);
         }
         // Read file line by line
         String line = "";
-        while(x.hasNextLine()){
+        while (x.hasNextLine()) {
             line += x.nextLine() + "\n";
         }
         SaveFile saveFile = new SaveFile(g);
-        saveFile.saveCurrentFile("currentFile.vec",line);
+        saveFile.saveCurrentFile("currentFile.vec", line);
         // Store each line in array
         String[] a = line.split("\n");
         // Store each command in an array per line
         fileLines = new String[a.length][];
-        for(int i = 0; i < a.length; i++){
+        for (int i = 0; i < a.length; i++) {
             fileLines[i] = a[i].split(" ");
         }
         // Close scanner
@@ -76,11 +77,11 @@ public class ReadFile {
     /**
      * Displays the drawing on the canvas using the read coordinates from the file
      */
-    public void displayFile(){
-        try{
+    public void displayFile() {
+        try {
             DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
             displayFile.displayFile();
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error in displayFile (83): " + e);
         }
     }
@@ -88,20 +89,23 @@ public class ReadFile {
     /**
      * Sets the selected file to a given file path
      */
-    public void setSelectedFile(String selectedFile){
+    public void setSelectedFile(String selectedFile) {
         this.selectedFile = selectedFile;
     }
 
     /**
      * Gets the scanned file lines.
+     *
      * @return 2 dimensional String array of scanned file lines
      */
-    public String[][] getFileLines(){ return fileLines; }
+    public String[][] getFileLines() {
+        return fileLines;
+    }
 
     /**
      * Gets the scanned file lines.
      */
-    public void setFileLines(String[][] fileLines){
+    public void setFileLines(String[][] fileLines) {
         this.fileLines = fileLines;
     }
 }

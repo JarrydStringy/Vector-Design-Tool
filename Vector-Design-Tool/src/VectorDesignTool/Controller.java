@@ -1,29 +1,24 @@
 package VectorDesignTool;
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.text.DecimalFormat;
-import java.util.*;
-
-import static java.lang.Math.abs;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 public class Controller {
+    public static boolean isDrawing;
+    public static UndoRedo undoRedo;
     // References to UI objects
     @FXML
     Pane canvasPane;
@@ -32,6 +27,16 @@ public class Controller {
     @FXML
     Canvas canvas;
     Canvas canvas2;
+    // Sets graphics context for drawing
+    GraphicsContext g;
+    GraphicsContext g2;
+    StringBuilder savefile = SaveFile.saveFile;
+    StringBuilder savebmp = SaveBMP.saveBMPFile;
+    List<Double> xCoords = DrawPolygon.xCoords;
+    List<Double> yCoords = DrawPolygon.yCoords;
+    DecimalFormat df = SaveFile.df;
+    String result = "";
+    String[] shapes = {"PLOT", "LINE", "RECTANGLE", "ELLIPSE", "POLYGON"};
     @FXML
     private ColorPicker colorPicker;
     @FXML
@@ -43,18 +48,9 @@ public class Controller {
     @FXML
     private CheckBox fill;
     @FXML
+    private CheckBox grid;
+    @FXML
     private ListView history;
-    // Sets graphics context for drawing
-    GraphicsContext g;
-    GraphicsContext g2;
-    StringBuilder savefile = SaveFile.saveFile;
-    StringBuilder savebmp = SaveBMP.saveBMPFile;
-    List<Double> xCoords = DrawPolygon.xCoords;
-    List<Double> yCoords = DrawPolygon.yCoords;
-    DecimalFormat df = SaveFile.df;
-    String result = "";
-
-    String[] shapes = {"PLOT", "LINE", "RECTANGLE", "ELLIPSE", "POLYGON"};
     // Stores Mouse coordinates
     private double[][] coords = {{0, 0}, {0, 0}};
     // Store polygon edges
@@ -62,14 +58,12 @@ public class Controller {
     private int edgeCount = 0;
     // Current shape selection
     private String shapeSelected = "PLOT";
-    public static boolean isDrawing;
     // Instantiations
     private SaveFile save;
     private ResizeCanvas resizeCanvas;
     private DrawPolygon polygon;
     private Alerts alert;
     private List<String[]> currentFileLines;
-    public static UndoRedo undoRedo;
 
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
@@ -109,6 +103,7 @@ public class Controller {
 
     /**
      * Gets colour picker RGB value and converts it to HEX format.
+     *
      * @return the HEX value in a String format.
      */
     public String RGBtoHex() {
@@ -161,7 +156,6 @@ public class Controller {
                 g.setFill(colorPicker.getValue());
                 savefile.append("\nFILL " + "#" + RGBtoHex());
             }
-
             if (pen.isSelected()) {
                 g.setStroke(colorPicker.getValue());
                 g2.setStroke(colorPicker.getValue());
@@ -173,7 +167,7 @@ public class Controller {
             if (pen.isSelected() || fill.isSelected()) {
                 coords[0][0] = coords[1][0] = e.getX();
                 coords[0][1] = coords[1][1] = e.getY();
-                if (shapeSelected != "POLYGON" || shapeSelected != ""){
+                if (shapeSelected != "POLYGON" || shapeSelected != "") {
                     result = df.format(coords[0][0] / canvas.getWidth()) + " "
                             + df.format(coords[0][1] / canvas.getHeight());
                 }
@@ -188,7 +182,7 @@ public class Controller {
             coords[1][1] = e.getY();
             g2.clearRect(0, 0, canvas2.getWidth(), canvas2.getHeight());
             Shapes shape = new Shapes(shapeSelected, g, coords);
-            if(shapeSelected == "PLOT") {
+            if (shapeSelected == "PLOT") {
                 result = "\nPLOT " + result;
                 savefile.append(result);
                 shape.drawShape();
@@ -200,10 +194,12 @@ public class Controller {
                         shape.setIsFill(true);
                         shape.drawRectangle();
                         shape.setIsFill(false);
-                    } else if (shapeSelected == "ELLIPSE") {
-                        shape.setIsFill(true);
-                        shape.drawEllipse();
-                        shape.setIsFill(false);
+                    } else {
+                        if (shapeSelected == "ELLIPSE") {
+                            shape.setIsFill(true);
+                            shape.drawEllipse();
+                            shape.setIsFill(false);
+                        }
                     }
                 }
                 result = "\n" + shapeSelected + " " + result;
@@ -230,8 +226,7 @@ public class Controller {
                             savefile.append(" " + df.format(x[i] / canvas.getWidth())
                                     + " " + df.format(y[i] / canvas.getHeight()));
                         }
-                    }
-                    else {
+                    } else {
                         savefile.append("\nPEN " + "#" + RGBtoHex());
                         savefile.append("\nPOLYGON");
                         for (int i = 0; i < x.length; i++) {
@@ -239,7 +234,6 @@ public class Controller {
                                     + " " + df.format(y[i] / canvas.getHeight()));
                         }
                     }
-
                     polygon.resetPolygon();
                 }
             }
@@ -259,29 +253,26 @@ public class Controller {
         // ------------------------------------ Listener for Key presses
     }
 
-    public void updateHistory()
-    {
-        if(shapeSelected != "POLYGON")
-        {
-            history.setMouseTransparent( false );
-            history.setFocusTraversable( true );
-            String last =  savefile.substring(savefile.lastIndexOf("\n"))
+    public void updateHistory() {
+        if (shapeSelected != "POLYGON") {
+            history.setMouseTransparent(false);
+            history.setFocusTraversable(true);
+            String last = savefile.substring(savefile.lastIndexOf("\n"))
                     .replace("\n", "");
-            if(Arrays.stream(shapes).parallel().anyMatch(last::contains))
+            if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
                 history.getItems().add(last);
-        }
-
-        else
-            if(edgeCount >= edges && edges != 0)
-            {
-                history.setMouseTransparent( false );
-                history.setFocusTraversable( true );
-                String last =  savefile.substring(savefile.lastIndexOf("\n"))
-                        .replace("\n", "");
-                if(Arrays.stream(shapes).parallel().anyMatch(last::contains))
-                    history.getItems().add(last);
-                    edgeCount = 0;
             }
+        } else {
+            if (edgeCount >= edges && edges != 0) {
+                history.setMouseTransparent(false);
+                history.setFocusTraversable(true);
+                String last = savefile.substring(savefile.lastIndexOf("\n"))
+                        .replace("\n", "");
+                if (Arrays.stream(shapes).parallel().anyMatch(last::contains))
+                    history.getItems().add(last);
+                edgeCount = 0;
+            }
+        }
     }
 
     /**
@@ -304,22 +295,21 @@ public class Controller {
      * Stores this in undo stash for later undo if needed.
      * User can also press "ctrl" + "y" to perform this action
      */
-    public void onRedo(){
+    public void onRedo() {
         undoRedo.Redo();
     }
 
-    public void onConfirm()
-    {
+    public void onConfirm() {
         String choice = history.getSelectionModel().getSelectedItem().toString();
 
         savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
         history.getItems().clear();
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        String last =  savefile.substring(savefile.lastIndexOf("\n"))
+        String last = savefile.substring(savefile.lastIndexOf("\n"))
                 .replace("\n", "");
 
-        if(Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
+        if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
             // Store each line in array
             String[] a = savefile.toString().split("\n");
             // Store each command in an array per line
@@ -332,14 +322,13 @@ public class Controller {
             displayFile.displayFile();
         }
         String[] a = savefile.toString().split("\n");
-        for ( String b : a)
-        {
-            if(Arrays.stream(shapes).parallel().anyMatch(b::contains))
-            {
+        for (String b : a) {
+            if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
                 history.getItems().add(b);
             }
         }
     }
+
     /**
      * Clears the canvas if user selects yes in confirmation dialogue
      */
@@ -351,7 +340,7 @@ public class Controller {
             isDrawing = false;
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             history.getItems().removeAll();
-            savefile.delete(0,savefile.length());
+            savefile.delete(0, savefile.length());
         }
     }
 
@@ -359,8 +348,7 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave() {
-        if(savefile.toString().chars().filter(line -> line == '\n').count() > 1)
-        {
+        if (savefile.toString().chars().filter(line -> line == '\n').count() > 1) {
             alert.nullExportError();
         }
         try {
@@ -446,8 +434,6 @@ public class Controller {
         savefile.append("\nPEN-WIDTH " + brushSize.getText());
     }
 
-
-
     /**
      * Draw a plot
      */
@@ -505,12 +491,19 @@ public class Controller {
     /**
      * Displays the grid on the canvas
      */
-    public void onGrid(){
+    public void onGrid() {
+        grid.setOnAction(click -> {
+
+        });
+
         //Make grid thin
         g.setLineWidth(1);
-        for(int i = 2; i == Integer.parseInt(gridSize.getText()); i++){
-            g.strokeLine(0, canvas.getHeight()/i, canvas.getWidth(), canvas.getHeight()/i);
-            g.strokeLine(canvas.getWidth()/i, 0, canvas.getWidth()/i, canvas.getHeight());
+        //Display grid size from user input
+        for (int i = 2; i == Integer.parseInt(gridSize.getText()); i++) {
+            g.strokeLine(0, canvas.getHeight() / i, canvas.getWidth(), canvas.getHeight() / i);
+            g.strokeLine(canvas.getWidth() / i, 0, canvas.getWidth() / i, canvas.getHeight());
         }
+        //Return Brush size to old brush size
+        g.setLineWidth(Integer.parseInt(brushSize.getText()));
     }
 }

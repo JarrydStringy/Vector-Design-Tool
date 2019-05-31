@@ -1,29 +1,29 @@
 package VectorDesignTool;
 
 import javafx.scene.canvas.GraphicsContext;
-
-import java.io.File;
-import java.text.DecimalFormat;
-
-import java.io.FileWriter;
 import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.text.DecimalFormat;
 
-public class SaveFile{
-    public static StringBuilder saveFile = new StringBuilder("");
+
+public class SaveFile {
+    public static StringBuilder saveFile = new StringBuilder();
     public static DecimalFormat df = new DecimalFormat("0.000000");
     private GraphicsContext g;
 
 
     /**
      * Saves file to chosen directory based on user selection, of file type 'VEC'.
+     *
      * @param g - Graphics Context of canvas
      */
-    public SaveFile(GraphicsContext g){
+    public SaveFile(GraphicsContext g) {
         this.g = g;
     }
 
-    public void saveFile(){
+    public void saveFile() {
         saveFile.deleteCharAt(0);
         String savefile = saveFile.toString();
         FileChooser fileChooser = new FileChooser();
@@ -40,7 +40,8 @@ public class SaveFile{
 
     /**
      * Writes the file using FileWriter class.
-     * @param file - file being saved to
+     *
+     * @param file   - file being saved to
      * @param result - string of contents being written to file
      */
     private void saveToFile(File file, String result) {
@@ -49,15 +50,15 @@ public class SaveFile{
             vecFile = new FileWriter(file);
             vecFile.write(result);
             vecFile.close();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Failed to save file: " + e);
         }
     }
 
     /**
      * Writes the file using FileWriter class.
-     * @param file - file being saved to
+     *
+     * @param file   - file being saved to
      * @param result - string of contents being written to file
      */
     public void saveCurrentFile(String file, String result) {
@@ -66,8 +67,7 @@ public class SaveFile{
             vecFile = new FileWriter(file);
             vecFile.write(result);
             vecFile.close();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Failed to save file: " + e);
         }
     }
