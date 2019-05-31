@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
@@ -285,12 +286,23 @@ public class Controller {
      * Removes most recent drawing and stashes it for later redo.
      * User can also press "ctrl" + "z" to perform this action
      */
+
+    final KeyCombination undo = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
+
+
+
+
     public void onUndo() {
-        String[] a = savefile.toString().split("\n");
-        undoRedo.Undo();
-        history.getItems().remove(history.getItems().size() - 1);
-        currentLine =  "\n" + a[a.length-1] + currentLine;
-        System.out.println(currentLine);
+        try{
+            String[] a = savefile.toString().split("\n");
+            undoRedo.Undo();
+            history.getItems().remove(history.getItems().size() - 1);
+            currentLine =  "\n" + a[a.length-1] + currentLine;
+        }
+        catch(Exception e)
+        {
+            alert.noUndo();
+        }
     }
 
     /**
@@ -299,8 +311,8 @@ public class Controller {
      * User can also press "ctrl" + "y" to perform this action
      */
     public void onRedo() {
-        String[] a = currentLine.split("\n");
         try {
+            String[] a = currentLine.split("\n");
             undoRedo.Redo();
             history.getItems().add(a[i]);
             i++;
@@ -349,7 +361,7 @@ public class Controller {
             file.delete();
             isDrawing = false;
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            history.getItems().removeAll();
+            history.getItems().clear();
             savefile.delete(0, savefile.length());
         }
     }

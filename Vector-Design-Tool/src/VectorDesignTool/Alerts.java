@@ -109,4 +109,13 @@ public class Alerts {
         alert.setContentText("You have no more shapes to redo");
         alert.showAndWait();
     }
+
+    public void noUndo()
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("You have no more shapes to undo");
+        alert.showAndWait();
+    }
 }
