@@ -11,8 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.FileWriter;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,7 +39,7 @@ public class Controller {
     GraphicsContext g2;
     GraphicsContext g3;
     StringBuilder savefile = SaveFile.saveFile;
-    StringBuilder savebmp = SaveBMP.saveBMPFile;
+    //StringBuilder savebmp = SaveBMP.saveBMPFile;
     List<Double> xCoords = DrawPolygon.xCoords;
     List<Double> yCoords = DrawPolygon.yCoords;
     DecimalFormat df = SaveFile.df;
@@ -97,7 +100,7 @@ public class Controller {
         // Instantiate classes
         save = new SaveFile(g);
         SaveFile save = new SaveFile(g);
-        SaveBMP bmpsave = new SaveBMP(g);
+        //SaveBMP bmpsave = new SaveBMP(g);
         ReadFile readFile = new ReadFile(g, canvas);
         resizeCanvas = new ResizeCanvas();
         resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2, canvas3, file);
@@ -447,13 +450,48 @@ public class Controller {
             alert.nullBMPExportError();
         } else {
             try {
-                SaveBMP savebmp = new SaveBMP(g);
-                savebmp.saveBMPFile();
+
+                Image snapshot = canvas.snapshot(null, null);
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save Resource File");
+                // Set extension filter
+                FileChooser.ExtensionFilter extFilter =
+                        new FileChooser.ExtensionFilter("BMP files (*.bmp)", "*.bmp");
+                fileChooser.getExtensionFilters().add(extFilter);
+                File file = fileChooser.showSaveDialog(null);
+
+                if (file != null) {
+                    ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null)
+                            , "BMP", new File("VectorDesign.bmp"));
+                }
+
+
             } catch (Exception e) {
                 System.out.println("Error in Controller, saving bmp file (309): " + e);
             }
         }
     }
+
+
+    /**
+     * Writes the file using FileWriter class.
+     *
+     * @param file   - file being saved to
+     * @param result - string of contents being written to file
+     */
+    private void saveToFile(File file, String result) {
+        try {
+            FileWriter bmpFile;
+            bmpFile = new FileWriter(file);
+            bmpFile.write(result);
+            bmpFile.close();
+        } catch (Exception e) {
+            System.out.println("Failed to save file: " + e);
+        }
+    }
+
+
+
 
     /**
      * Saves a snapshot of the canvas as a '.png' file
