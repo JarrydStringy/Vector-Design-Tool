@@ -578,7 +578,7 @@ public class Controller {
         dialog2.setHeaderText("Enter your image's height value");
         dialog2.setContentText("y:");
 
-        // Returns the integer variables xor and yor
+        // Returns the integer variables for the dimensions
         // xor and yor are the final image dimensions
         Optional<String> widthval = dialog.showAndWait();
         Optional<String> heightval = dialog2.showAndWait();
