@@ -30,9 +30,11 @@ public class Controller {
     @FXML
     Canvas canvas;
     Canvas canvas2;
+    Canvas canvas3;
     // Sets graphics context for drawing
     GraphicsContext g;
     GraphicsContext g2;
+    GraphicsContext g3;
     StringBuilder savefile = SaveFile.saveFile;
     StringBuilder savebmp = SaveBMP.saveBMPFile;
     List<Double> xCoords = DrawPolygon.xCoords;
@@ -82,6 +84,11 @@ public class Controller {
         g2 = canvas2.getGraphicsContext2D();
         canvasPane2.getChildren().add(canvas2);
         canvas2.toBack();
+        // Sets graphics context for grid on layer 3
+        canvas3 = new Canvas(canvas.getWidth(), canvas.getHeight());
+        g3 = canvas3.getGraphicsContext2D();
+        canvasPane2.getChildren().add(canvas3);
+        canvas3.toBack();
 
         // Get drawing file ready
         File file = new File("currentFile.vec");
@@ -93,7 +100,7 @@ public class Controller {
         SaveBMP bmpsave = new SaveBMP(g);
         ReadFile readFile = new ReadFile(g, canvas);
         resizeCanvas = new ResizeCanvas();
-        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2, file);
+        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2, canvas3, file);
         alert = new Alerts();
         undoRedo = new UndoRedo(g, canvas);
 
@@ -571,23 +578,23 @@ public class Controller {
         //Toggle Grid
         gridOn = !gridOn;
         //Display grid size from user input
-        g2.setLineWidth(Integer.parseInt(gridSize.getText()));
+        g3.setLineWidth(Integer.parseInt(gridSize.getText()));
 
         if (gridOn == true) {
             // Vertical Lines
-            g2.setStroke(Color.BLACK);
-            for (int i = 0; i < canvas2.getWidth(); i += 30) {
-                g2.strokeLine(i, 0, i, canvas2.getHeight() - (canvas2.getHeight() % 30));
+            g3.setStroke(Color.BLACK);
+            for (int i = 0; i < canvas3.getWidth(); i += 30) {
+                g3.strokeLine(i, 0, i, canvas3.getHeight() - (canvas3.getHeight() % 30));
             }
 
             // Horizontal Lines
-            for (int i = 30; i < canvas2.getHeight(); i += 30) {
-                g2.strokeLine(1, i, canvas2.getWidth(), i);
+            for (int i = 30; i < canvas3.getHeight(); i += 30) {
+                g3.strokeLine(1, i, canvas3.getWidth(), i);
             }
         }
         if(gridOn == false)
             {
-                g2.clearRect(0, 0, canvas2.getWidth(), canvas2.getHeight());
+                g3.clearRect(0, 0, canvas3.getWidth(), canvas3.getHeight());
             }
         }
 
