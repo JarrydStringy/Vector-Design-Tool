@@ -34,12 +34,14 @@ public class ResizeCanvas {
             }
         });
         canvasPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> {
-            canvas.setHeight(newValue.doubleValue() - 68);
-            canvas2.setHeight(newValue.doubleValue() - 68);
-            canvas3.setHeight(newValue.doubleValue() - 68);
-            // redraw grid if grid is checked
-            if(Controller.gridOn){
-                grid.drawGrid();
+            if(newValue.doubleValue() > 668) {
+                canvas.setHeight(newValue.doubleValue() - 68);
+                canvas2.setHeight(newValue.doubleValue() - 68);
+                canvas3.setHeight(newValue.doubleValue() - 68);
+                // redraw grid if grid is checked
+                if (Controller.gridOn) {
+                    grid.drawGrid();
+                }
             }
         });
     }

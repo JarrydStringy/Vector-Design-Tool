@@ -574,19 +574,6 @@ public class Controller {
      */
     public void checkGridInput() {
         try {
-            /*if (gridSize.getText().matches("[0-9]*") == false
-                    || Integer.parseInt(gridSize.getText()) < 1
-                    || Integer.parseInt(gridSize.getText()) > 1000) {
-                alert.gridSizeError();
-                gridSize.setText("1");
-                if(grid.isSelected()){
-                    onGrid();
-                }
-            } else {
-                if(grid.isSelected()){
-                    onGrid();
-                }
-            }*/
             this.gridSizeNow = Integer.parseInt(gridSize.getValue().toString())*10;
             if(gridOn){
                 setGrid();

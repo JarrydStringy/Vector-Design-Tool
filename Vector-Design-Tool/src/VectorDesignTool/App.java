@@ -66,9 +66,9 @@ public class App extends Application {
         });
 
         stage.heightProperty().addListener((obs, oldVal, newVal) -> {
-            if(newVal.doubleValue() < 669){
+            if(newVal.doubleValue() < 668){
                 stage.setResizable(false);
-                stage.setHeight(669);
+                stage.setHeight(668);
                 stage.setResizable(true);
             }
         });
