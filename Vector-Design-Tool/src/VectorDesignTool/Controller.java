@@ -72,7 +72,7 @@ public class Controller {
     boolean undoHistory = false;
     String currentLine = "";
     String currentHistory = "";
-    boolean gridOn = false;
+    public static boolean gridOn = false;
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
      */
@@ -100,7 +100,7 @@ public class Controller {
         SaveBMP bmpsave = new SaveBMP(g);
         ReadFile readFile = new ReadFile(g, canvas);
         resizeCanvas = new ResizeCanvas();
-        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2, canvas3, file);
+        resizeCanvas.resize(canvasPane, g, g3, savefile, save, readFile, canvas, canvas2, canvas3, file);
         alert = new Alerts();
         undoRedo = new UndoRedo(g, canvas);
 
@@ -580,21 +580,14 @@ public class Controller {
         //Display grid size from user input
         g3.setLineWidth(Integer.parseInt(gridSize.getText()));
 
-        if (gridOn == true) {
-            // Vertical Lines
-            g3.setStroke(Color.BLACK);
-            for (int i = 0; i < canvas3.getWidth(); i += 30) {
-                g3.strokeLine(i, 0, i, canvas3.getHeight() - (canvas3.getHeight() % 30));
-            }
+        Grid grid = new Grid(g3,canvas3);
 
-            // Horizontal Lines
-            for (int i = 30; i < canvas3.getHeight(); i += 30) {
-                g3.strokeLine(1, i, canvas3.getWidth(), i);
-            }
+        if (gridOn == true) {
+            grid.drawGrid();
         }
         if(gridOn == false)
             {
-                g3.clearRect(0, 0, canvas3.getWidth(), canvas3.getHeight());
+                grid.clearGrid();
             }
         }
 
