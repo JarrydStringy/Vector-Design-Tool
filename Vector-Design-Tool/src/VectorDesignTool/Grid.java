@@ -18,17 +18,21 @@ public class Grid {
         g.clearRect(0, 0, canvas3.getWidth(), canvas3.getHeight());
         // Vertical Lines
         g.setStroke(Color.BLACK);
-        for (int i = 0; i < canvas3.getWidth(); i += 30) {
+        for (int i = 0; i < canvas3.getWidth(); i += Controller.gridSizeNow) {
             g.strokeLine(i, 0, i, canvas3.getHeight() - (canvas3.getHeight() % 30));
         }
 
         // Horizontal Lines
-        for (int i = 30; i < canvas3.getHeight(); i += 30) {
+        for (int i = 15; i < canvas3.getHeight(); i += Controller.gridSizeNow) {
             g.strokeLine(1, i, canvas3.getWidth(), i);
         }
     }
 
     public void clearGrid(){
         g.clearRect(0, 0, canvas3.getWidth(), canvas3.getHeight());
+    }
+
+    public double getGridCoords(){
+        return 0.0;
     }
 }

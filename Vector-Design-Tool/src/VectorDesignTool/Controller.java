@@ -47,7 +47,7 @@ public class Controller {
     @FXML
     private TextField brushSize;
     @FXML
-    private TextField gridSize;
+    private ComboBox gridSize;
     @FXML
     private CheckBox pen;
     @FXML
@@ -73,6 +73,8 @@ public class Controller {
     String currentLine = "";
     String currentHistory = "";
     public static boolean gridOn = false;
+    public static int gridSizeNow = 1;
+
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
      */
@@ -559,13 +561,22 @@ public class Controller {
      */
     public void checkGridInput() {
         try {
-            if (gridSize.getText().matches("[0-9]*") == false
+            /*if (gridSize.getText().matches("[0-9]*") == false
                     || Integer.parseInt(gridSize.getText()) < 1
                     || Integer.parseInt(gridSize.getText()) > 1000) {
                 alert.gridSizeError();
                 gridSize.setText("1");
+                if(grid.isSelected()){
+                    onGrid();
+                }
             } else {
-                onGrid();
+                if(grid.isSelected()){
+                    onGrid();
+                }
+            }*/
+            this.gridSizeNow = Integer.parseInt(gridSize.getValue().toString())*10;
+            if(gridOn){
+                setGrid();
             }
         } catch (Exception e) {
             // Display if any errors occur
@@ -574,23 +585,35 @@ public class Controller {
     }
 
     /**
-     * Displays the grid on the canvas
+     * Toggles grid checkbox
      */
     public void onGrid() {
         //Toggle Grid
         gridOn = !gridOn;
-        //Display grid size from user input
-        g3.setLineWidth(Integer.parseInt(gridSize.getText()));
+        grid.setSelected(gridOn);
+        Grid g = new Grid(g3,canvas3);
+        if(gridOn == false)
+        {
+            g.clearGrid();
+            gridSize.setValue("Select");
+        }
+    }
 
-        Grid grid = new Grid(g3,canvas3);
+    /**
+     * Displays the grid on the canvas
+     */
+    public void setGrid(){
+        //Display grid size from user input
+        g3.setLineWidth(1);
+
+        Grid g = new Grid(g3,canvas3);
 
         if (gridOn == true) {
-            grid.drawGrid();
+            g.drawGrid();
         }
         if(gridOn == false)
-            {
-                grid.clearGrid();
-            }
+        {
+            g.clearGrid();
         }
-
     }
+}
