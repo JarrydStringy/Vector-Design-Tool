@@ -460,7 +460,7 @@ public class Controller {
             Image snapshot = canvas.snapshot(null, null);
             // Save to .png file
             ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null)
-                    , "VEC", new File("VectorDesign.VEC"));
+                    , "PNG", new File("VectorDesign.PNG"));
         } catch (Exception e) {
             // Display if any errors occur
             System.out.println("Error in Controller, export (325): " + e);
