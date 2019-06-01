@@ -3,17 +3,22 @@ package VectorDesignTool;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Transform;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.text.DecimalFormat;
@@ -66,6 +71,9 @@ public class Controller {
     private int edgeCount = 0;
     // Current shape selection
     private String shapeSelected = "PLOT";
+    // Dimensions of the canvas saved
+    int xor;
+    int yor;
     // Instantiations
     private SaveFile save;
     private ResizeCanvas resizeCanvas;
@@ -431,6 +439,7 @@ public class Controller {
         }
     }
 
+
     /**
      * Saves a snapshot of the canvas as a '.png' file
      */
@@ -447,26 +456,47 @@ public class Controller {
         }
     }
 
+    /**
+     * Saves a snapshot of the canvas as a '.bmp' file
+     */
     public void onBMPSave() {
         if (savefile.toString().chars().filter(line -> line == '\n').count() < 2) {
             alert.nullBMPExportError();
         } else {
             try {
+                // Input the height and width dimensions of the image
+                defineDimensions();
 
-                Image snapshot = canvas.snapshot(null, null);
+                // Open a window to save the file
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Save Resource File");
+
                 // Set extension filter
                 FileChooser.ExtensionFilter extFilter =
-                        new FileChooser.ExtensionFilter("BMP files (*.bmp)", "*.bmp");
+                        new FileChooser.ExtensionFilter("Bitmap files (*.bmp)", "*.bmp");
                 fileChooser.getExtensionFilters().add(extFilter);
-                File file = fileChooser.showSaveDialog(null);
+                File bfile = fileChooser.showSaveDialog(null);
 
-                if (file != null) {
-                    ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null)
-                            , "BMP", new File("VectorDesign.bmp"));
+                // If there is an image, save as a BMP
+                if (bfile != null) {
+                    // Casting the width and height values of the canvas as integers
+                    int x = (int) canvas.getWidth();
+                    int y = (int) canvas.getHeight();
+
+                    // Using simple math to find the ratio of screen size
+                    double xratio = xor/canvas.getWidth();
+                    double yratio = yor/canvas.getHeight();
+
+                    // Scaling the image based on the values shown
+                    WritableImage writableImage = new WritableImage(xor, yor);
+                    SnapshotParameters spa = new SnapshotParameters();
+                    spa.setTransform(Transform.scale(xratio, yratio));
+
+                    // Save file to directory.
+                    canvas.snapshot(spa, writableImage);
+                    RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                    ImageIO.write(renderedImage, "png", bfile);
                 }
-
 
             } catch (Exception e) {
                 System.out.println("Error in Controller, saving bmp file (309): " + e);
@@ -476,39 +506,89 @@ public class Controller {
 
 
     /**
-     * Writes the file using FileWriter class.
-     *
-     * @param file   - file being saved to
-     * @param result - string of contents being written to file
-     */
-    private void saveToFile(File file, String result) {
-        try {
-            FileWriter bmpFile;
-            bmpFile = new FileWriter(file);
-            bmpFile.write(result);
-            bmpFile.close();
-        } catch (Exception e) {
-            System.out.println("Failed to save file: " + e);
-        }
-    }
-
-
-
-
-    /**
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onExport() {
-        try {
-            // Record what is in canvas
-            Image snapshot = canvas.snapshot(null, null);
-            // Save to .png file
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null)
-                    , "PNG", new File("VectorDesign.PNG"));
-        } catch (Exception e) {
-            // Display if any errors occur
-            System.out.println("Error in Controller, export (325): " + e);
+
+        if (savefile.toString().chars().filter(line -> line == '\n').count() < 2) {
+            alert.nullBMPExportError();
+        } else {
+            try {
+                // Input the height and width dimensions of the image
+                defineDimensions();
+
+                // Open a window to save the file
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save Resource File");
+
+                // Set extension filter
+                FileChooser.ExtensionFilter extFilter =
+                        new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+                fileChooser.getExtensionFilters().add(extFilter);
+                File bfile = fileChooser.showSaveDialog(null);
+
+                // If there is an image, save as a PNG
+                if (bfile != null) {
+
+                    // Casting the width and height values of the canvas as integers
+                    int x = (int) canvas.getWidth();
+                    int y = (int) canvas.getHeight();
+
+                    // Using simple math to find the ratio of screen size
+                    double xratio = xor/canvas.getWidth();
+                    double yratio = yor/canvas.getHeight();
+
+                    // Scaling the image based on the values shown
+                    WritableImage writableImage = new WritableImage(xor, yor);
+                    SnapshotParameters spa = new SnapshotParameters();
+                    spa.setTransform(Transform.scale(xratio, yratio));
+
+                    // Save file to directory.
+                    canvas.snapshot(spa, writableImage);
+                    RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                    ImageIO.write(renderedImage, "png", bfile);
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error in Controller, saving png file (309): " + e);
+            }
         }
+
+    }
+
+    /**
+     * Pulls up two windows to choose the dimensions when image is saved
+     */
+    public void defineDimensions() {
+        // Reading the window's height and width values
+        String x = Integer.toString((int) canvas.getWidth());
+        String y = Integer.toString((int) canvas.getHeight());
+
+        // Initialising the dialog boxes
+        TextInputDialog dialog = new TextInputDialog(x);
+        TextInputDialog dialog2 = new TextInputDialog(y);
+
+        // Message for the first dialogue box
+        dialog.setTitle("CChoose image dimension.");
+        dialog.setHeaderText("Enter your image's width dimension");
+        dialog.setContentText("x:");
+
+        // Message for the second dialogue box
+        dialog2.setTitle("Choose image dimension.");
+        dialog2.setHeaderText("Enter your image's height value");
+        dialog2.setContentText("y:");
+
+        // Returns the integer variables xor and yor
+        // xor and yor are the final image dimensions
+        Optional<String> widthval = dialog.showAndWait();
+        Optional<String> heightval = dialog2.showAndWait();
+
+        widthval.ifPresent(width -> {
+            xor = Integer.parseInt(width);
+        });
+        heightval.ifPresent(height -> {
+            yor =  Integer.parseInt(height);
+        });
     }
 
     /**

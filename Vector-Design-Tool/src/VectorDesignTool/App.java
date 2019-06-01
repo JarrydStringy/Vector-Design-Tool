@@ -18,10 +18,11 @@ public class App extends Application {
      */
     public static void main(String[] args) { launch(args); }
 
-    /**
-     * Prepares stage and sets scene with UI content
-     * @param stage - the main window of the application
-     */
+
+        /**
+         * Prepares stage and sets scene with UI content
+         * @param stage - the main window of the application
+         */
     public void start(Stage stage) throws Exception {
         // Instantiate the fxml Window
         Pane root = FXMLLoader.load(getClass().getResource("UI.fxml"));
@@ -34,7 +35,7 @@ public class App extends Application {
         // Displays the contents of the stage
         stage.show();
 
-
+        // Binding the width and height properties
         root.prefWidthProperty().bind(scene.widthProperty());
         root.prefHeightProperty().bind(scene.heightProperty());
 
@@ -50,6 +51,8 @@ public class App extends Application {
                 }
             }
         });
+
+
 
         stage.setOnCloseRequest(event -> {
             File file = new File("currentFile.vec");

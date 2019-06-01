@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
 
+import javax.swing.*;
 import java.util.Optional;
 
 public class Alerts {
@@ -26,13 +27,31 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Clear Canvas");
         alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to clear the canvas?\nThis will reset your history");
+        alert.setContentText("Are you sure you want to clear the canvas?\nThis will reset your history?");
         ButtonType buttonYes = new ButtonType("Yes");
         ButtonType buttonCancel = new ButtonType("Cancel");
         alert.getButtonTypes().setAll(buttonYes, buttonCancel);
         Optional<ButtonType> result = alert.showAndWait();
         return result;
     }
+
+
+    /**
+     * Checks if the user would like to clear the canvas.
+     * @return the result
+     * */
+    public Optional<ButtonType> dimensionsCheck(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Clear Canvas");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to clear the canvas?\nThis will reset your history?");
+        ButtonType buttonYes = new ButtonType("Yes");
+        ButtonType buttonCancel = new ButtonType("Cancel");
+        alert.getButtonTypes().setAll(buttonYes, buttonCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result;
+    }
+
 
     /**
      * Alerts the user with an error dialogue stating they have entered an incorrect brush size value.

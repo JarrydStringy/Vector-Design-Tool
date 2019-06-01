@@ -28,7 +28,6 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
 -->
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import javafx.collections.FXCollections?>
 <BorderPane fx:id="canvasPane"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -70,22 +69,11 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                         <tooltip><Tooltip text="Check to create grid" /></tooltip>
                     </CheckBox>
                     <Label text="Grid Size:"/>
-                    <ComboBox  fx:id="gridSize" prefWidth="60.0" onAction="#checkGridInput">
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="1" />
-                                <String fx:value="2" />
-                                <String fx:value="3" />
-                                <String fx:value="4" />
-                                <String fx:value="5" />
-                                <String fx:value="6" />
-                                <String fx:value="7" />
-                                <String fx:value="8" />
-                                <String fx:value="9" />
-                                <String fx:value="10" />
-                            </FXCollections>
-                        </items>
-                    </ComboBox>
+                    <TextField fx:id="gridSize" text="1" onKeyTyped="#checkGridInput" maxWidth="50">
+                        <tooltip>
+                            <Tooltip text="Enter amount of grids, must be integer between 1 and 1000." />
+                        </tooltip>
+                    </TextField>
                 </HBox>
             </ToolBar>
         </VBox>

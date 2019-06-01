@@ -1,8 +1,225 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< Updated upstream
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559409421866" />
     <property name="project.structure.last.edited" value="Global Libraries" />
+=======
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java" description="        if (savefile.toString().chars().filter(lin..." line="444" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="04d8197d-3e19-4eb1-89a8-a8d10b50a5e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/UI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/Alerts.class" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/Alerts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/App$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/UI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Alerts.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Alerts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/SaveBMP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/UI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VectorDesign.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/currentFile.vec" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/Vector-Design-Tool/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Alerts.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1528">
+                  <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/App.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="19" selection-start-line="19" selection-end-line="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="126">
+                  <caret line="529" lean-forward="true" selection-start-line="529" selection-end-line="529" />
+                  <folding>
+                    <element signature="e#23750#23751#0" expanded="true" />
+                    <element signature="e#23858#23859#0" expanded="true" />
+                    <element signature="e#23976#23977#0" expanded="true" />
+                    <element signature="e#24090#24091#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/UndoRedo.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/UI.fxml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="308">
+                  <caret line="49" column="82" selection-start-line="49" selection-start-column="82" selection-end-line="49" selection-end-column="82" />
+                </state>
+              </provider>
+              <provider editor-type-id="JavaFX-Scene-Builder" />
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="782">
+                  <caret line="480" column="28" selection-start-line="480" selection-start-column="28" selection-end-line="480" selection-end-column="28" />
+                  <folding>
+                    <element signature="e#23237#23238#0" expanded="true" />
+                    <element signature="e#23278#23279#0" expanded="true" />
+                    <element signature="e#23345#23346#0" expanded="true" />
+                    <element signature="e#23386#23387#0" expanded="true" />
+                    <element signature="e#23463#23464#0" expanded="true" />
+                    <element signature="e#23504#23505#0" expanded="true" />
+                    <element signature="e#23577#23578#0" expanded="true" />
+                    <element signature="e#23618#23619#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>currentl</find>
+      <find>xCoords</find>
+      <find>display</find>
+      <find>save</find>
+      <find>currentFileLines</find>
+      <find>getCurrentFileLines</find>
+      <find>scanFile</find>
+      <find>gridSizeE</find>
+      <find>DisplayFile</find>
+      <find>gridSizeError</find>
+      <find>ctrl</find>
+      <find>z</find>
+      <find>undoHistory</find>
+      <find>System.out.println</find>
+      <find>onExpo</find>
+      <find>savefile</find>
+      <find>nullExportError</find>
+      <find>FileChooser</find>
+      <find>df</find>
+      <find>bmp</find>
+      <find>.VEC</find>
+      <find>.vec</find>
+      <find>TYPE_INT</find>
+      <find>fileChooser</find>
+      <find>result</find>
+      <find>600</find>
+      <find>selectDr</find>
+      <find>clearCanvasCheck</find>
+      <find>showInputTextDialog</find>
+      <find>onClear</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/SaveFile.java" />
+        <option value="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/UndoRedo.java" />
+        <option value="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/ResizeCanvas.java" />
+        <option value="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/SaveBMP.java" />
+        <option value="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Alerts.java" />
+        <option value="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/App.java" />
+        <option value="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/UI.fxml" />
+        <option value="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="952" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Vector-Design-Tool" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vector-Design-Tool" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vector-Design-Tool" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vector-Design-Tool" type="462c0819:PsiDirectoryNode" />
+              <item name="Vector-Design-Tool" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vector-Design-Tool" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vector-Design-Tool" type="462c0819:PsiDirectoryNode" />
+              <item name="Vector-Design-Tool" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vector-Design-Tool" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vector-Design-Tool" type="462c0819:PsiDirectoryNode" />
+              <item name="Vector-Design-Tool" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="VectorDesignTool" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559409022312" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+>>>>>>> Stashed changes
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -15,4 +232,313 @@
       </method>
     </configuration>
   </component>
+<<<<<<< Updated upstream
+=======
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="04d8197d-3e19-4eb1-89a8-a8d10b50a5e7" name="Default Changelist" comment="" />
+      <created>1559221018848</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559221018848</updated>
+      <workItem from="1559221031007" duration="63000" />
+      <workItem from="1559268956427" duration="519000" />
+      <workItem from="1559270015262" duration="230000" />
+      <workItem from="1559274381816" duration="8449000" />
+      <workItem from="1559284517376" duration="968000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="26536000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15503356" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Learn" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27053824" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39923954" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32808024" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.370319" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Learn" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27620396" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39923954" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3286119" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java</url>
+          <line>361</line>
+          <properties />
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java</url>
+          <line>328</line>
+          <properties />
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java</url>
+          <line>343</line>
+          <properties />
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java</url>
+          <line>338</line>
+          <properties />
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/App.java" />
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DrawPolygon.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.3/lib/src.zip!/java.base/java/util/function/Predicate.java" />
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/ReadFile.java" />
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/SaveFile.java" />
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/DisplayFile.java" />
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UndoRedo.java" />
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/UI.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Alerts.java" />
+    <entry file="file://$PROJECT_DIR$/src/VectorDesignTool/Controller.java" />
+    <entry file="file://$PROJECT_DIR$/src/module-info.java" />
+    <entry file="file://$USER_HOME$/Desktop/Vector-Design-Tool/src/VectorDesignTool/UI.fxml" />
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/DisplayFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/function/IntPredicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/ReadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="64" column="17" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/SaveFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="57" column="7" lean-forward="true" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/ResizeCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/Optional.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/UndoRedo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/UI.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="49" column="82" selection-start-line="49" selection-start-column="82" selection-end-line="49" selection-end-column="82" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/SaveBMP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="46" column="9" lean-forward="true" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Alerts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1528">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="529" lean-forward="true" selection-start-line="529" selection-end-line="529" />
+          <folding>
+            <element signature="e#23750#23751#0" expanded="true" />
+            <element signature="e#23858#23859#0" expanded="true" />
+            <element signature="e#23976#23977#0" expanded="true" />
+            <element signature="e#24090#24091#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>apiguardian-api-1.0.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>11.0.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Vector-Design-Tool</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>javafx-swt</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+>>>>>>> Stashed changes
 </project>
