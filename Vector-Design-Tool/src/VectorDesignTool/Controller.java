@@ -443,11 +443,15 @@ public class Controller {
     }
 
     public void onBMPSave() {
-        try {
-            SaveBMP savebmp = new SaveBMP(g);
-            savebmp.saveBMPFile();
-        } catch (Exception e) {
-            System.out.println("Error in Controller, saving bmp file (309): " + e);
+        if (savefile.toString().chars().filter(line -> line == '\n').count() < 2) {
+            alert.nullBMPExportError();
+        } else {
+            try {
+                SaveBMP savebmp = new SaveBMP(g);
+                savebmp.saveBMPFile();
+            } catch (Exception e) {
+                System.out.println("Error in Controller, saving bmp file (309): " + e);
+            }
         }
     }
 

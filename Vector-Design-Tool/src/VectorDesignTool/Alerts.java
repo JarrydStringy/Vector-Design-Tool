@@ -97,7 +97,16 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Empty Canvas");
         alert.setHeaderText(null);
-        alert.setContentText("You can not export blank VEC files");
+        alert.setContentText("You can not export blank VEC files!");
+        alert.showAndWait();
+    }
+
+    public void nullBMPExportError()
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Empty Canvas");
+        alert.setHeaderText(null);
+        alert.setContentText("You haven't changed anything on screen!");
         alert.showAndWait();
     }
 
@@ -106,7 +115,7 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Error");
         alert.setHeaderText(null);
-        alert.setContentText("You have no more shapes to redo");
+        alert.setContentText("You have no more shapes to redo.");
         alert.showAndWait();
     }
 
@@ -115,7 +124,7 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Error");
         alert.setHeaderText(null);
-        alert.setContentText("You have no more shapes to undo");
+        alert.setContentText("You have no more shapes to undo.");
         alert.showAndWait();
     }
 
