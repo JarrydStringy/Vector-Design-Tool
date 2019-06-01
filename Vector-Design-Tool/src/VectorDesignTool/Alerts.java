@@ -125,7 +125,7 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Empty Canvas");
         alert.setHeaderText(null);
-        alert.setContentText("You haven't changed anything on screen!");
+        alert.setContentText("You haven't drawn anything on the canvas!");
         alert.showAndWait();
     }
 
