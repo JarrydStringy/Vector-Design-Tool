@@ -423,14 +423,15 @@ public class Controller {
      * Saves a snapshot of the canvas as a '.png' file
      */
     public void onSave() {
-        if (savefile.toString().chars().filter(line -> line == '\n').count() > 1) {
+        if (savefile.toString().chars().filter(line -> line == '\n').count() < 2) {
             alert.nullExportError();
-        }
-        try {
-            SaveFile savefile = new SaveFile(g);
-            savefile.saveFile();
-        } catch (Exception e) {
-            System.out.println("Error in Controller, saving file (300): " + e);
+        } else {
+            try {
+                SaveFile savefile = new SaveFile(g);
+                savefile.saveFile();
+            } catch (Exception e) {
+                System.out.println("Error in Controller, saving file (300): " + e);
+            }
         }
     }
 
