@@ -63,6 +63,7 @@ public class ReadFile {
         }
         SaveFile saveFile = new SaveFile(g);
         saveFile.saveCurrentFile("currentFile.vec", line);
+        SaveFile.saveFile.replace(0, SaveFile.saveFile.length(), line);
         // Store each line in array
         String[] a = line.split("\n");
         // Store each command in an array per line
