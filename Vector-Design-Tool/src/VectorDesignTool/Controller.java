@@ -479,10 +479,6 @@ public class Controller {
 
                 // If there is an image, save as a BMP
                 if (bfile != null) {
-                    // Casting the width and height values of the canvas as integers
-                    int x = (int) canvas.getWidth();
-                    int y = (int) canvas.getHeight();
-
                     // Using simple math to find the ratio of screen size
                     double xratio = xor/canvas.getWidth();
                     double yratio = yor/canvas.getHeight();
@@ -530,10 +526,6 @@ public class Controller {
                 // If there is an image, save as a PNG file
                 // Call alert if there is no image
                 if (bfile != null) {
-
-                    // Casting the width and height values of the canvas as integers
-                    int x = (int) canvas.getWidth();
-                    int y = (int) canvas.getHeight();
 
                     // Using simple math to find the ratio of screen size
                     double xratio = xor/canvas.getWidth();
