@@ -564,6 +564,8 @@ public class Controller {
                     || Integer.parseInt(gridSize.getText()) > 1000) {
                 alert.gridSizeError();
                 gridSize.setText("1");
+            } else {
+                onGrid();
             }
         } catch (Exception e) {
             // Display if any errors occur
