@@ -68,7 +68,8 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                     <CheckBox fx:id="grid" onAction="#onGrid">
                         <tooltip><Tooltip text="Check to create grid" /></tooltip>
                     </CheckBox>
-                    <ComboBox  fx:id="gridSize" prefWidth="100.0" promptText="Size" onAction="#checkGridInput">
+                    <Label text="Grid Size:"/>
+                    <ComboBox  fx:id="gridSize" prefWidth="60.0" onAction="#checkGridInput">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="1" />
@@ -84,8 +85,6 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                             </FXCollections>
                         </items>
                     </ComboBox>
-                    <Label text="Grid Size:"/>
-
                 </HBox>
             </ToolBar>
         </VBox>

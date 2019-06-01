@@ -44,12 +44,14 @@ public class DisplayFile {
                     shape.setIsFill(true);
                     drawPolygon.setIsFill(true);
                     changeFillColour(t[1]);
-                } else if (b.contains("PEN") && !b.contains("PEN-WIDTH")) {
-                    shape.setIsFill(false);
-                    drawPolygon.setIsFill(false);
-                    changePenColour(t[1]);
-                } else if (b.contains("PEN-WIDTH")) {
-                    changePenWidth(t[1]);
+                } else if (b.contains("PEN")) {
+                    if(!b.contains("PEN-WIDTH")){
+                        shape.setIsFill(false);
+                        drawPolygon.setIsFill(false);
+                        changePenColour(t[1]);
+                    } else{
+                        changePenWidth(t[1]);
+                    }
                 } else if (b.contains("LINE") || b.contains("RECTANGLE") || b.contains("ELLIPSE")) {
                     displayShape(t);
                 }
