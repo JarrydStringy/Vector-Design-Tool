@@ -58,7 +58,7 @@ public class Alerts {
     }
 
     /**
-     * Alerts the user with an error dialogue stating they have entered an incorrect polygon edge value.
+     * Alerts the user with an error dialogue stating they have entered an incorrect polygon-edge value.
      * */
     public void polygonEdgeError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
