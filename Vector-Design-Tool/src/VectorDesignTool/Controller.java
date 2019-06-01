@@ -305,6 +305,8 @@ public class Controller {
 
     public void onUndo() {
         try{
+            ReadFile r;
+            //if(ReadFile.getFileLines() != null)
             String[] a = savefile.toString().split("\n");
             undoRedo.Undo();
             history.getItems().remove(history.getItems().size() - 1);
@@ -376,10 +378,9 @@ public class Controller {
             savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
             history.getItems().clear();
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
+            undoHistory = true;
             String last = savefile.substring(savefile.lastIndexOf("\n"))
-                    .replace("\n", "");
-
+                        .replace("\n", "");
             if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
                 // Store each line in array
                 String[] a = savefile.toString().split("\n");
@@ -398,7 +399,6 @@ public class Controller {
                     history.getItems().add(b);
                 }
             }
-            undoHistory = true;
             if(history.getItems().size() < 1)
             {
                 history.setMouseTransparent( true );
@@ -490,7 +490,20 @@ public class Controller {
             ReadFile r = new ReadFile(g, canvas);
             r.readfile();
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            currentHistory = "";
+            currentLine = "";
+            history.getItems().clear();
+            history.setMouseTransparent(false);
+            history.setFocusTraversable(true);
             r.displayFile();
+            r.scanFile();
+            String[] a = savefile.toString().split("\n");
+            for (String b : a) {
+                if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
+                    history.getItems().add(b);
+                }
+            }
+            savefile.deleteCharAt(savefile.length());
         } catch (Exception e) {
             // pass
         }
