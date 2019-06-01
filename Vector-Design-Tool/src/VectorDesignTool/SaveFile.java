@@ -24,7 +24,6 @@ public class SaveFile {
     }
 
     public void saveFile() {
-        saveFile.deleteCharAt(0);
         String savefile = saveFile.toString();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Resource File");

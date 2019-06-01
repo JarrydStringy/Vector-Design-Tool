@@ -23,7 +23,6 @@ public class App extends Application {
      * @param stage - the main window of the application
      */
     public void start(Stage stage) throws Exception {
-
         // Instantiate the fxml Window
         Pane root = FXMLLoader.load(getClass().getResource("UI.fxml"));
         Scene scene = new Scene(root);
@@ -56,6 +55,22 @@ public class App extends Application {
             File file = new File("currentFile.vec");
             file.delete();
             System.out.println("Stage is closing, deleted current file");
+        });
+
+        stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            if(newVal.doubleValue() < 914){
+                stage.setResizable(false);
+                stage.setWidth(914);
+                stage.setResizable(true);
+            }
+        });
+
+        stage.heightProperty().addListener((obs, oldVal, newVal) -> {
+            if(newVal.doubleValue() < 668){
+                stage.setResizable(false);
+                stage.setHeight(668);
+                stage.setResizable(true);
+            }
         });
     }
 }

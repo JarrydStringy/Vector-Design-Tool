@@ -50,7 +50,7 @@ public class Controller {
     @FXML
     private TextField brushSize;
     @FXML
-    private TextField gridSize;
+    private ComboBox gridSize;
     @FXML
     private CheckBox pen;
     @FXML
@@ -75,7 +75,9 @@ public class Controller {
     boolean undoHistory = false;
     String currentLine = "";
     String currentHistory = "";
-    boolean gridOn = false;
+    public static boolean gridOn = false;
+    public static int gridSizeNow = 1;
+
     /**
      * Initialize the application and attach listener to canvas for all methods to draw
      */
@@ -103,7 +105,7 @@ public class Controller {
         //SaveBMP bmpsave = new SaveBMP(g);
         ReadFile readFile = new ReadFile(g, canvas);
         resizeCanvas = new ResizeCanvas();
-        resizeCanvas.resize(canvasPane, g, savefile, save, readFile, canvas, canvas2, canvas3, file);
+        resizeCanvas.resize(canvasPane, g, g3, savefile, save, readFile, canvas, canvas2, canvas3, file);
         alert = new Alerts();
         undoRedo = new UndoRedo(g, canvas);
 
@@ -306,6 +308,8 @@ public class Controller {
 
     public void onUndo() {
         try{
+            ReadFile r;
+            //if(ReadFile.getFileLines() != null)
             String[] a = savefile.toString().split("\n");
             undoRedo.Undo();
             history.getItems().remove(history.getItems().size() - 1);
@@ -377,10 +381,9 @@ public class Controller {
             savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
             history.getItems().clear();
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
+            undoHistory = true;
             String last = savefile.substring(savefile.lastIndexOf("\n"))
-                    .replace("\n", "");
-
+                        .replace("\n", "");
             if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
                 // Store each line in array
                 String[] a = savefile.toString().split("\n");
@@ -399,7 +402,6 @@ public class Controller {
                     history.getItems().add(b);
                 }
             }
-            undoHistory = true;
             if(history.getItems().size() < 1)
             {
                 history.setMouseTransparent( true );
@@ -530,7 +532,20 @@ public class Controller {
             ReadFile r = new ReadFile(g, canvas);
             r.readfile();
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            currentHistory = "";
+            currentLine = "";
+            history.getItems().clear();
+            history.setMouseTransparent(false);
+            history.setFocusTraversable(true);
             r.displayFile();
+            r.scanFile();
+            String[] a = savefile.toString().split("\n");
+            for (String b : a) {
+                if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
+                    history.getItems().add(b);
+                }
+            }
+            savefile.deleteCharAt(savefile.length());
         } catch (Exception e) {
             // pass
         }
@@ -601,11 +616,9 @@ public class Controller {
      */
     public void checkGridInput() {
         try {
-            if (gridSize.getText().matches("[0-9]*") == false
-                    || Integer.parseInt(gridSize.getText()) < 1
-                    || Integer.parseInt(gridSize.getText()) > 1000) {
-                alert.gridSizeError();
-                gridSize.setText("1");
+            this.gridSizeNow = Integer.parseInt(gridSize.getValue().toString())*10;
+            if(gridOn){
+                setGrid();
             }
         } catch (Exception e) {
             // Display if any errors occur
@@ -614,30 +627,35 @@ public class Controller {
     }
 
     /**
-     * Displays the grid on the canvas
+     * Toggles grid checkbox
      */
     public void onGrid() {
         //Toggle Grid
         gridOn = !gridOn;
+        grid.setSelected(gridOn);
+        Grid g = new Grid(g3,canvas3);
+        if(gridOn == false)
+        {
+            g.clearGrid();
+            gridSize.setValue("Select");
+        }
+    }
+
+    /**
+     * Displays the grid on the canvas
+     */
+    public void setGrid(){
         //Display grid size from user input
-        g3.setLineWidth(Integer.parseInt(gridSize.getText()));
+        g3.setLineWidth(1);
+
+        Grid g = new Grid(g3,canvas3);
 
         if (gridOn == true) {
-            // Vertical Lines
-            g3.setStroke(Color.BLACK);
-            for (int i = 0; i < canvas3.getWidth(); i += 30) {
-                g3.strokeLine(i, 0, i, canvas3.getHeight() - (canvas3.getHeight() % 30));
-            }
-
-            // Horizontal Lines
-            for (int i = 30; i < canvas3.getHeight(); i += 30) {
-                g3.strokeLine(1, i, canvas3.getWidth(), i);
-            }
+            g.drawGrid();
         }
         if(gridOn == false)
-            {
-                g3.clearRect(0, 0, canvas3.getWidth(), canvas3.getHeight());
-            }
+        {
+            g.clearGrid();
         }
-
     }
+}
