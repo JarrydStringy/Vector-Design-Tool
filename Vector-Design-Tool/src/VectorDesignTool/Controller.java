@@ -527,7 +527,8 @@ public class Controller {
                 fileChooser.getExtensionFilters().add(extFilter);
                 File bfile = fileChooser.showSaveDialog(null);
 
-                // If there is an image, save as a PNG
+                // If there is an image, save as a PNG file
+                // Call alert if there is no image
                 if (bfile != null) {
 
                     // Casting the width and height values of the canvas as integers

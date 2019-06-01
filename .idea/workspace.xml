@@ -35,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="580" column="59" selection-start-line="580" selection-start-column="59" selection-end-line="580" selection-end-column="59" />
+            <state relative-caret-position="181">
+              <caret line="530" column="50" selection-start-line="530" selection-start-column="50" selection-end-line="530" selection-end-column="50" />
               <folding>
                 <element signature="e#20764#20765#0" expanded="true" />
                 <element signature="e#20805#20806#0" expanded="true" />
@@ -124,7 +124,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559409809539" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559409905027" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -266,8 +266,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="580" column="59" selection-start-line="580" selection-start-column="59" selection-end-line="580" selection-end-column="59" />
+        <state relative-caret-position="181">
+          <caret line="530" column="50" selection-start-line="530" selection-start-column="50" selection-end-line="530" selection-end-column="50" />
           <folding>
             <element signature="e#20764#20765#0" expanded="true" />
             <element signature="e#20805#20806#0" expanded="true" />
