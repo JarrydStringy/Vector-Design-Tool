@@ -286,16 +286,16 @@ public class Controller {
             history.setFocusTraversable(true);
             String last = savefile.substring(savefile.lastIndexOf("\n"))
                     .replace("\n", "");
-            if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
+            //if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
                 history.getItems().add(last);
-            }
+            //}
         } else {
             if (edgeCount >= edges && edges != 0) {
                 history.setMouseTransparent(false);
                 history.setFocusTraversable(true);
                 String last = savefile.substring(savefile.lastIndexOf("\n"))
                         .replace("\n", "");
-                if (Arrays.stream(shapes).parallel().anyMatch(last::contains))
+                //if (Arrays.stream(shapes).parallel().anyMatch(last::contains))
                     history.getItems().add(last);
                 edgeCount = 0;
             }
@@ -333,9 +333,9 @@ public class Controller {
                 String[] a = currentHistory.split("\n");
                 for (String b : a) {
                     savefile.append("\n" + b);
-                    if (Arrays.stream(shapes).anyMatch(b::contains)) {
+                    //if (Arrays.stream(shapes).anyMatch(b::contains)) {
                         history.getItems().add(b);
-                    }
+                    //}
                 }
                 g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 String[] c = savefile.toString().split("\n");
@@ -379,7 +379,7 @@ public class Controller {
             undoHistory = true;
             String last = savefile.substring(savefile.lastIndexOf("\n"))
                         .replace("\n", "");
-            if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
+            //if (Arrays.stream(shapes).parallel().anyMatch(last::contains)) {
                 // Store each line in array
                 String[] a = savefile.toString().split("\n");
                 // Store each command in an array per line
@@ -390,12 +390,12 @@ public class Controller {
 
                 DisplayFile displayFile = new DisplayFile(g, canvas, fileLines);
                 displayFile.displayFile();
-            }
-            String[] a = savefile.toString().split("\n");
+            //}
+            a = savefile.toString().split("\n");
             for (String b : a) {
-                if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
+               // if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
                     history.getItems().add(b);
-                }
+                //}
             }
             if(history.getItems().size() < 1)
             {
@@ -602,9 +602,9 @@ public class Controller {
             r.scanFile();
             String[] a = savefile.toString().split("\n");
             for (String b : a) {
-                if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
+                //if (Arrays.stream(shapes).parallel().anyMatch(b::contains)) {
                     history.getItems().add(b);
-                }
+                //}
             }
             savefile.deleteCharAt(savefile.length());
         } catch (Exception e) {
@@ -637,6 +637,7 @@ public class Controller {
                 g.setLineWidth(1);
                 g2.setLineWidth(1);
             } else {
+                savefile.append("\nPEN-WIDTH " + brushSize.getText());
                 g.setLineWidth(Integer.parseInt(brushSize.getText()));
                 g2.setLineWidth(Integer.parseInt(brushSize.getText()));
             }
@@ -644,7 +645,7 @@ public class Controller {
             // Display if any errors occur
             System.out.println("Error in check brushSize (374): " + e);
         }
-        savefile.append("\nPEN-WIDTH " + brushSize.getText());
+
     }
 
     /**
