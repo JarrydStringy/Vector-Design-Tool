@@ -178,7 +178,7 @@ Toolbar             Undo, Redo, Clear, Grid On, Grid size
                         </Group>
                         <Group>
                             <children>
-                                <TextField fx:id="brushSize" text="5" onKeyTyped="#checkBrushInput" maxWidth="50">
+                                <TextField fx:id="brushSize" text="1" onKeyTyped="#checkBrushInput" maxWidth="50">
                                     <tooltip>
                                         <Tooltip text="Enter Brush thickness, must be integer between 1 and 200." />
                                     </tooltip>

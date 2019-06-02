@@ -309,6 +309,7 @@ public class Controller {
 
     public void onUndo() {
         try{
+            //for()
             String[] a = savefile.toString().split("\n");
             undoRedo.Undo();
             history.getItems().remove(history.getItems().size() - 1);
@@ -331,9 +332,8 @@ public class Controller {
             {
                 String[] a = currentHistory.split("\n");
                 for (String b : a) {
+                    savefile.append("\n" + b);
                     if (Arrays.stream(shapes).anyMatch(b::contains)) {
-
-                        savefile.append("\n" + b);
                         history.getItems().add(b);
                     }
                 }
@@ -371,8 +371,7 @@ public class Controller {
             currentHistory = "";
             for(String b : c)
             {
-                if (Arrays.stream(shapes).parallel().anyMatch(b::contains))
-                    currentHistory = currentHistory + "\n" + b;
+                currentHistory = currentHistory + "\n" + b;
             }
             savefile.delete(savefile.lastIndexOf("\n" + choice), savefile.length());
             history.getItems().clear();
@@ -595,6 +594,7 @@ public class Controller {
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             currentHistory = "";
             currentLine = "";
+
             history.getItems().clear();
             history.setMouseTransparent(false);
             history.setFocusTraversable(true);
@@ -633,9 +633,9 @@ public class Controller {
                     || Integer.parseInt(brushSize.getText()) < 1
                     || Integer.parseInt(brushSize.getText()) > 200) {
                 alert.brushSizeError();
-                brushSize.setText("5");
-                g.setLineWidth(5);
-                g2.setLineWidth(5);
+                brushSize.setText("1");
+                g.setLineWidth(1);
+                g2.setLineWidth(1);
             } else {
                 g.setLineWidth(Integer.parseInt(brushSize.getText()));
                 g2.setLineWidth(Integer.parseInt(brushSize.getText()));
