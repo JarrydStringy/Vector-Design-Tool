@@ -26,15 +26,14 @@ public class ShapesTest {
     @Test
     public void testCoordinates() {
         // Tester should input coordinates to be tested
-        double x1 =100;
-        double x2 =100;
-        double y1 =100;
-        double y2 =100;
+        double x1 = 100;
+        double x2 = 100;
+        double y1 = 100;
+        double y2 = 100;
 
         // Put into array for testing methods
         double[][] coords = {{x1,y1},{x2,y2}};
 
-        double[][] zero = {{0,0},{0,0}};
 
         // Intialize Shapes Method
         shapes = new Shapes("",g,coords);
