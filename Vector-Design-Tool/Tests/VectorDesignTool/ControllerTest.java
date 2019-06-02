@@ -23,18 +23,24 @@ public class ControllerTest {
     public void testBrushInput() {
         controller = new Controller();
 
-        // Read an input value
-        String input = controller.inputBrushValue("One");
+        // Input a Test Input Value
+        String testVariable = "9";
 
-        // Use a boolean to determine if the input is a number or not
-        boolean value = input.matches("[0-9]*");
-        boolean value2 = ("9").matches("[0-9]*");
-        boolean value3 = ("/?$#").matches("[0-9]*");
+        // Example Inputs
+        String testInput2 = "Nine";
+        String testInput3 = "/?$#";
+
+        // Call method to find boolean
+        boolean testBoolean = controller.inputBrushValue(testVariable);
+        boolean testBoolean2 = controller.inputBrushValue(testInput2);
+        boolean testBoolean3 = controller.inputBrushValue(testInput3);
 
         // Test for both a numerical input, character input or string input
-        assertEquals(false, value);
-        assertEquals(true, value2);
-        assertEquals(false, value3);
+        //assertEquals(true, testBoolean);
+        assertTrue(testBoolean == true, testVariable + " is not a number between 1-1000");
+        assertTrue(testBoolean2 == false, testInput2 + " is not a number between 1-1000");
+        assertTrue(testBoolean3 == false, testInput3 + " is a number between 1-1000");
+
     }
 
     /*
@@ -46,19 +52,9 @@ public class ControllerTest {
 
     }
 
-    /*
-     * Test 3: Testing the shapes being drawn
-     */
-    @Test
-    public void testShapes() {
-        controller = new Controller();
-
-
-
-    }
 
     /*
-     * Test 4: An error message is created when saving an empty screen.
+     * Test 3: An error message is created when saving an empty screen.
      *
      */
     @Test
@@ -66,7 +62,7 @@ public class ControllerTest {
         controller = new Controller();
 
         // Input a value for a testing number of changes made.
-        int numberofEdits = 0;
+        int numberofEdits = 1;
 
         // Use Controller value for number of edits
         long EditsOnFile = controller.savefile.toString().chars().filter(line -> line == '\n').count();

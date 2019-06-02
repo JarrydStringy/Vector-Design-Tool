@@ -6,7 +6,7 @@ import static java.lang.Math.abs;
 
 public class Shapes extends DrawShape {
     private double[][] coords;
-    private GraphicsContext g;
+    public GraphicsContext g;
     private boolean isFill = false;
 
     /**

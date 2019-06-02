@@ -624,8 +624,13 @@ public class Controller {
         }
     }
 
-    public String inputBrushValue(String readvalue) {
-        return readvalue;
+    /**
+     * Returns a boolean for the input brush value
+     */
+    public boolean inputBrushValue(String readvalue) {
+        //Use a boolean to determine if the input is a number or not
+        boolean x = readvalue.matches("[0-9]*");
+        return x;
     }
 
 
