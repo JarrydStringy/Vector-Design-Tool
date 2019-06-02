@@ -47,8 +47,27 @@ public class ControllerTest {
      * Test 2: Testing the canvas history being cleared
      */
     @Test
-    public void testClearCanvasHistory() {
+    public void testCanvasHistory() {
         controller = new Controller();
+
+        // Tester inputs a PLOT CHOICE
+        String result = "ELLIPSE";
+
+
+        // StringBuilder is initialised assertion test
+        StringBuilder saved2 = new StringBuilder("PLOT ");
+
+        String option = "PLOT POLYGON";
+        String option1 = "PLOT ELLIPSE";
+        String option2 = "PLOT RECTANGLE";
+
+
+        //result = "PLOT " + result;
+        saved2.append(result);
+
+
+        assertTrue(saved2.toString().equals(option)||saved2.toString().equals(option1)||saved2.toString().equals(option2), result + " is not an option");
+
 
     }
 
@@ -67,7 +86,7 @@ public class ControllerTest {
         // Use Controller value for number of edits
         long EditsOnFile = controller.savefile.toString().chars().filter(line -> line == '\n').count();
 
-        // Test if more than zero changes have been mad
+        // Test if more than zero changes have been made
         assertTrue(numberofEdits > EditsOnFile,"Test Edits Variable (" + numberofEdits + ") should be greater than  Edits Made (" + EditsOnFile + ") in order to save the file.");
     }
 
