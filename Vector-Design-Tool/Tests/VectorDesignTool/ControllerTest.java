@@ -41,8 +41,9 @@ public class ControllerTest {
      * Test 1: Choosing the Brush size - must be an integer.
      */
     @Test
-    public void testReadFile() {
-//        controller = new Controller();
+    public void testSaveVECFile() {
+        controller = new Controller();
+
 //
 //        // Read an input value
 //        String input = controller.inputBrushValue("One");
