@@ -53,7 +53,7 @@ public class Controller {
     @FXML
     private ColorPicker colorPicker;
     @FXML
-    private TextField brushSize;
+    public TextField brushSize;
     @FXML
     private ComboBox gridSize;
     @FXML

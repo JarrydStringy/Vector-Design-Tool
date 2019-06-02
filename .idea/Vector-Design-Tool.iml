@@ -7,6 +7,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Vector-Design-Tool/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Vector-Design-Tool/Tests" isTestSource="true" />
     </content>
     <content url="file://$MODULE_DIR$/Vector-Design-Tool" />
     <orderEntry type="inheritedJdk" />
