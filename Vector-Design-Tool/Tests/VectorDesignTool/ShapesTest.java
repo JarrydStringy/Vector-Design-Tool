@@ -2,7 +2,6 @@ package VectorDesignTool;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.sun.javafx.geom.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,12 +18,17 @@ public class ShapesTest {
     }
 
 
+    double x1;
+    double x2;
+    double y1;
+    double y2;
 
     /*
      * Test 1: Testing the shape coordinates being greater than 0
      */
     @Test
     public void testCoordinates() {
+
         // Tester should input coordinates to be tested
         double x1 = 100;
         double x2 = 100;
@@ -45,8 +49,4 @@ public class ShapesTest {
         assertTrue(coords[1][0] > 0,"The value of x1 (" + coords[1][0] + ") should be greater than zero");
         assertTrue(coords[1][1] > 0,"The value of y2 (" + coords[1][1] + ") should be greater than zero");
     }
-
-
-
-
 }
