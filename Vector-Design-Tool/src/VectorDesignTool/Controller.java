@@ -263,6 +263,7 @@ public class Controller {
                     polygon.resetPolygon();
                 }
             }
+            currentLine = "";
             updateHistory();
             save.saveCurrentFile("currentFile.vec", savefile.toString());
         });
@@ -302,22 +303,12 @@ public class Controller {
     }
 
     /**
-     * Test Variables, will clean up later!
-     */
-
-    int i = 1;
-    /**
      * Removes most recent drawing and stashes it for later redo.
      * User can also press "ctrl" + "z" to perform this action
      */
 
-    final KeyCombination undo = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
-
-
     public void onUndo() {
         try{
-            ReadFile r;
-            //if(ReadFile.getFileLines() != null)
             String[] a = savefile.toString().split("\n");
             undoRedo.Undo();
             history.getItems().remove(history.getItems().size() - 1);
@@ -361,15 +352,12 @@ public class Controller {
                 history.setFocusTraversable(true);
                 return;
             }
+
             String[] a = currentLine.split("\n");
-            if(history.getItems().contains(a[a.length-1]))
-            {
-                alert.noRedo();
-                return;
-            }
+            String choice = a[1];
+            history.getItems().add(choice);
             undoRedo.Redo();
-            history.getItems().add(a[i]);
-            i++;
+            currentLine = currentLine.replace("\n" + choice, "");
         } catch (Exception e) {
             alert.noRedo();
         }
