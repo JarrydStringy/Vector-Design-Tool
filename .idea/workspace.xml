@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java" description="        if (savefile.toString().chars().filter(lin..." line="434" />
+    <bookmark url="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java" description="        if (savefile.toString().chars().filter(lin..." line="444" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04d8197d-3e19-4eb1-89a8-a8d10b50a5e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/Tests/VectorDesignTool/AppTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/Tests/VectorDesignTool/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/Tests/VectorDesignTool/ControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/TestModule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/production/Vector-Design-Tool/VectorDesignTool/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vector-Design-Tool/test/Vector-Design-Tool/VectorDesignTool/ControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/Vector-Design-Tool/test/Vector-Design-Tool/VectorDesignTool/ControllerTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/Vector-Design-Tool/" />
@@ -35,7 +35,7 @@
             <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/App.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state>
-                  <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+                  <caret column="25" selection-start-column="25" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -52,8 +52,12 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-317">
-                  <caret line="647" column="5" selection-start-line="647" selection-start-column="5" selection-end-line="647" selection-end-column="5" />
+                <state relative-caret-position="102">
+                  <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+                  <folding>
+                    <element signature="e#924#925#0" expanded="true" />
+                    <element signature="e#947#948#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -61,11 +65,20 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/Tests/VectorDesignTool/ControllerTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="281">
-                  <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+                <state relative-caret-position="255">
+                  <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/InstantiationError.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
                 </state>
               </provider>
             </entry>
@@ -74,11 +87,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$USER_HOME$/AppData/Local/Temp/Sequence.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="144">
-                  <caret line="87" column="18" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="18" />
+                <state relative-caret-position="85">
+                  <caret line="5" selection-start-line="5" selection-end-line="7" selection-end-column="3" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#204#205#0" expanded="true" />
@@ -94,11 +107,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$USER_HOME$/AppData/Local/Temp/BioLibraryTests.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="246">
-                  <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+                <state relative-caret-position="144">
+                  <caret line="29" column="34" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="34" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -139,9 +152,11 @@
       <find>Sequence</find>
       <find>DNA must contain only the letters A,</find>
       <find>seq</find>
-      <find>SequenceException</find>
       <find>errorCount</find>
       <find>ge</find>
+      <find>InstantiationError</find>
+      <find>SequenceException</find>
+      <find>message</find>
       <find>value</find>
     </findStrings>
   </component>
@@ -223,7 +238,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559446014792" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559446603023" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -307,12 +322,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ControllerTest - 2019.06.02 at 13h 16m 55s.xml">
-      <configuration name="ControllerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ControllerTest - 2019.06.02 at 13h 17m 59s.xml">
-      <configuration name="ControllerTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ControllerTest - 2019.06.02 at 13h 19m 42s.xml">
       <configuration name="ControllerTest" configurationId="JUnit" />
     </history-entry>
@@ -335,6 +344,12 @@
       <configuration name="ControllerTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="ControllerTest - 2019.06.02 at 13h 26m 52s.xml">
+      <configuration name="ControllerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ControllerTest - 2019.06.02 at 13h 31m 21s.xml">
+      <configuration name="ControllerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ControllerTest - 2019.06.02 at 13h 32m 18s.xml">
       <configuration name="ControllerTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -464,10 +479,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Sequence.java">
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/Tests/VectorDesignTool/AppTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/InstantiationError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/BioLibraryTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="87" column="18" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="18" />
+          <caret line="29" column="34" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Sequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="7" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#204#205#0" expanded="true" />
@@ -484,39 +530,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-317">
-          <caret line="647" column="5" selection-start-line="647" selection-start-column="5" selection-end-line="647" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/Tests/VectorDesignTool/AppTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/BioLibraryTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+        <state relative-caret-position="102">
+          <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#924#925#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/src/VectorDesignTool/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Vector-Design-Tool/Tests/VectorDesignTool/ControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="255">
+          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

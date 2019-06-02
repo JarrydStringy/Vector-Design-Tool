@@ -27,6 +27,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * General exception for the Controller class.
+ */
+class ControllerException extends Exception {
+    public ControllerException() {
+        super();
+    }
+}
+
 public class Controller {
     public static boolean isDrawing;
     public static UndoRedo undoRedo;

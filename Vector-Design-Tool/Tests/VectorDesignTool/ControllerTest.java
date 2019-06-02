@@ -21,7 +21,7 @@ public class ControllerTest {
      */
 
     @Test
-    public void testBrushInput() throws InstantiationError {
+    public void testBrushInput() throws ControllerException{
 
         // Use a boolean to determine if the input is a number or not
         boolean value = ("One").matches("[0-9]*");
