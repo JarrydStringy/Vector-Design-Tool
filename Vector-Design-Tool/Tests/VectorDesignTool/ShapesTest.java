@@ -9,19 +9,24 @@ import org.junit.jupiter.api.Test;
 
 
 public class ShapesTest {
+
+
     public GraphicsContext g;
     Shapes shapes;
-
-    @BeforeEach
-    public void setUpShapes() throws InstantiationError {
-        shapes = null;
-    }
-
 
     double x1;
     double x2;
     double y1;
     double y2;
+
+    /*
+     * Test 0: Initialisation
+     */
+    @BeforeEach
+    public void setUpShapes() throws InstantiationError {
+        shapes = null;
+    }
+
 
     /*
      * Test 1: Testing the shape coordinates being greater than 0

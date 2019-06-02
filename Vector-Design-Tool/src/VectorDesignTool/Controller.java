@@ -626,6 +626,8 @@ public class Controller {
 
     /**
      * Returns a boolean for the input brush value
+     *
+     * @param readvalue - the value inputted into
      */
     public boolean inputBrushValue(String readvalue) {
         //Use a boolean to determine if the input is a number or not
