@@ -19,18 +19,22 @@ public class ControllerTest {
     /*
      * Test 1: Choosing the Brush size - must be an integer.
      */
-    boolean value;
+
     @Test
     public void testBrushInput() throws InstantiationError {
-        try {
-            controller = new Controller();
-            boolean value = controller.brushSize.getText().matches("[0-9]*");
 
-        } catch (Exception expected) {
-            assertEquals(null, expected.getMessage());
-            assertEquals(true, value);
-        }
+        // Use a boolean to determine if the input is a number or not
+        boolean value = ("One").matches("[0-9]*");
+        boolean value2 = ("9").matches("[0-9]*");
+        boolean value3 = ("/?$#").matches("[0-9]*");
+
+
+        // Test for both a numerical input, character input or string input
+        assertEquals(false, value);
+        assertEquals(true, value2);
+        assertEquals(false, value3);
     }
+
 
 
 }
