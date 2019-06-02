@@ -27,16 +27,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-
-/**
- * General exception for the Controller class.
- */
-class ControllerException extends Exception {
-    public ControllerException() {
-        super();
-    }
-}
-
 public class Controller {
     public static boolean isDrawing;
     public static UndoRedo undoRedo;
@@ -633,6 +623,11 @@ public class Controller {
             // pass
         }
     }
+
+    public String inputBrushValue(String readvalue) {
+        return readvalue;
+    }
+
 
     /**
      * Checks that the user input for brush size is a valid positive integer between 1 and 200.

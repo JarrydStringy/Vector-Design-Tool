@@ -19,15 +19,17 @@ public class ControllerTest {
     /*
      * Test 1: Choosing the Brush size - must be an integer.
      */
-
     @Test
-    public void testBrushInput() throws ControllerException{
+    public void testBrushInput() {
+        controller = new Controller();
+
+        // Read an input value
+        String input = controller.inputBrushValue("One");
 
         // Use a boolean to determine if the input is a number or not
-        boolean value = ("One").matches("[0-9]*");
+        boolean value = input.matches("[0-9]*");
         boolean value2 = ("9").matches("[0-9]*");
         boolean value3 = ("/?$#").matches("[0-9]*");
-
 
         // Test for both a numerical input, character input or string input
         assertEquals(false, value);
@@ -35,6 +37,26 @@ public class ControllerTest {
         assertEquals(false, value3);
     }
 
+    /*
+     * Test 1: Choosing the Brush size - must be an integer.
+     */
+    @Test
+    public void testReadFile() {
+//        controller = new Controller();
+//
+//        // Read an input value
+//        String input = controller.inputBrushValue("One");
+//
+//        // Use a boolean to determine if the input is a number or not
+//        boolean value = input.matches("[0-9]*");
+//        boolean value2 = ("9").matches("[0-9]*");
+
+//        // Test for both a numerical input, character input or string input
+//        assertEquals(false, value);
+//        assertEquals(true, value2);
+
+
+    }
 
 
 }
